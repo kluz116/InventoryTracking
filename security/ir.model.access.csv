@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_infrastructure_admin,inventory_tracker,model_inventory_track_inventory,infrastructure_admin,1,1,1,1
+access_infrastructure_admin1,inventory_tracker,model_inventory_track_vendor,infrastructure_admin,1,1,1,1
+access_infrastructure_admin2,inventory_tracker,model_inventory_track_make,infrastructure_admin,1,1,1,1
+access_infrastructure_admin3,inventory_tracker,model_inventory_track_asset_models,infrastructure_admin,1,1,1,1
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     
+        <record id="view_inventory_track_vendor_tree" model="ir.ui.view">
+            <field name="name">inventory_track.vendor.tree</field>
+            <field name="model">inventory_track.vendor</field>
+             <field name="arch" type="xml">
+                <tree string="All Vendors">
+                    <field name="vendor_name" />
+                    <field name="vendor_email" />
+                    <field name="vendor_phone" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_inventory_track_make_tree" model="ir.ui.view">
+            <field name="name">inventory_track.make.tree</field>
+            <field name="model">inventory_track.make</field>
+             <field name="arch" type="xml">
+                <tree string="All Makes">
+                    <field name="make_name" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_inventory_track_asset_models_tree" model="ir.ui.view">
+            <field name="name">inventory_track.asset_models.tree</field>
+            <field name="model">inventory_track.asset_models</field>
+             <field name="arch" type="xml">
+                <tree string="All Makes">
+                    <field name="asset_model" />
+                    <field name="asset_make" />
+                </tree>
+            </field>
+        </record>
+
+ 
+         
+
+       <record model="ir.ui.view" id="inventory_track_vendor_form_view">
+            <field name="name">inventory_track_vendor.form</field>
+            <field name="model">inventory_track.vendor</field>
+            <field name="arch" type="xml">
+                <form string="Add Vendors" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="vendor_name"/>
+                        </group>
+                        <group>
+                            <field name="vendor_email"/>
+                        </group>
+                           <group>
+                            <field name="vendor_phone"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="inventory_track_make_form_view">
+            <field name="name">inventory_track_make.form</field>
+            <field name="model">inventory_track.make</field>
+            <field name="arch" type="xml">
+                <form string="Add Make" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="make_name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="inventory_track_asset_models_form_view">
+            <field name="name">inventory_track_asset_models.form</field>
+            <field name="model">inventory_track.asset_models</field>
+            <field name="arch" type="xml">
+                <form string="Add Asset Model" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="asset_model"/>
+                        </group>
+                         <group>
+                            <field name="asset_make"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+      
+      
+        <record model="ir.ui.view" id="inventory_track_vendor_search_view">
+            <field name="name">inventory_track_vendor.search</field>
+            <field name="model">inventory_track.vendor</field>
+            <field name="arch" type="xml">
+                <search>
+                      <field name="vendor_name" />
+                      <field name="vendor_email" />
+                      
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="inventory_track_asset_models_search_view">
+            <field name="name">inventory_track_asset_models.search</field>
+            <field name="model">inventory_track.asset_models</field>
+            <field name="arch" type="xml">
+                <search>
+                      <field name="asset_model" />
+                      <field name="asset_make" />
+                      
+                </search>
+            </field>
+        </record>
+
+         <record model="ir.ui.view" id="inventory_track_make_search_view">
+            <field name="name">inventory_track_make.search</field>
+            <field name="model">inventory_track.make</field>
+            <field name="arch" type="xml">
+                <search>
+                      <field name="make_name" /> 
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="vendor_lists_action">
+            <field name="name">Vendors</field>
+            <field name="res_model">inventory_track.vendor</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create new vendor</p>
+            </field>
+        </record>
+         <record model="ir.actions.act_window" id="make_lists_action">
+            <field name="name">Makes</field>
+            <field name="res_model">inventory_track.make</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create new asset make</p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="asset_models_lists_action">
+            <field name="name">Asset Models</field>
+            <field name="res_model">inventory_track.asset_models</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create new asset model</p>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_inventory_menu" name="Online Inventory Tracker"/>
+        <menuitem id="config_mene_inv" name="Configurations" sequence="12"  parent="main_inventory_menu"  />
+        <menuitem id="config_ven" name="Vendors" parent="config_mene_inv" sequence="6"  action="vendor_lists_action" />
+        <menuitem id="config_make" name="Asset Makes" parent="config_mene_inv" sequence="7"  action="make_lists_action" />
+        <menuitem id="config_model" name="Asset Models" parent="config_mene_inv" sequence="8"  action="asset_models_lists_action" />
+ 
+</odoo>

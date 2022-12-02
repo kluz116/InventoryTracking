@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.module.category" id="module_inventory_tracker">
+        <field name="name">Inventory </field>
+        <field name="description">Inventory Tracker </field>
+        <field name="sequence">20</field>
+    </record>
+        <record id="infrastructure_admin" model="res.groups">
+        <field name="name">Infrastructure Admin</field>
+        <field name="category_id" ref="module_inventory_tracker"/>       
+    </record>
+    <record id="infrastructure_manager" model="res.groups">
+        <field name="name">Infrastructure Manager</field>
+        <field name="category_id" ref="module_inventory_tracker"/>
+    </record>
+
+</odoo>

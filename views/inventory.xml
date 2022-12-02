@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     
+        <record id="view_inventory_tree" model="ir.ui.view">
+            <field name="name">inventory_track_inventory.tree</field>
+            <field name="model">inventory_track.inventory</field>
+             <field name="arch" type="xml">
+                <tree string="Inventory" default_order='created_on desc'>
+                    <field name="asset_type"/>
+                    <field name="asset_status"/>
+                    
+                    <field name="vendor_id" />
+                    <field name="make" />
+                    <field name="model" />
+                    <field name="serial" />
+                    <field name="tag" />
+                    <field name="ram" />
+                    <field name="hdd" />
+                    <field name="os" />
+                    <field name="created_on"/> 
+                    <field name="created_by"/>   
+                       
+                </tree>
+            </field>
+        </record>
+         
+        <record id="inventory_form" model="ir.ui.view">
+            <field name="name">inventory_track.inventory.form</field>
+            <field name="model">inventory_track.inventory</field>
+            <field name="arch" type="xml">
+                <form string="Create Inventory Record" create="false" edit="false">
+                 <xpath expr="//sheet" position="before">
+                    <header> 
+                   <!---
+                        <button name="%(spot_check.wizard_spot_check_accountant_cosent)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_reject_cash_accountant)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-danger" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_manager_cosent)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_reject_reject_manager)d" states='confirmed_one' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
+                        <field name ="current_to_branch_accountant" invisible ='1'/>
+                        <field name ="current_to_branch_manager" invisible ='1'/>-->
+                        <field name="asset_status" widget="statusbar" statusbar_visible="available,verified,rejected,dispatched,recieved" />
+                    </header>
+                </xpath>
+                   <sheet>
+                        <group>
+                            <field name="asset_type"  />
+                        </group>
+                        <group>
+                             <field name = "vendor_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
+                        </group> 
+                        <group>
+                             <field name = "make"  options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
+                        </group> 
+                         <group>
+                             <field name = "model"  options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
+                        </group> 
+                         <group>
+                             <field name = "serial"  />
+                        </group> 
+                         <group>
+                             <field name = "tag"  />
+                        </group> 
+                        <group>
+                            <field name = "comment"  />
+                        </group> 
+                        
+                         <notebook>
+                                <page string="Specifications">
+                                    <group>
+                                        <field name = "ram"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]}" />
+                                    </group>  
+                                     <group>
+                                        <field name = "hdd"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]}" />
+                                    </group> 
+                                     <group>
+                                        <field name = "os"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]} " />
+                                    </group> 
+                                </page>    
+                          </notebook>  
+
+                            <group>
+                             <field name ="created_on" invisible="1"/>
+                            </group> 
+                            <group>
+                             <field name ="created_by" invisible="1"/>
+                            </group>             
+                    </sheet> 
+                
+                </form>
+            </field>
+        </record>
+      
+        <record model="ir.ui.view" id="inventory_search_view">
+            <field name="name">inventory_track.inventory.search</field>
+            <field name="model">inventory_track.inventory</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="vendor_id" />
+                    <field name="make" />
+                    <field name="model" />
+                    <field name="serial" />
+                    <field name="tag" />
+                 
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="inventory_lists_action">
+            <field name="name">Inventory</field>
+            <field name="res_model">inventory_track.inventory</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create new Inventory</p>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_inventory_menu" name="Online Inventory Tracker"/>
+        <menuitem id="config_menu_inventory" name="Inventory" sequence="11"  parent="main_inventory_menu"  />
+        <menuitem id="config_inventories" name="Inventory" parent="config_menu_inventory" sequence="5"  action="inventory_lists_action" />
+ 
+</odoo>
