@@ -26,6 +26,8 @@
         'wizard/verify_asset.xml',
         'views/inventory.xml',
         'views/configs.xml',
+        'views/inventory_user.xml',
+        
         
        
 

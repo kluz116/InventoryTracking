@@ -32,6 +32,17 @@
             </field>
         </record>
 
+        <record id="view_location_tree" model="ir.ui.view">
+            <field name="name">inventory_track.asset_location.tree</field>
+            <field name="model">inventory_track.asset_location</field>
+             <field name="arch" type="xml">
+                <tree string="All Locations">
+                    <field name="location_name" />
+                </tree>
+            </field>
+        </record>
+
+
  
          
 
@@ -63,6 +74,20 @@
                     <sheet>
                         <group>
                             <field name="make_name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="inventory_track_location_form_view">
+            <field name="name">inventory_track_asset_location.form</field>
+            <field name="model">inventory_track.asset_location</field>
+            <field name="arch" type="xml">
+                <form string="Add Location" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="location_name"/>
                         </group>
                     </sheet>
                 </form>
@@ -121,6 +146,16 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="inventory_track_asset_location_search_view">
+            <field name="name">inventory_track_asset_location.search</field>
+            <field name="model">inventory_track.asset_location</field>
+            <field name="arch" type="xml">
+                <search>
+                      <field name="location_name" /> 
+                </search>
+            </field>
+        </record>
+
 
         <record model="ir.actions.act_window" id="vendor_lists_action">
             <field name="name">Vendors</field>
@@ -148,11 +183,21 @@
             </field>
         </record>
 
+        <record model="ir.actions.act_window" id="asset_location_lists_action">
+            <field name="name">Asset Location</field>
+            <field name="res_model">inventory_track.asset_location</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create new location</p>
+            </field>
+        </record>
+
         <!-- top level menu: no parent -->
         <menuitem id="main_inventory_menu" name="Online Inventory Tracker"/>
         <menuitem id="config_mene_inv" name="Configurations" sequence="12"  parent="main_inventory_menu"  />
         <menuitem id="config_ven" name="Vendors" parent="config_mene_inv" sequence="6"  action="vendor_lists_action" />
         <menuitem id="config_make" name="Asset Makes" parent="config_mene_inv" sequence="7"  action="make_lists_action" />
         <menuitem id="config_model" name="Asset Models" parent="config_mene_inv" sequence="8"  action="asset_models_lists_action" />
+        <menuitem id="config_asset_location" name="Asset Locations" parent="config_mene_inv" sequence="9"  action="asset_location_lists_action" />
  
 </odoo>
