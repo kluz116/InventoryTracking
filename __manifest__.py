@@ -19,11 +19,15 @@
   
     # always loaded
     'data': [
+        
         'security/inventory_security.xml',
         'security/ir.model.access.csv',
         #'data/email_template_cash_managment.xml',
+        'wizard/verify_asset.xml',
         'views/inventory.xml',
         'views/configs.xml',
+        
+       
 
     ],
     # only loaded in demonstration mode

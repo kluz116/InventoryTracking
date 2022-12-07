@@ -18,3 +18,5 @@ class Inventory(models.Model):
     comment = fields.Char(string="comment",required=True)
     created_on =  fields.Datetime(string='Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Created By:',default=lambda self: self.env.user)
+    from_manager_comment = fields.Text(string="Comment")
+    from_manager_date =  fields.Datetime(string='Verified Date')

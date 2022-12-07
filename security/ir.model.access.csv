@@ -3,6 +3,7 @@ access_infrastructure_admin,inventory_tracker,model_inventory_track_inventory,in
 access_infrastructure_admin1,inventory_tracker,model_inventory_track_vendor,infrastructure_admin,1,1,1,1
 access_infrastructure_admin2,inventory_tracker,model_inventory_track_make,infrastructure_admin,1,1,1,1
 access_infrastructure_admin3,inventory_tracker,model_inventory_track_asset_models,infrastructure_admin,1,1,1,1
+access_infrastructure_admin4,inventory_tracker,model_inventory_track_verify_asset,infrastructure_admin,1,1,1,1
 
 
 
