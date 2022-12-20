@@ -31,10 +31,13 @@
                 <form string="Create Inventory Record" create="false" edit="false">
                  <xpath expr="//sheet" position="before">
                     <header> 
-                
-                        <button name="%(wizard_verify_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['verified','rejected','dispatched','recieved'])]}" type="action" string="Verify Asset" class="btn btn-outline-primary"  />
-  
-                        <field name="asset_status" widget="statusbar" statusbar_visible="available,verified,rejected,dispatched,recieved" />
+                        <button name="%(wizard_stock_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['stocked','verified','verified_one','diployment','active','repair','disposal'])]}" type="action" string="Stock Asset" class="btn btn-outline-primary"  />
+                        <button name="%(wizard_verify_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','verified','verified_one','diployment','active','repair','disposal'])]}" type="action" string="Verify Asset" class="btn btn-outline-primary"  />
+                        <button name="%(wizard_verify_asset_cyber_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified_one','diployment','active','repair','disposal'])]}" type="action" string="Cyber Verify Asset" class="btn btn-outline-primary"  />
+                        <button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','diployment','active','repair','disposal'])]}" type="action" string="Deploy Asset" class="btn btn-outline-primary"  />
+                        <button name="%(wizard_verify_asset_activate_location)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','active','repair','disposal'])]}" type="action" string="Activate Asset" class="btn btn-outline-primary"  />
+                        
+                        <field name="asset_status" widget="statusbar" statusbar_visible="new,stocked,verified,verified_one,diployment,active,repair,disposal" />
                     </header>
                 </xpath>
                    <sheet>
@@ -71,6 +74,41 @@
                                      <group>
                                         <field name = "os"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]} " />
                                     </group> 
+                                </page>   
+                                <page string="Stocked">
+                                    <group>
+                                        <field name = "stock_comment" readonly="1" />
+                                    </group>  
+                                     <group>
+                                        <field name = "stock_date"  readonly="1" />
+                                    </group> 
+                                   
+                                </page>
+                                <page string="Verification">
+                                    <group>
+                                        <field name = "from_manager_comment" readonly="1" />
+                                    </group>  
+                                     <group>
+                                        <field name = "from_manager_date" readonly="1"  />
+                                    </group> 
+                                </page>   
+                                <page string="Deployment">
+                                    <group>
+                                        <field name = "location_id"  readonly="1"/>
+                                    </group>  
+                                     <group>
+                                        <field name = "dispatched_to" readonly="1"/>
+                                    </group> 
+                                     <group>
+                                        <field name = "dispach_comment" readonly="1"/>
+                                    </group> 
+                                     <group>
+                                        <field name = "dispach_date" readonly="1"/>
+                                    </group> 
+                                       <group>
+                                        <field name = "dispatched_by" readonly="1" />
+                                    </group> 
+                                    
                                 </page>    
                           </notebook>  
 

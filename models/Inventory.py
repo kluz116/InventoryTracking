@@ -9,7 +9,7 @@ class Inventory(models.Model):
     vendor_id = fields.Many2one('inventory_track.vendor',string='Vendor',required=True)
     make = fields.Many2one('inventory_track.make',ondelete='cascade',string='Asset Make')
     model = fields.Many2one('inventory_track.asset_models',string="Asset Model",domain = " [('asset_make','=',make)] " )
-    asset_status = fields.Selection([('available','Available'),('verified','Verified'),('rejected','Rejected'),('dispatched','Dispatched'),('recieved','Recieved')],string="Asset Status", required=True, default="available")
+    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Deployment'),('active','Active'),('repair','Repair'),('disposal','Disposal')],string="Asset Status", required=True, default="new")
     serial = fields.Char(string="Serial",required=True)
     tag = fields.Char(string="Asset TAG", required=True)
     ram = fields.Selection([('one','1 GB'),('two','2 GB'),('three','3 GB'),('four','4 GB'),('six','6 GB'),('eight','8 GB'),('twelve','12 GB'),('sixteen','16 GB'),('thirty_two','32 GB')],string="RAM Size",  default="one")
@@ -20,3 +20,18 @@ class Inventory(models.Model):
     created_by = fields.Many2one('res.users','Created By:',default=lambda self: self.env.user)
     from_manager_comment = fields.Text(string="Comment")
     from_manager_date =  fields.Datetime(string='Verified Date')
+    location_id = fields.Many2one('inventory_track.asset_location',string ='Asset Location')
+    dispatched_to = fields.Many2one('res.partner','User')
+    dispach_comment = fields.Text(string="Comment")
+    dispach_date =  fields.Datetime(string='Verified Date')
+    dispatched_by = fields.Many2one('res.users','Dispatched By:')
+    stock_comment = fields.Text(string="Comment")
+    stock_date =  fields.Datetime(string='Stock Date')
+    cyber_comment = fields.Text(string="Comment")
+    cyber_date =  fields.Datetime(string='Cyber Verified Date')
+    activated_comment = fields.Text(string="Activation Comment")
+    activated_date =  fields.Datetime(string='Activation Date')
+    activated_by = fields.Many2one('res.users','Activated By:')
+   
+
+  
