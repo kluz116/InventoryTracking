@@ -23,7 +23,7 @@ class Inventory(models.Model):
     location_id = fields.Many2one('inventory_track.asset_location',string ='Asset Location')
     dispatched_to = fields.Many2one('res.partner','User')
     dispach_comment = fields.Text(string="Comment")
-    dispach_date =  fields.Datetime(string='Verified Date')
+    dispach_date =  fields.Datetime(string='Deployed Date')
     dispatched_by = fields.Many2one('res.users','Dispatched By:')
     stock_comment = fields.Text(string="Comment")
     stock_date =  fields.Datetime(string='Stock Date')

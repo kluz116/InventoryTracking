@@ -21,6 +21,15 @@ class RepairAsset(models.TransientModel):
             req.activated_comment = self.activated_comment
             req.activated_date = self.activated_date
             req.activated_by = self.activated_by
+
+            vals = { 'asset_id': req.id, 
+                 'asset_status': self.asset_status,
+                 'repaire_comment': self.repaire_comment,
+                 'repaire_date': self.repaire_date,
+                 'repaired_by': self.repaired_by.id,
+                 }
+
+            self.env['inventory_track.asset_repair_log'].create(vals)
             
 
            # template_id = self.env.ref('cash_managment.email_template_branch_bank_request_supervise').id
