@@ -13,14 +13,14 @@ class RepairAsset(models.TransientModel):
     repaired_by = fields.Many2one('res.users','Initiated By:',default=lambda self: self.env.user)
    
     
-    def activate_asset(self):
+    def repair_asset(self):
         self.write({'asset_status': 'repair'})
         asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))
         for req in asset:
             req.asset_status = self.asset_status
-            req.activated_comment = self.activated_comment
-            req.activated_date = self.activated_date
-            req.activated_by = self.activated_by
+            req.repaire_comment = self.repaire_comment
+            req.repaire_date = self.repaire_date
+            req.repaired_by = self.repaired_by
 
             vals = { 'asset_id': req.id, 
                  'asset_status': self.asset_status,

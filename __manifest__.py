@@ -28,6 +28,8 @@
         'wizard/verify_asset_one.xml',
         'wizard/activate_asset.xml',
         'wizard/stock_asset.xml',
+        'wizard/repair_asset.xml',
+        'wizard/dispose_asset.xml',
         'views/inventory.xml',
         'views/configs.xml',
         'views/inventory_user.xml',

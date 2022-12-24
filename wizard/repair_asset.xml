@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="inventory_track_repaire__wizard" model="ir.ui.view">
+            <field name="name">inventory_track.repair.form</field>
+            <field name="model">inventory_track.repair</field>
+            <field name="arch" type="xml">
+                <form string="Activate  Asset">
+                    <group>
+                        <field name="repaire_comment"/>   
+                    </group>
+                    <group>
+                        <field name="repaire_date" readonly="1"/>
+                    </group>
+                      <group>
+                        <field name="repaired_by" readonly="1"/>
+                    </group>
+                    <footer>
+                        <button name="repair_asset" string="Repaire Asset" type="object" class="btn btn-outline-primary"/>
+                        <button string="Cancel" class="btn-outline-dark" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_verify_asset_repaire_assets" model="ir.actions.act_window">
+            <field name="name">Activate Asset</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inventory_track.repair</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="inventory_track_repaire__wizard"/>
+            <field name="target">new</field>
+        </record>
+</odoo>

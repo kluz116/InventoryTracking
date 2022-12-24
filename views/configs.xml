@@ -42,6 +42,19 @@
             </field>
         </record>
 
+        <record id="view_tags_tree" model="ir.ui.view">
+            <field name="name">inventory_track.tag.tree</field>
+            <field name="model">inventory_track.asset_tags</field>
+             <field name="arch" type="xml">
+                <tree string="Tags" default_order='tag_date desc'>
+                    <field name="tag" />
+                    <field name="status" />
+                    <field name="tag_date" />
+                    <field name="created_by" />
+                </tree>
+            </field>
+        </record>
+
 
  
          
@@ -110,7 +123,45 @@
                 </form>
             </field>
         </record>
+
+        
+        <record model="ir.ui.view" id="inventory_track_asset_tags_form_view">
+            <field name="name">inventory_track_asset_tags.form</field>
+            <field name="model">inventory_track.asset_tags</field>
+            <field name="arch" type="xml">
+                <form string="Add Asset Tags" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="tag"/>
+                        </group>
+                         <group>
+                            <field name="status" readonly='1'/>
+                        </group>
+                         <group>
+                            <field name="tag_date" readonly='1'/>
+                        </group>
+                         <group>
+                            <field name="created_by" readonly='1'/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
       
+
+         <record model="ir.ui.view" id="inventory_track_asset_tags_search_view">
+            <field name="name">inventory_track_asset_tags.search</field>
+            <field name="model">inventory_track.asset_tags</field>
+            <field name="arch" type="xml">
+                <search>
+                      <field name="tag" />
+                      <field name="tag_date" />
+                      <field name="status" />
+                      <field name="created_by" />
+                      
+                </search>
+            </field>
+        </record>
       
         <record model="ir.ui.view" id="inventory_track_vendor_search_view">
             <field name="name">inventory_track_vendor.search</field>
@@ -191,6 +242,16 @@
                 <p class="o_view_nocontent_smiling_face">Create new location</p>
             </field>
         </record>
+         <record model="ir.actions.act_window" id="asset_tags_lists_action">
+            <field name="name">Asset Tags</field>
+            <field name="res_model">inventory_track.asset_tags</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create new Tag</p>
+            </field>
+        </record>
+
+        
 
         <!-- top level menu: no parent -->
         <menuitem id="main_inventory_menu" name="Online Inventory Tracker"/>
@@ -199,5 +260,6 @@
         <menuitem id="config_make" name="Asset Makes" parent="config_mene_inv" sequence="7"  action="make_lists_action" />
         <menuitem id="config_model" name="Asset Models" parent="config_mene_inv" sequence="8"  action="asset_models_lists_action" />
         <menuitem id="config_asset_location" name="Asset Locations" parent="config_mene_inv" sequence="9"  action="asset_location_lists_action" />
+        <menuitem id="config_asset_tags" name="Asset Tags" parent="config_mene_inv" sequence="10"  action="asset_tags_lists_action" />
  
 </odoo>

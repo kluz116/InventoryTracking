@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="inventory_track_dispose_asset_wizard" model="ir.ui.view">
+            <field name="name">inventory_track.dispose_asset.form</field>
+            <field name="model">inventory_track.dispose_asset</field>
+            <field name="arch" type="xml">
+                <form string="Dispose  Asset">
+                    <group>
+                        <field name="disposal_comment"/>   
+                    </group>
+                    <group>
+                        <field name="disposal_date" readonly="1"/>
+                    </group>
+                      <group>
+                        <field name="disposed_by" readonly="1"/>
+                    </group>
+                    <footer>
+                        <button name="disposal_asset" string="Dispose Asset" type="object" class="btn btn-outline-primary"/>
+                        <button string="Cancel" class="btn-outline-dark" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_verify_asset_dis_assets" model="ir.actions.act_window">
+            <field name="name">Dispose Asset</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inventory_track.dispose_asset</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="inventory_track_dispose_asset_wizard"/>
+            <field name="target">new</field>
+        </record>
+</odoo>

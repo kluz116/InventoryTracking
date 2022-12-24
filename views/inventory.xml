@@ -5,10 +5,9 @@
             <field name="name">inventory_track_inventory.tree</field>
             <field name="model">inventory_track.inventory</field>
              <field name="arch" type="xml">
-                <tree string="Inventory" default_order='created_on desc'>
+                <tree string="Inventory" decoration-success="asset_status == 'active'" decoration-warning="asset_status == 'new'" default_order='created_on desc'>
                     <field name="asset_type"/>
                     <field name="asset_status"/>
-                    
                     <field name="vendor_id" />
                     <field name="make" />
                     <field name="model" />
@@ -23,6 +22,34 @@
                 </tree>
             </field>
         </record>
+
+        <record id="view_inventory_repaire_tree" model="ir.ui.view">
+            <field name="name">asset_repair_log.tree</field>
+            <field name="model">inventory_track.asset_repair_log</field>
+             <field name="arch" type="xml">
+                <tree string="Repaire" default_order='repaire_date desc'>
+                <field name="asset_id"/> 
+                <field name="asset_status"/> 
+                <field name="repaire_comment"/> 
+                <field name="repaire_date"/> 
+                <field name="repaired_by"/>      
+                </tree>
+            </field>
+        </record>
+        <record id="view_inventory_activate_tree" model="ir.ui.view">
+            <field name="name">asset_activate_log.tree</field>
+            <field name="model">inventory_track.asset_activate_log</field>
+             <field name="arch" type="xml">
+                <tree string="Active" default_order='activated_date desc'>
+                <field name="asset_id"/> 
+                <field name="asset_status"/> 
+                <field name="activated_comment"/> 
+                <field name="activated_date"/> 
+                <field name="activated_by"/>      
+                </tree>
+            </field>
+        </record>
+         
          
         <record id="inventory_form" model="ir.ui.view">
             <field name="name">inventory_track.inventory.form</field>
@@ -36,6 +63,10 @@
                         <button name="%(wizard_verify_asset_cyber_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified_one','diployment','active','repair','disposal'])]}" type="action" string="Cyber Verify Asset" class="btn btn-outline-primary"  />
                         <button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','diployment','active','repair','disposal'])]}" type="action" string="Deploy Asset" class="btn btn-outline-primary"  />
                         <button name="%(wizard_verify_asset_activate_location)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','active','repair','disposal'])]}" type="action" string="Activate Asset" class="btn btn-outline-primary"  />
+                        <button name="%(wizard_verify_asset_repaire_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','repair','disposal'])]}" type="action" string="Repaire Asset" class="btn btn-outline-primary"  />
+                        <button name="%(wizard_verify_asset_dis_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','repair'])]}" type="action" string="Dispose Asset" class="btn btn-outline-primary"  />
+                        <button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','repair','disposal'])]}" type="action" string="Relocate" class="btn btn-outline-primary"  />
+                        <button name="%(wizard_verify_asset_dis_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','active'])]}" type="action" string="Dispose Asset" class="btn btn-outline-primary"  />
                         
                         <field name="asset_status" widget="statusbar" statusbar_visible="new,stocked,verified,verified_one,diployment,active,repair,disposal" />
                     </header>
@@ -57,7 +88,7 @@
                              <field name = "serial"  />
                         </group> 
                          <group>
-                             <field name = "tag"  />
+                             <field name = "tag" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
                         </group> 
                         <group>
                             <field name = "comment"  />
@@ -134,7 +165,33 @@
                     <field name="model" />
                     <field name="serial" />
                     <field name="tag" />
-                 
+                </search>
+            </field>
+        </record>
+           <record model="ir.ui.view" id="asset_repair_log_search_view">
+            <field name="name">inventory_track.asset_repair_log.search</field>
+            <field name="model">inventory_track.asset_repair_log</field>
+            <field name="arch" type="xml">
+                <search>
+                        <field name="asset_id"/> 
+                        <field name="asset_status"/> 
+                        <field name="repaire_comment"/> 
+                        <field name="repaire_date"/> 
+                        <field name="repaired_by"/>   
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="asset_asset_activate_log_search_view">
+            <field name="name">inventory_track.asset_activate_log.search</field>
+            <field name="model">inventory_track.asset_activate_log</field>
+            <field name="arch" type="xml">
+                <search>
+                        <field name="asset_id"/> 
+                        <field name="asset_status"/> 
+                        <field name="activated_comment"/> 
+                        <field name="activated_date"/> 
+                        <field name="activated_by"/>  
                 </search>
             </field>
         </record>
@@ -147,10 +204,28 @@
                 <p class="o_view_nocontent_smiling_face">Create new Inventory</p>
             </field>
         </record>
+        <record model="ir.actions.act_window" id="repair_lists_action">
+            <field name="name">Repairs</field>
+            <field name="res_model">inventory_track.asset_repair_log</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create new Inventory</p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="active_lists_action">
+            <field name="name">Active Assets</field>
+            <field name="res_model">inventory_track.asset_activate_log</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create new Inventory</p>
+            </field>
+        </record>
+        
 
         <!-- top level menu: no parent -->
         <menuitem id="main_inventory_menu" name="Online Inventory Tracker"/>
         <menuitem id="config_menu_inventory" name="Inventory" sequence="11"  parent="main_inventory_menu"  />
-        <menuitem id="config_inventories" name="Inventory" parent="config_menu_inventory" sequence="5"  action="inventory_lists_action" />
- 
+        <menuitem id="config_inventories" name="Inventory" parent="config_menu_inventory" sequence="4"  action="inventory_lists_action" />
+        <menuitem id="config_Repairs" name="Asset Repairs" parent="config_menu_inventory" sequence="5"  action="repair_lists_action" />   
+        <menuitem id="config_active" name="Active Assets" parent="config_menu_inventory" sequence="6"  action="active_lists_action" />   
 </odoo>
