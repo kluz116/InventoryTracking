@@ -14,6 +14,7 @@ access_infrastructure_admin11,inventory_tracker,model_inventory_track_asset_repa
 access_infrastructure_admin12,inventory_tracker,model_inventory_track_asset_activate_log,infrastructure_admin,1,1,1,1
 access_infrastructure_admin13,inventory_tracker,model_inventory_track_dispose_asset,infrastructure_admin,1,1,1,1
 access_infrastructure_admin14,inventory_tracker,model_inventory_track_asset_tags,infrastructure_admin,1,1,1,1
+access_infrastructure_admin15,inventory_tracker,model_inventory_track_asset_serial,infrastructure_admin,1,1,1,1
 
 
 

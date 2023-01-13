@@ -6,6 +6,9 @@
             <field name="arch" type="xml">
                 <form string="Activate  Asset">
                     <group>
+                        <field name="tag"/>   
+                    </group>
+                    <group>
                         <field name="repaire_comment"/>   
                     </group>
                     <group>
@@ -15,7 +18,7 @@
                         <field name="repaired_by" readonly="1"/>
                     </group>
                     <footer>
-                        <button name="repair_asset" string="Repaire Asset" type="object" class="btn btn-outline-primary"/>
+                        <button name="repair_asset" string="Repair Asset" type="object" class="btn btn-outline-primary"/>
                         <button string="Cancel" class="btn-outline-dark" special="cancel"/>
                     </footer>
                 </form>

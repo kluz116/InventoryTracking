@@ -5,16 +5,15 @@
             <field name="name">inventory_track_inventory.tree</field>
             <field name="model">inventory_track.inventory</field>
              <field name="arch" type="xml">
-                <tree string="Inventory" decoration-success="asset_status == 'active'" decoration-warning="asset_status == 'new'" default_order='created_on desc'>
+                <tree string="Inventory"  default_order='created_on desc'>
                     <field name="asset_type"/>
                     <field name="asset_status"/>
                     <field name="vendor_id" />
                     <field name="make" />
                     <field name="model" />
-                    <field name="serial" />
+                    <field name="serial" widget="many2many_tags" />
                     <field name="tag" />
                     <field name="ram" />
-                    <field name="hdd" />
                     <field name="os" />
                     <field name="created_on"/> 
                     <field name="created_by"/>   
@@ -65,6 +64,7 @@
                         <button name="%(wizard_verify_asset_activate_location)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','active','repair','disposal'])]}" type="action" string="Activate Asset" class="btn btn-primary"  />
                         <button name="%(wizard_verify_asset_repaire_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','repair','disposal'])]}" type="action" string="Repair Asset" class="btn btn-primary"  />
                         <button name="%(wizard_verify_asset_dis_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','repair','disposal'])]}" type="action" string="Dispose Asset" class="btn btn-primary"  />
+                        <button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','diployment','active','verified_one','disposal'])]}" type="action" string="Deploy Asset" class="btn btn-primary"  />
                         <button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','repair','disposal'])]}" type="action" string="Relocate" class="btn btn-outline-primary"  />
                         <button name="%(wizard_verify_asset_dis_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','active','disposal'])]}" type="action" string="Dispose Asset" class="btn btn-primary"  />
                         
@@ -84,12 +84,13 @@
                          <group>
                              <field name = "model"  options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
                         </group> 
-                         <group>
-                             <field name = "serial"  />
-                        </group> 
-                         <group>
+                            <group>
                              <field name = "tag" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
                         </group> 
+                         <group>
+                             <field name = "serial" widget="many2many_tags"  />
+                        </group> 
+                     
                         <group>
                             <field name = "comment"  />
                         </group> 

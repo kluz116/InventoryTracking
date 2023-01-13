@@ -46,18 +46,27 @@
             <field name="name">inventory_track.tag.tree</field>
             <field name="model">inventory_track.asset_tags</field>
              <field name="arch" type="xml">
-                <tree string="Tags" default_order='tag_date desc'>
+                <tree string="Tags" decoration-danger="status == 'Innactive'" default_order='tag_date desc'>
                     <field name="tag" />
+                    <field name="asset_serial" widget="many2many_tags" />
                     <field name="status" />
                     <field name="tag_date" />
                     <field name="created_by" />
                 </tree>
             </field>
         </record>
-
-
- 
-         
+        <record id="view_serial_tree" model="ir.ui.view">
+            <field name="name">inventory_track.tag.tree</field>
+            <field name="model">inventory_track.asset_serial</field>
+             <field name="arch" type="xml">
+                <tree string="Serial" decoration-danger="status == 'Innactive'" default_order='serial_date desc'>
+                    <field name="serial" />
+                    <field name="status" />
+                    <field name="serial_date" />
+                    <field name="created_by" />
+                </tree>
+            </field>
+        </record>
 
        <record model="ir.ui.view" id="inventory_track_vendor_form_view">
             <field name="name">inventory_track_vendor.form</field>
@@ -78,6 +87,7 @@
                 </form>
             </field>
         </record>
+        
 
         <record model="ir.ui.view" id="inventory_track_make_form_view">
             <field name="name">inventory_track_make.form</field>
@@ -131,9 +141,14 @@
             <field name="arch" type="xml">
                 <form string="Add Asset Tags" create="false" edit="false">
                     <sheet>
-                        <group>
+                       <group>
                             <field name="tag"/>
                         </group>
+                        
+                        <group>
+                            <field name="asset_serial" widget="many2many_tags" />
+                        </group>
+                     
                          <group>
                             <field name="status" readonly='1'/>
                         </group>
@@ -147,7 +162,29 @@
                 </form>
             </field>
         </record>
-      
+        
+        <record model="ir.ui.view" id="inventory_track_asset_serial_form_view">
+            <field name="name">inventory_track_asset_serial.form</field>
+            <field name="model">inventory_track.asset_serial</field>
+            <field name="arch" type="xml">
+                <form string="Add Asset Serial" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="serial"/>
+                        </group>
+                         <group>
+                            <field name="status" readonly='1'/>
+                        </group>
+                         <group>
+                            <field name="serial_date" readonly='1'/>
+                        </group>
+                         <group>
+                            <field name="created_by" readonly='1'/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
          <record model="ir.ui.view" id="inventory_track_asset_tags_search_view">
             <field name="name">inventory_track_asset_tags.search</field>
@@ -162,6 +199,20 @@
                 </search>
             </field>
         </record>
+              <record model="ir.ui.view" id="inventory_track_asset_serial_search_view">
+            <field name="name">inventory_track_asset_serial.search</field>
+            <field name="model">inventory_track.asset_serial</field>
+            <field name="arch" type="xml">
+                <search>
+                      <field name="serial" />
+                      <field name="serial_date" />
+                      <field name="status" />
+                      <field name="created_by" />
+                      
+                </search>
+            </field>
+        </record>
+        
       
         <record model="ir.ui.view" id="inventory_track_vendor_search_view">
             <field name="name">inventory_track_vendor.search</field>
@@ -250,6 +301,14 @@
                 <p class="o_view_nocontent_smiling_face">Create new Tag</p>
             </field>
         </record>
+        <record model="ir.actions.act_window" id="asset_serial_lists_action">
+            <field name="name">Asset Serial</field>
+            <field name="res_model">inventory_track.asset_serial</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create new Serial</p>
+            </field>
+        </record>
 
         
 
@@ -261,5 +320,6 @@
         <menuitem id="config_model" name="Asset Models" parent="config_mene_inv" sequence="8"  action="asset_models_lists_action" />
         <menuitem id="config_asset_location" name="Asset Locations" parent="config_mene_inv" sequence="9"  action="asset_location_lists_action" />
         <menuitem id="config_asset_tags" name="Asset Tags" parent="config_mene_inv" sequence="10"  action="asset_tags_lists_action" />
- 
+        <menuitem id="config_asset_serial" name="Asset Serial" parent="config_mene_inv" sequence="11"  action="asset_serial_lists_action" />
+        
 </odoo>

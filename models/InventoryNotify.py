@@ -10,6 +10,7 @@ class InventoryNotify(models.Model):
         tags = self.env['inventory_track.asset_tags'].search([('tag', '=',res.tag.tag)])
         for tag in tags:
             tag.status = 'active'
+            tag.asset_serial.status ='active'
 
         #template_id = self.env.ref('cash_managment.email_template_create_request').id
         #template =  self.env['mail.template'].browse(template_id)

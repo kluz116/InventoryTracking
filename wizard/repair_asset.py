@@ -11,6 +11,7 @@ class RepairAsset(models.TransientModel):
     repaire_comment = fields.Text(string="Comment", required=True)
     repaire_date =  fields.Datetime(string='Repair Date', default=lambda self: fields.datetime.now())
     repaired_by = fields.Many2one('res.users','Initiated By:',default=lambda self: self.env.user)
+    tag = fields.Char(string="Asset TAG", required=True,compute="comp_asset_tag")
    
     
     def repair_asset(self):
@@ -36,3 +37,10 @@ class RepairAsset(models.TransientModel):
             #template =  self.env['mail.template'].browse(template_id)
             #template.send_mail(req.id,force_send=True)
          
+
+       
+    #@api.depends('start_date')
+    def comp_asset_tag(self):
+        asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))
+        for req in asset:
+            self.tag = req.tag.tag 
