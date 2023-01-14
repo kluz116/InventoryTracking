@@ -4,10 +4,15 @@
             <field name="name">inventory_track.repair.form</field>
             <field name="model">inventory_track.repair</field>
             <field name="arch" type="xml">
-                <form string="Activate  Asset">
+                <form string="Repair  Asset">
                     <group>
-                        <field name="tag"/>   
+                        <field name="tag" readonly='1' options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />   
+                        <field name="serial_set" widget="many2many_tags" invisible='1' />  
                     </group>
+                    <group>
+                    
+                        <field name = "serial"   widget="many2many_tags" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
+                    </group> 
                     <group>
                         <field name="repaire_comment"/>   
                     </group>
@@ -26,7 +31,7 @@
         </record>
 
         <record id="wizard_verify_asset_repaire_assets" model="ir.actions.act_window">
-            <field name="name">Activate Asset</field>
+            <field name="name">Repair Asset</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">inventory_track.repair</field>
             <field name="view_mode">form</field>
