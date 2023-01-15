@@ -27,11 +27,28 @@
             <field name="model">inventory_track.asset_repair_log</field>
              <field name="arch" type="xml">
                 <tree string="Repaire" default_order='repaire_date desc'>
-                <field name="asset_id"/> 
+                <field name="asset_type"/> 
+                 <field name="asset_id"/> 
+                 <field name="serial"  /> 
                 <field name="asset_status"/> 
                 <field name="repaire_comment"/> 
                 <field name="repaire_date"/> 
                 <field name="repaired_by"/>      
+                </tree>
+            </field>
+        </record>
+             <record id="view_asset_dispose_log_tree" model="ir.ui.view">
+            <field name="name">asset_dispose_log.tree</field>
+            <field name="model">inventory_track.asset_dispose_log</field>
+             <field name="arch" type="xml">
+                <tree string="Disposal" default_order='dispose_date desc'>
+                <field name="asset_type"/> 
+                 <field name="asset_id"/> 
+                 <field name="serial"  /> 
+                <field name="asset_status"/> 
+                <field name="dispose_comment"/> 
+                <field name="dispose_date"/> 
+                <field name="dispose__by"/>      
                 </tree>
             </field>
         </record>
@@ -65,7 +82,7 @@
                         <button name="%(wizard_verify_asset_repaire_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','repair','disposal'])]}" type="action" string="Repair Asset" class="btn btn-primary"  />
                         <button name="%(wizard_verify_asset_dis_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','repair','disposal'])]}" type="action" string="Dispose Asset" class="btn btn-primary"  />
                         <button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','diployment','active','verified_one','disposal'])]}" type="action" string="Deploy Asset" class="btn btn-primary"  />
-                        <button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','repair','disposal'])]}" type="action" string="Relocate" class="btn btn-outline-primary"  />
+                        <button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','repair','disposal'])]}" type="action" string="Relocate" class="btn btn-primary"  />
                         <button name="%(wizard_verify_asset_dis_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','active','disposal'])]}" type="action" string="Dispose Asset" class="btn btn-primary"  />
                         
                         <field name="asset_status" widget="statusbar" statusbar_visible="new,stocked,verified,verified_one,diployment,active,repair,disposal" />
@@ -183,6 +200,20 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="asset_dispose_log_search_view">
+            <field name="name">inventory_track.asset_dispose_log.search</field>
+            <field name="model">inventory_track.asset_dispose_log</field>
+            <field name="arch" type="xml">
+                <search>
+                        <field name="asset_id"/> 
+                        <field name="asset_status"/> 
+                        <field name="dispose_comment"/> 
+                        <field name="dispose_date"/> 
+                        <field name="dispose__by"/>   
+                </search>
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="asset_asset_activate_log_search_view">
             <field name="name">inventory_track.asset_activate_log.search</field>
             <field name="model">inventory_track.asset_activate_log</field>
@@ -213,6 +244,14 @@
                 <p class="o_view_nocontent_smiling_face">Create new Inventory</p>
             </field>
         </record>
+        <record model="ir.actions.act_window" id="asset_dispose_log_lists_action">
+            <field name="name">Asset Disposal</field>
+            <field name="res_model">inventory_track.asset_dispose_log</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Disposal</p>
+            </field>
+        </record>
         <record model="ir.actions.act_window" id="active_lists_action">
             <field name="name">Active Assets</field>
             <field name="res_model">inventory_track.asset_activate_log</field>
@@ -228,5 +267,6 @@
         <menuitem id="config_menu_inventory" name="Inventory" sequence="11"  parent="main_inventory_menu"  />
         <menuitem id="config_inventories" name="Inventory" parent="config_menu_inventory" sequence="4"  action="inventory_lists_action" />
         <menuitem id="config_Repairs" name="Asset Repairs" parent="config_menu_inventory" sequence="5"  action="repair_lists_action" />   
-        <menuitem id="config_active" name="Active Assets" parent="config_menu_inventory" sequence="6"  action="active_lists_action" />   
+        <menuitem id="config_active" name="Active Assets" parent="config_menu_inventory" sequence="6"  action="active_lists_action" /> 
+        <menuitem id="config_dis" name="Asset Disposl" parent="config_menu_inventory" sequence="7"  action="asset_dispose_log_lists_action" />   
 </odoo>

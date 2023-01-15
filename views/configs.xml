@@ -315,11 +315,11 @@
         <!-- top level menu: no parent -->
         <menuitem id="main_inventory_menu" name="Online Inventory Tracker"/>
         <menuitem id="config_mene_inv" name="Configurations" sequence="12"  parent="main_inventory_menu"  />
-        <menuitem id="config_ven" name="Vendors" parent="config_mene_inv" sequence="6"  action="vendor_lists_action" />
-        <menuitem id="config_make" name="Asset Makes" parent="config_mene_inv" sequence="7"  action="make_lists_action" />
-        <menuitem id="config_model" name="Asset Models" parent="config_mene_inv" sequence="8"  action="asset_models_lists_action" />
-        <menuitem id="config_asset_location" name="Asset Locations" parent="config_mene_inv" sequence="9"  action="asset_location_lists_action" />
-        <menuitem id="config_asset_tags" name="Asset Tags" parent="config_mene_inv" sequence="10"  action="asset_tags_lists_action" />
-        <menuitem id="config_asset_serial" name="Asset Serial" parent="config_mene_inv" sequence="11"  action="asset_serial_lists_action" />
+        <menuitem id="config_ven" name="Vendors" parent="config_mene_inv" sequence="6"  action="vendor_lists_action" groups="InventoryTrackin.infrastructure_manager,InventoryTrackin.Inventory_admin"  />
+        <menuitem id="config_make" name="Asset Makes" parent="config_mene_inv" sequence="7"  action="make_lists_action" groups="InventoryTrackin.infrastructure_manager,InventoryTrackin.Inventory_admin"  />
+        <menuitem id="config_model" name="Asset Models" parent="config_mene_inv" sequence="8"  action="asset_models_lists_action" groups="InventoryTrackin.infrastructure_manager,InventoryTrackin.Inventory_admin" />
+        <menuitem id="config_asset_location" name="Asset Locations" parent="config_mene_inv" sequence="9"  action="asset_location_lists_action" groups="InventoryTrackin.infrastructure_manager,InventoryTrackin.Inventory_admin"  />
+        <menuitem id="config_asset_tags" name="Asset Tags" parent="config_mene_inv" sequence="10"  action="asset_tags_lists_action" groups="InventoryTrackin.ftb_admin,InventoryTrackin.infrastructure_manager,InventoryTrackin.Inventory_admin" />
+        <menuitem id="config_asset_serial" name="Asset Serial" parent="config_mene_inv" sequence="11"  action="asset_serial_lists_action" groups="InventoryTrackin.ftb_admin,InventoryTrackin.infrastructure_manager,InventoryTrackin.Inventory_admin" />
         
 </odoo>

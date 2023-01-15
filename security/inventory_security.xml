@@ -26,4 +26,9 @@
         <field name="category_id" ref="module_inventory_tracker"/>
     </record>
 
+    <record id="Inventory_admin" model="res.groups">
+        <field name="name">Inventory Administrator</field>
+        <field name="category_id" ref="module_inventory_tracker"/>
+    </record>
+
 </odoo>

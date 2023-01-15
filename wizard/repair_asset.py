@@ -6,7 +6,7 @@ class RepairAsset(models.TransientModel):
     _description = "Repair Asset "
     _rec_name = 'asset_status'
 
-    
+    asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')],string="Asset Type", required=True)
     asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Diployment'),('active','Active'),('repair','Repair'),('disposal','Disposal')],string="Asset Status", required=True, default="active")
     repaire_comment = fields.Text(string="Comment", required=True)
     repaire_date =  fields.Datetime(string='Repair Date', default=lambda self: fields.datetime.now())
@@ -26,9 +26,7 @@ class RepairAsset(models.TransientModel):
             return req.tag.asset_serial
 
     serial = fields.Many2many('inventory_track.asset_serial',default=comp_asset_serial,string='Asset Serial',domain = " [('status','in',[serial_set])] ")
-    #serial_set =   fields.Many2many(related='tag.asset_serial',ondelete='cascade',string='Asset Serial')
-
-    
+ 
 
     
     def repair_asset(self):
@@ -40,7 +38,10 @@ class RepairAsset(models.TransientModel):
             req.repaire_date = self.repaire_date
             req.repaired_by = self.repaired_by
 
-            vals = { 'asset_id': req.id, 
+            vals = { 
+                'asset_type':self.asset_type,
+                  'asset_id': req.id, 
+                    'serial': self.serial.id,
                  'asset_status': self.asset_status,
                  'repaire_comment': self.repaire_comment,
                  'repaire_date': self.repaire_date,

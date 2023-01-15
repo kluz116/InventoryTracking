@@ -6,6 +6,12 @@
             <field name="arch" type="xml">
                 <form string="Repair  Asset">
                     <group>
+                            <field name="asset_type"/>   
+                    </group> 
+
+                    <group>
+                         
+                    
                         <field name="tag" readonly='1' options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />   
                         <field name="serial_set" widget="many2many_tags" invisible='1' />  
                     </group>

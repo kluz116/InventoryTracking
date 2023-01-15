@@ -7,3 +7,4 @@ from . import Activated_log
 from . import Repaire_Log
 from .import Tags
 from . import InventoryNotify
+from .import dispose_log
