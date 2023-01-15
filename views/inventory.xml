@@ -90,24 +90,22 @@
                 </xpath>
                    <sheet>
                         <group>
-                            <field name="asset_type"  />
-                        </group>
-                        <group>
                              <field name = "vendor_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
                         </group> 
                         <group>
+                             <field name="asset_type"  />
                              <field name = "make"  options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
-                        </group> 
-                         <group>
                              <field name = "model"  options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
                         </group> 
-                            <group>
-                             <field name = "tag" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
+                        <group>
+                            <field name = "tag" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
+                            <field name = "serial" widget="many2many_tags"  />
                         </group> 
                          <group>
-                             <field name = "serial" widget="many2many_tags"  />
+                             <field name = "effective_date"   />
+                             <field name = "year"   />
+                             <field name = "waranty_date"   />
                         </group> 
-                     
                         <group>
                             <field name = "comment"  />
                         </group> 
@@ -116,11 +114,7 @@
                                 <page string="Specifications">
                                     <group>
                                         <field name = "ram"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]}" />
-                                    </group>  
-                                     <group>
                                         <field name = "hdd"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]}" />
-                                    </group> 
-                                     <group>
                                         <field name = "os"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]} " />
                                     </group> 
                                 </page>   
