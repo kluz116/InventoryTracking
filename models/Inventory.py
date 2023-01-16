@@ -1,5 +1,6 @@
 from odoo import models,api,fields,exceptions
 from dateutil.relativedelta import relativedelta
+from datetime import timedelta, date
 
 class Inventory(models.Model):
     _name = "inventory_track.inventory"
@@ -39,15 +40,17 @@ class Inventory(models.Model):
     disposal_comment = fields.Text(string="Disposal Comment")
     disposal_date =  fields.Datetime(string='Disposal Date')
     disposed_by = fields.Many2one('res.users','Disposed By:')
-    effective_date =  fields.Datetime(string='Effective Date')
+    effective_date =  fields.Date(string='Effective Date',default=lambda self: fields.date.today())
     waranty_date =  fields.Date(string='Warranty Due Date',compute='comp_time_hod', store=True)
-    year =  fields.Integer(string="Warranty Period", default="1")
+    year =  fields.Integer(string="Warranty Period (Years)", default="1")
+    file_attach = fields.Binary('File',attachment=True)
     
 
 
     @api.depends('effective_date')
     def comp_time_hod(self):
         currentTimeDate = self.effective_date + relativedelta(years=self.year)
+        #currentTimeDate = date.today() + relativedelta(years=self.year)
         self.waranty_date = currentTimeDate.strftime('%Y-%m-%d')
 
    

@@ -38,7 +38,6 @@ class DisPoseAsset(models.TransientModel):
             req.disposal_date = self.disposal_date
             req.disposed_by = self.disposed_by
 
-       
             for i in req.tag.asset_serial:
                 if i.serial == self.serial.serial and i.status=='active':
                     i.status = 'disposed'  

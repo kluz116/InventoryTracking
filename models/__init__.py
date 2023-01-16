@@ -8,3 +8,4 @@ from . import Repaire_Log
 from .import Tags
 from . import InventoryNotify
 from .import dispose_log
+from . import TagNotify

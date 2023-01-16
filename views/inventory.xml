@@ -13,8 +13,9 @@
                     <field name="model" />
                     <field name="serial" widget="many2many_tags" />
                     <field name="tag" />
-                    <field name="ram" />
-                    <field name="os" />
+                    <field name="effective_date" />
+                    <field name="waranty_date" />
+                    <field name="year" />
                     <field name="created_on"/> 
                     <field name="created_by"/>   
                        
@@ -90,29 +91,30 @@
                 </xpath>
                    <sheet>
                         <group>
+                             <separator string="General Asset Details" colspan="2"/>
                              <field name = "vendor_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
-                        </group> 
-                        <group>
                              <field name="asset_type"  />
                              <field name = "make"  options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
                              <field name = "model"  options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
-                        </group> 
-                        <group>
                             <field name = "tag" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
                             <field name = "serial" widget="many2many_tags"  />
                         </group> 
                          <group>
-                             <field name = "effective_date"   />
+                             <separator string="Asset Warrant Details" colspan="2"/>
                              <field name = "year"   />
-                             <field name = "waranty_date"   />
+                             <field name = "effective_date"   />
+                             <field name = "waranty_date" style="color: #e60911; font-weight: bold;"  />
                         </group> 
                         <group>
-                            <field name = "comment"  />
+                            <separator string="Additional Information" colspan="2"/>
+                            <field name = "file_attach"  />
+                            <field name = "comment"  placeholder="description..." />
                         </group> 
                         
                          <notebook>
                                 <page string="Specifications">
                                     <group>
+                                        
                                         <field name = "ram"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]}" />
                                         <field name = "hdd"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]}" />
                                         <field name = "os"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]} " />
@@ -121,8 +123,6 @@
                                 <page string="Stocked">
                                     <group>
                                         <field name = "stock_comment" readonly="1" />
-                                    </group>  
-                                     <group>
                                         <field name = "stock_date"  readonly="1" />
                                     </group> 
                                    
@@ -130,29 +130,38 @@
                                 <page string="Verification">
                                     <group>
                                         <field name = "from_manager_comment" readonly="1" />
-                                    </group>  
-                                     <group>
                                         <field name = "from_manager_date" readonly="1"  />
                                     </group> 
-                                </page>   
+                                </page>  
+                                  <page string="Cyber Verification">
+                                    <group>
+                                        <field name = "cyber_comment" readonly="1" />
+                                        <field name = "cyber_date" readonly="1"  />
+                                    </group> 
+                                </page>  
                                 <page string="Deployment">
                                     <group>
                                         <field name = "location_id"  readonly="1"/>
-                                    </group>  
-                                     <group>
                                         <field name = "dispatched_to" readonly="1"/>
-                                    </group> 
-                                     <group>
                                         <field name = "dispach_comment" readonly="1"/>
-                                    </group> 
-                                     <group>
                                         <field name = "dispach_date" readonly="1"/>
-                                    </group> 
-                                       <group>
                                         <field name = "dispatched_by" readonly="1" />
                                     </group> 
-                                    
-                                </page>    
+                                </page>   
+                                  <page string="Repair">
+                                    <group>
+                                        <field name = "repaire_comment" readonly="1" />
+                                        <field name = "repaire_date" readonly="1"  />
+                                        <field name = "repaired_by" readonly="1"  />
+                                    </group> 
+                                </page>   
+                                <page string="Disposal">
+                                    <group>
+                                        <field name = "disposal_comment" readonly="1" />
+                                        <field name = "disposal_date" readonly="1"  />
+                                        <field name = "disposed_by" readonly="1"  />
+                                    </group> 
+                                </page> 
                           </notebook>  
 
                             <group>
