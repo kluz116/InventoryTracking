@@ -18,7 +18,8 @@
                     <br/>
                     
                     <div class="col text-left">
-                        <a  href="  ">   For confirmation please click on this link.</a>
+                       
+                        < a t-attf-href = "#{object.base_url}" > For confirmation please click on this link</a>
                     </div>
                     
                     <br/>
