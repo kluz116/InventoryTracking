@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="1">
+
+    <record id="email_template_create_asset_tag" model="mail.template">
+            <field name="name">Inventory Tracker: Asset Tag</field>
+            <field name="model_id" ref="model_inventory_track_asset_tags"/>
+            <field name="email_from">{{ object.created_by.email }}</field>
+            <field name="email_to">infrastructure@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <field name="subject">New Asset Tag has been created</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Dear Team<br/>
+                    New Asset Tag <strong t-out="object.tag"></strong>  with serial number <strong t-out="object.asset_serial.serial"></strong> has been created by <strong t-out="object.created_by.name or ''"></strong>  on <strong t-out="object.tag_date or ''"></strong>.
+                    <br/>
+                    <br/>
+                    
+                    <div class="col text-left">
+                        <a  href="  ">   For confirmation please click on this link.</a>
+                    </div>
+                    
+                    <br/>
+                    Regards,<br/>
+                    Business Technologies.
+                </p>
+            </div>
+            </field>
+          
+
+
+    </record>
+
+    
+    <record id="email_template_create_asset_tag" model="mail.template">
+            <field name="name">Inventory Tracker: Asset Tag</field>
+            <field name="model_id" ref="model_inventory_track_asset_tags"/>
+            <field name="email_from">{{ object.created_by.email }}</field>
+            <field name="email_to">{{ object.partner_id.supervises.email }},{{ object.branch_accountant.email }}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <field name="subject">New Asset Tag object.tag has been created</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Dear <t t-out="object.partner_id.supervises.name or ''"></t> And <t t-out="object.branch_accountant.name or ''"></t><br/><br/>
+                    Vault Spot Check of <strong t-out="format_amount(object.grand_total_ugx, object.currency_id) or ''"></strong>  is still pending your consent. Vault Spot Check created on <t t-out="object.created_on or ''"></t> by <t t-out="object.created_by.name or ''"></t> from Branch <t t-out="object.branch_id.branch_name or ''"></t>.
+                    <br/>
+                    <br/>
+                    
+
+                    <div class="col text-center">
+                        <a class="btn btn-success btn-sm" role="button" href=" ">  <t t-out="object.branch_accountant.name or ''"></t> For confirmation please click on this link.</a>
+                    </div>
+                    
+                    <br/><br/>
+                    Regards,<br/>
+                    Business Technologies.
+                </p>
+            </div>
+            </field>
+          
+
+
+    </record>
+
+
+    </data>
+</odoo>

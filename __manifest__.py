@@ -22,7 +22,7 @@
         
         'security/inventory_security.xml',
         'security/ir.model.access.csv',
-        #'data/email_template_cash_managment.xml',
+        'data/email_template_inventory.xml',
         'wizard/verify_asset.xml',
         'wizard/dispatch_asset.xml',
         'wizard/verify_asset_one.xml',
