@@ -185,7 +185,8 @@
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Dear <strong t-out="object.created_by.supervisor.name"></strong><br/>
+                    Dear Cyber,
+                    <br/>
                     Asset <strong t-out="object.asset_type"></strong>  with TagID <strong t-out="object.tag.tag"></strong>   created by <strong t-out="object.created_by.name or ''"></strong> is still pending your verification .
                     <br/>
                     <br/>
@@ -225,7 +226,7 @@
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Dear <strong t-out="object.created_by.supervisor.name"></strong><br/>
+                    Dear <strong t-out="object.created_by.supervisor.name"></strong> And <strong t-out="object.created_by.name"></strong> <br/>
                     Asset <strong t-out="object.asset_type"></strong>  with TagID <strong t-out="object.tag.tag"></strong>   created by <strong t-out="object.created_by.name or ''"></strong> is still pending Deployment .
                     <br/>
                     <br/>
