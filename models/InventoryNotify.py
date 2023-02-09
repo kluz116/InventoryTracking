@@ -12,7 +12,7 @@ class InventoryNotify(models.Model):
             tag.status = 'active'
             #tag.asset_serial.status ='active'
 
-        #template_id = self.env.ref('cash_managment.email_template_create_request').id
-        #template =  self.env['mail.template'].browse(template_id)
-        #template.send_mail(res.id,force_send=True)
+        template_id = self.env.ref('InventoryTracking.email_template_create_asset_created').id
+        template =  self.env['mail.template'].browse(template_id)
+        template.send_mail(res.id,force_send=True)
         return res

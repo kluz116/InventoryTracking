@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="inventory_track_reject_asset_tag_rejection" model="ir.ui.view">
+            <field name="name">inventory_track.asset_tag_rejection.form</field>
+            <field name="model">inventory_track.asset_tag_rejection</field>
+            <field name="arch" type="xml">
+                <form string="Stock Asset">
+
+                    <group>
+                        <field name="reject_comment"/>   
+                    </group>
+                    <group>
+                        <field name="reject_date" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="rejected_by" readonly="1"/>
+                    </group>
+                    <footer>
+                        <button name="reject_tag_asset" string="Reject Tag" type="object" class="btn btn-outline-primary"/>
+                        <button string="Cancel" class="btn-outline-dark" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_reject_asset_tag" model="ir.actions.act_window">
+            <field name="name">Reject Tag</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inventory_track.asset_tag_rejection</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="inventory_track_reject_asset_tag_rejection"/>
+            <field name="target">new</field>
+        </record>
+</odoo>

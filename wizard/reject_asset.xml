@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="inventory_track_reject_wizard" model="ir.ui.view">
+            <field name="name">inventory_track.asset_rejected.form</field>
+            <field name="model">inventory_track.asset_rejected</field>
+            <field name="arch" type="xml">
+                <form string="Stock Asset">
+
+                    <group>
+                        <field name="tag" readonly='1' options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />   
+                        <field name="serial_set" widget="many2many_tags" readonly='1' />  
+                        <field name="location_name" readonly='1' />  
+                        
+                    </group>
+        
+                    <group>
+                        <field name="reject_comment"/>   
+                    </group>
+                    <group>
+                        <field name="reject_date" readonly="1"/>
+                    </group>
+                    <footer>
+                        <button name="reject__asset" string="Reject Deployment" type="object" class="btn btn-outline-primary"/>
+                        <button string="Cancel" class="btn-outline-dark" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_reject_asset_manager" model="ir.actions.act_window">
+            <field name="name">Reject Deployment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inventory_track.asset_rejected</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="inventory_track_reject_wizard"/>
+            <field name="target">new</field>
+        </record>
+</odoo>

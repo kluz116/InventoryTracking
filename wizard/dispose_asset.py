@@ -55,7 +55,7 @@ class DisPoseAsset(models.TransientModel):
 
             self.env['inventory_track.asset_dispose_log'].create(vals)
 
-           # template_id = self.env.ref('cash_managment.email_template_branch_bank_request_supervise').id
+            template_id = self.env.ref('cash_managment.email_template_create_asset_disposed').id
             #template =  self.env['mail.template'].browse(template_id)
             #template.send_mail(req.id,force_send=True)
          

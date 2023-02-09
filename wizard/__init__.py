@@ -5,3 +5,7 @@ from .import verify_asset_one
 from . import activate_asset
 from .import repair_asset
 from . import dispose_asset
+from .import Reject_asset
+from . import approve_asset
+from . import approve_admin
+from . import reject_admin

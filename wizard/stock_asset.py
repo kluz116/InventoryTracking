@@ -21,7 +21,7 @@ class StockAsset(models.TransientModel):
             req.stock_date = self.stock_date
             
 
-           # template_id = self.env.ref('cash_managment.email_template_branch_bank_request_supervise').id
-            #template =  self.env['mail.template'].browse(template_id)
-            #template.send_mail(req.id,force_send=True)
+            template_id = self.env.ref('InventoryTracking.email_template_create_asset_verify').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(req.id,force_send=True)
          

@@ -140,6 +140,14 @@
             <field name="model">inventory_track.asset_tags</field>
             <field name="arch" type="xml">
                 <form string="Add Asset Tags" create="false" edit="false">
+                <xpath expr="//sheet" position="before">
+                    <header> 
+                        <button name="%(wizard_approve_asset_track_asset_tag_approval)d" attrs="{'invisible':[('status', 'in', ['active','approved','rejected'])]}" type="action" string="Approve Tag" class="btn btn-success" groups="InventoryTracking.admin_supervisor"  />
+                        <button name="%(wizard_reject_asset_tag)d" attrs="{'invisible':[('status', 'in', ['active','approved','rejected'])]}" type="action" string="Reject Tag" class="btn btn-danger" groups="InventoryTracking.admin_supervisor"  />
+                  
+                        <field name="status" widget="statusbar" statusbar_visible="innactive,active,approved,rejected" />
+                    </header>
+                </xpath>
                     <sheet>
                        <group>
                             <field name="tag"/>
@@ -148,16 +156,32 @@
                         <group>
                             <field name="asset_serial" widget="many2many_tags" />
                         </group>
-                     
-                         <group>
-                            <field name="status" readonly='1'/>
-                        </group>
-                         <group>
+                           <group>
                             <field name="tag_date" readonly='1'/>
                         </group>
                          <group>
                             <field name="created_by" readonly='1'/>
                         </group>
+                          <notebook> 
+                            <page string="Approval">
+                                    <group>
+                                        <field name = "approval_comment" readonly="1" />
+                                        <field name = "approval_date" readonly="1"  />
+                                        <field name = "approval_by" readonly="1"  />
+                                    </group> 
+                                </page> 
+                                <page string=" Rejection">
+                                    <group>
+                                        <field name = "reject_comment" readonly="1" />
+                                        <field name = "reject_date" readonly="1"  />
+                                        <field name = "rejected_by" readonly="1"  />
+                                        
+                                        
+                                    </group> 
+                            </page> 
+                          </notebook> 
+                     
+                      
                     </sheet>
                 </form>
             </field>
@@ -315,11 +339,11 @@
         <!-- top level menu: no parent -->
         <menuitem id="main_inventory_menu" name="Online Inventory Tracker"/>
         <menuitem id="config_mene_inv" name="Configurations" sequence="12"  parent="main_inventory_menu"  />
-        <menuitem id="config_ven" name="Vendors" parent="config_mene_inv" sequence="6"  action="vendor_lists_action" groups="InventoryTrackin.infrastructure_manager,InventoryTrackin.Inventory_admin"  />
-        <menuitem id="config_make" name="Asset Makes" parent="config_mene_inv" sequence="7"  action="make_lists_action" groups="InventoryTrackin.infrastructure_manager,InventoryTrackin.Inventory_admin"  />
-        <menuitem id="config_model" name="Asset Models" parent="config_mene_inv" sequence="8"  action="asset_models_lists_action" groups="InventoryTrackin.infrastructure_manager,InventoryTrackin.Inventory_admin" />
-        <menuitem id="config_asset_location" name="Asset Locations" parent="config_mene_inv" sequence="9"  action="asset_location_lists_action" groups="InventoryTrackin.infrastructure_manager,InventoryTrackin.Inventory_admin"  />
-        <menuitem id="config_asset_tags" name="Asset Tags" parent="config_mene_inv" sequence="10"  action="asset_tags_lists_action" groups="InventoryTrackin.ftb_admin,InventoryTrackin.infrastructure_manager,InventoryTrackin.Inventory_admin" />
-        <menuitem id="config_asset_serial" name="Asset Serial" parent="config_mene_inv" sequence="11"  action="asset_serial_lists_action" groups="InventoryTrackin.ftb_admin,InventoryTrackin.infrastructure_manager,InventoryTrackin.Inventory_admin" />
+        <menuitem id="config_ven" name="Vendors" parent="config_mene_inv" sequence="6"  action="vendor_lists_action" groups="InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin"  />
+        <menuitem id="config_make" name="Asset Makes" parent="config_mene_inv" sequence="7"  action="make_lists_action" groups="InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin"  />
+        <menuitem id="config_model" name="Asset Models" parent="config_mene_inv" sequence="8"  action="asset_models_lists_action" groups="InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin" />
+        <menuitem id="config_asset_location" name="Asset Locations" parent="config_mene_inv" sequence="9"  action="asset_location_lists_action" groups="InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin"  />
+        <menuitem id="config_asset_tags" name="Asset Tags" parent="config_mene_inv" sequence="10"  action="asset_tags_lists_action" groups="InventoryTracking.ftb_admin,InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin,InventoryTracking.admin_supervisor" />
+        <menuitem id="config_asset_serial" name="Asset Serial" parent="config_mene_inv" sequence="11"  action="asset_serial_lists_action" groups="InventoryTracking.ftb_admin,InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin,InventoryTracking.admin_supervisor" />
         
 </odoo>

@@ -28,9 +28,9 @@ class DispatchAsset(models.TransientModel):
             req.dispatched_by = self.dispatched_by.id
             
 
-           # template_id = self.env.ref('cash_managment.email_template_branch_bank_request_supervise').id
-            #template =  self.env['mail.template'].browse(template_id)
-            #template.send_mail(req.id,force_send=True)
+            template_id = self.env.ref('InventoryTracking.email_template_create_asset_notify_approver').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(req.id,force_send=True)
          
 
    

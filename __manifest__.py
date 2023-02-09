@@ -23,20 +23,22 @@
         'security/inventory_security.xml',
         'security/ir.model.access.csv',
         'data/email_template_inventory.xml',
+        'data/ir_cron_data.xml',
         'wizard/verify_asset.xml',
         'wizard/dispatch_asset.xml',
         'wizard/verify_asset_one.xml',
         'wizard/activate_asset.xml',
         'wizard/stock_asset.xml',
+        'wizard/reject_asset.xml',
+        'wizard/reject_admin.xml',
+        'wizard/approve_asset.xml',
+        'wizard/approve_admin.xml',
         'wizard/repair_asset.xml',
         'wizard/dispose_asset.xml',
         'views/inventory.xml',
         'views/configs.xml',
         'views/inventory_user.xml',
-        
-        
-       
-
+    
     ],
     # only loaded in demonstration mode
     'demo': [
