@@ -7,13 +7,14 @@ class Inventory(models.Model):
     _description = "This is an Inventory model"
     _rec_name ="tag"
 
-    asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')],string="Asset Type", required=True, default="laptop")
-    vendor_id = fields.Many2one('inventory_track.vendor',string='Vendor',required=True)
+    #asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')],string="Asset Type", required=True, default="laptop")
+    #vendor_id = fields.Many2one('inventory_track.vendor',string='Vendor',required=True)
     make = fields.Many2one('inventory_track.make',ondelete='cascade',string='Asset Make')
     model = fields.Many2one('inventory_track.asset_models',string="Asset Model",domain = " [('asset_make','=',make)] " )
     asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Deployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Deployment Rejected'),('approved','Pending Activation')],string="Asset Status", required=True, default="new")
     tag = fields.Many2one('inventory_track.asset_tags',string="Asset Tag",domain = " [('status','=','approved')] " )
     serial =   fields.Many2many(related='tag.asset_serial')
+    asset_type = fields.Selection(related='tag.asset_type',selection=[('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')])
     ram = fields.Selection([('one','1 GB'),('two','2 GB'),('three','3 GB'),('four','4 GB'),('six','6 GB'),('eight','8 GB'),('twelve','12 GB'),('sixteen','16 GB'),('thirty_two','32 GB')],string="RAM Size",  default="one")
     hdd = fields.Char(string="HDD OR SDD Size")
     os =  fields.Selection([('windows_10','Windows 10'),('windows_11','Windows 11'),('windows_12','Windows 12')],string="OS", required=True, default="windows_10")
@@ -48,12 +49,12 @@ class Inventory(models.Model):
     approval_by = fields.Many2one('res.users','Approval By:')
     
    
-    effective_date =  fields.Date(string='Effective Date',default=lambda self: fields.date.today())
-    waranty_date =  fields.Date(string='Warranty Due Date',compute='comp_time_hod', store=True)
-    year =  fields.Integer(string="Warranty Period (Years)", default="1")
+    #effective_date =  fields.Date(string='Effective Date',default=lambda self: fields.date.today())
+    #waranty_date =  fields.Date(string='Warranty Due Date',compute='comp_time_hod', store=True)
+    #year =  fields.Integer(string="Warranty Period (Years)", default="1")
     file_attach = fields.Binary('File',attachment=True)
     infr_manager = fields.Integer(string='Infrastructure Manager',compute='_compute_manager')
-    warrant_status =  fields.Selection([('off','OFF'),('on','ON')],string="Warrant Status", required=True, compute='get_warrant_status')
+    #warrant_status =  fields.Selection([('off','OFF'),('on','ON')],string="Warrant Status", required=True, compute='get_warrant_status')
 
     current_ifra_manager = fields.Boolean('is current user ?', compute='_get_infran_manager')
     current_user = fields.Boolean('is current user ?', compute='_get_current_user')
@@ -87,28 +88,9 @@ class Inventory(models.Model):
             e.current_user = (True if partner.id == self.dispatched_to.id else False)
 
 
-    @api.depends('effective_date')
-    def comp_time_hod(self):
-        currentTimeDate = self.effective_date + relativedelta(years=self.year)
-        #currentTimeDate = date.today() + relativedelta(years=self.year)
-        self.waranty_date = currentTimeDate.strftime('%Y-%m-%d')
-
     @api.depends('created_by')
     def _compute_manager(self):
         for record in self:
             record.infr_manager = record.created_by.partner_id.supervisor
-    
-    @api.depends('waranty_date')
-    def get_warrant_status(self):
-        for record in self:
-            if record.waranty_date > date.today():
-                record.warrant_status ='on'
-            else:
-                record.warrant_status ='off'
 
-
-    @api.model
-    def _update_warrant(self):
-        self.search([('&'),('waranty_date', '<', date.today()),('warrant_status','=','on')]).write({'warrant_status': "off"})
-
-  
+   

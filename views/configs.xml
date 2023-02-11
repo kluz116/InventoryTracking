@@ -48,9 +48,15 @@
              <field name="arch" type="xml">
                 <tree string="Tags" decoration-danger="status == 'Innactive'" default_order='tag_date desc'>
                     <field name="tag" />
+                    <field name="asset_type"/>
+                    <field name="vendor_id" />
                     <field name="asset_serial" widget="many2many_tags" />
                     <field name="status" />
                     <field name="tag_date" />
+                    <field name="effective_date" />
+                    <field name="waranty_date" />
+                    <field name="year" />
+                    <field name="warrant_status" />
                     <field name="created_by" />
                 </tree>
             </field>
@@ -149,13 +155,24 @@
                     </header>
                 </xpath>
                     <sheet>
+                          
                        <group>
+                            <separator string="General Asset Details" colspan="2"/>
+                            <field name = "vendor_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
+                            <field name="asset_type"  />
                             <field name="tag"/>
-                        </group>
-                        
-                        <group>
                             <field name="asset_serial" widget="many2many_tags" />
+                            <field name="recievd_date"/>
+                            
                         </group>
+                        <group>
+                             <separator string="Asset Warrant Details" colspan="2"/>
+                             <field name = "year"   />
+                             <field name = "effective_date"   />
+                             <field name = "waranty_date" style="color: #e60911; font-weight: bold;"  />
+                             <field name = "warrant_status" style="color: #e60911; font-weight: bold;"  />
+                             
+                        </group> 
                            <group>
                             <field name="tag_date" readonly='1'/>
                         </group>

@@ -6,18 +6,11 @@
             <field name="model">inventory_track.inventory</field>
              <field name="arch" type="xml">
                 <tree string="Inventory"  default_order='created_on desc'>
-                    <field name="asset_type"/>
                     <field name="asset_status"/>
-                    <field name="vendor_id" />
                     <field name="make" />
                     <field name="model" />
                     <field name="serial" widget="many2many_tags" />
                     <field name="tag" />
-                    <field name="effective_date" />
-                    <field name="waranty_date" />
-                    <field name="year" />
-                    <field name="warrant_status" />
-                    
                     <field name="created_on"/> 
                     <field name="created_by"/>   
                        
@@ -102,21 +95,14 @@
                              <separator string="General Asset Details" colspan="2"/>
                              <field name="current_user"  invisible='1'  />
                               <field name="current_ifra_manager"  invisible='1'  />
-                             <field name = "vendor_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
-                             <field name="asset_type"  />
+                              <field name = "tag" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
+                              <field name = "serial" widget="many2many_tags"  />
+                              <field name="asset_type"  />
                              <field name = "make"  options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
                              <field name = "model"  options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
-                            <field name = "tag" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
-                            <field name = "serial" widget="many2many_tags"  />
+                            
                         </group> 
-                         <group>
-                             <separator string="Asset Warrant Details" colspan="2"/>
-                             <field name = "year"   />
-                             <field name = "effective_date"   />
-                             <field name = "waranty_date" style="color: #e60911; font-weight: bold;"  />
-                             <field name = "warrant_status" style="color: #e60911; font-weight: bold;"  />
-                             
-                        </group> 
+                     
                         <group>
                             <separator string="Additional Information" colspan="2"/>
                             <field name = "file_attach"  />
@@ -216,7 +202,7 @@
             <field name="model">inventory_track.inventory</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="vendor_id" />
+            
                     <field name="make" />
                     <field name="model" />
                     <field name="serial" />
