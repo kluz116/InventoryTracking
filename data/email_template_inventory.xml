@@ -108,7 +108,7 @@
                     <br/>
                     <br/>
 
-                    Vendor : <strong t-out="object.vendor_id.vendor_name"></strong> 
+                    Vendor : <strong t-out="object.tag.vendor_id.vendor_name"></strong> 
                     <br/>
                      Make: <strong t-out="object.make.make_name"></strong>  
                     <br/>
@@ -149,7 +149,7 @@
                     <br/>
                     <br/>
 
-                    Vendor : <strong t-out="object.vendor_id.vendor_name"></strong> 
+                    Vendor : <strong t-out="object.tag.vendor_id.vendor_name"></strong> 
                     <br/>
                      Make: <strong t-out="object.make.make_name"></strong>  
                     <br/>
@@ -191,7 +191,7 @@
                     <br/>
                     <br/>
 
-                    Vendor : <strong t-out="object.vendor_id.vendor_name"></strong> 
+                     Vendor : <strong t-out="object.tag.vendor_id.vendor_name"></strong> 
                     <br/>
                      Make: <strong t-out="object.make.make_name"></strong>  
                     <br/>
@@ -231,7 +231,7 @@
                     <br/>
                     <br/>
 
-                    Vendor : <strong t-out="object.vendor_id.vendor_name"></strong> 
+                    Vendor : <strong t-out="object.tag.vendor_id.vendor_name"></strong> 
                     <br/>
                      Make: <strong t-out="object.make.make_name"></strong>  
                     <br/>
@@ -272,7 +272,7 @@
                     
                     <br/>
 
-                    Vendor : <strong t-out="object.vendor_id.vendor_name"></strong> 
+                      Vendor : <strong t-out="object.tag.vendor_id.vendor_name"></strong> 
                     <br/>
                      Make: <strong t-out="object.make.make_name"></strong>  
                     <br/>
@@ -315,7 +315,7 @@
                     
                     <br/>
 
-                    Vendor : <strong t-out="object.vendor_id.vendor_name"></strong> 
+                      Vendor : <strong t-out="object.tag.vendor_id.vendor_name"></strong> 
                     <br/>
                      Make: <strong t-out="object.make.make_name"></strong>  
                     <br/>
@@ -356,7 +356,7 @@
                     
                     <br/>
 
-                    Vendor : <strong t-out="object.vendor_id.vendor_name"></strong> 
+                      Vendor : <strong t-out="object.tag.vendor_id.vendor_name"></strong> 
                     <br/>
                      Make: <strong t-out="object.make.make_name"></strong>  
                     <br/>
@@ -402,7 +402,7 @@
                     
                     <br/>
 
-                    Vendor : <strong t-out="object.vendor_id.vendor_name"></strong> 
+                      Vendor : <strong t-out="object.tag.vendor_id.vendor_name"></strong> 
                     <br/>
                      Make: <strong t-out="object.make.make_name"></strong>  
                     <br/>

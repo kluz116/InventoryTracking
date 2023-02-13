@@ -6,7 +6,8 @@ class DisPoseAsset(models.TransientModel):
     _description = "Disposal Asset "
     _rec_name = 'asset_status'
 
-    asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')],string="Asset Type", required=True)
+
+    #asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')],string="Asset Type", required=True)
     asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Diployment'),('active','Active'),('repair','Repair'),('disposal','Disposal')],string="Asset Status", required=True, default="disposal")
     disposal_comment = fields.Text(string="Disposal Comment")
     disposal_date =  fields.Datetime(string='Disposal Date', default=lambda self: fields.datetime.now())
@@ -19,7 +20,7 @@ class DisPoseAsset(models.TransientModel):
 
     tag = fields.Many2one('inventory_track.asset_tags',string="Asset TAG",default=comp_asset_tag, required=True)
     serial_set =   fields.Many2many(related='tag.asset_serial',string='Asset Serial')
-    
+    asset_type = fields.Selection(related='tag.asset_type',selection=[('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')])
     def comp_asset_serial(self):
         asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))
         for req in asset:
@@ -38,9 +39,16 @@ class DisPoseAsset(models.TransientModel):
             req.disposal_date = self.disposal_date
             req.disposed_by = self.disposed_by
 
-            for i in req.tag.asset_serial:
-                if i.serial == self.serial.serial and i.status=='active':
-                    i.status = 'disposed'  
+            
+            if len(req.tag.asset_serial) > 1 :
+                for i in req.tag.asset_serial:
+                    if i.serial == self.serial.serial and i.status=='active':
+                        i.status = 'disposed'
+                        req.asset_status = 'active'  
+            else:
+                req.asset_status = 'disposal'
+                req.tag.asset_seriali.status = 'disposed'
+
 
             
             vals = { 
@@ -55,7 +63,7 @@ class DisPoseAsset(models.TransientModel):
 
             self.env['inventory_track.asset_dispose_log'].create(vals)
 
-            template_id = self.env.ref('cash_managment.email_template_create_asset_disposed').id
-            #template =  self.env['mail.template'].browse(template_id)
-            #template.send_mail(req.id,force_send=True)
+            template_id = self.env.ref('InventoryTracking.email_template_create_asset_disposed').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(req.id,force_send=True)
          
