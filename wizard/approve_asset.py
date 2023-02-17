@@ -18,8 +18,8 @@ class ApproveAsset(models.TransientModel):
             return req.tag 
 
     tag = fields.Many2one('inventory_track.asset_tags',string="Asset TAG",default=comp_asset_tag, required=True)
-    serial_set =   fields.Many2many(related='tag.asset_serial',ondelete='cascade',string='Asset Serial')
-    
+    #serial_set =   fields.Many2many(related='tag.asset_serial',ondelete='cascade',string='Asset Serial')
+    serial_set = fields.One2many('inventory_track.asset_serial','asset_id' ,string='Asset Serial')
     def comp_asset_serial(self):
         asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))
         for req in asset:

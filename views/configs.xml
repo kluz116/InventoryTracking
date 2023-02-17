@@ -161,7 +161,7 @@
                             <field name = "vendor_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
                             <field name="asset_type"  />
                             <field name="tag"/>
-                            <field name="asset_serial" widget="many2many_tags" />
+                            <field name="asset_serial" />
                             <field name="recievd_date"/>
                             
                         </group>

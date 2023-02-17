@@ -7,22 +7,24 @@ class AssetSerial(models.Model):
     _description = "This is a serial model"
     _rec_name ="serial"
 
-    asset_id = fields.Many2one('inventory_track.asset_tags', string='Asset Serial')
+
+    #asset_id = fields.Many2one('inventory_track.asset_tags', string='Asset Serial')
     serial = fields.Char(string="Asset Serial", required=True)
     status =  fields.Selection([('active','Active'),('innactive','Innactive'),('disposed','Disposed')],string="Status", required=True, default="innactive")
     serial_date =  fields.Datetime(string='Created Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Created By:',default=lambda self: self.env.user)
-
+   
+   
 class Tag(models.Model):
     _name = "inventory_track.asset_tags"
     _description = "This is a tag model"
     _rec_name ="tag"
     
+    #asset_serial = fields.Many2one('inventory_track.asset_serial', string='Asset Serial',domain = " [('status','=','innactive')] ")
     asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')],string="Asset Type", required=True, default="laptop")
     vendor_id = fields.Many2one('inventory_track.vendor',string='Vendor',required=True)
     tag = fields.Char(string="Asset TAG", required=True)
-    asset_serial = fields.One2many('inventory_track.asset_serial','asset_id' ,string='Asset Serial')
-    #asset_serial = fields.Many2many('inventory_track.asset_serial',ondelete='cascade',string='Asset Serial',domain = " [('status','=','innactive')] " )
+    #asset_serial = fields.One2many('inventory_track.asset_serial','asset_id' ,string='Asset Serial')
     status =  fields.Selection([('active','Active'),('innactive','Innactive'),('approved','Approved'),('rejected','Rejected')],string="Status", required=True, default="innactive")
     tag_date =  fields.Datetime(string='Created Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Created By:',default=lambda self: self.env.user)
@@ -68,3 +70,5 @@ class Tag(models.Model):
     @api.model
     def _update_warrant(self):
         self.search([('&'),('waranty_date', '<', date.today()),('warrant_status','=','on')]).write({'warrant_status': "off"})
+
+  
