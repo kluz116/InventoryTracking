@@ -13,7 +13,7 @@
                         <field name="serial_set" widget="many2many_tags" invisible='1' />  
                     </group>
                     <group>
-                        <field name = "serial" widget="many2many_tags" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
+                        <field name = "serial"  options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
                     </group> 
                     <group>
                         <field name="disposal_comment"/>   

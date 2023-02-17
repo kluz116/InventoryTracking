@@ -44,10 +44,12 @@ class DisPoseAsset(models.TransientModel):
                 for i in req.tag.asset_serial:
                     if i.serial == self.serial.serial and i.status=='active':
                         i.status = 'disposed'
-                        req.asset_status = 'active'  
+                        req.asset_status = 'active' 
+                        req.tag.asset_serial = self.serial
+                        #req.tag.asset_serial.update({'serial' :[( 6, 0, self.serial)]}) 
             else:
                 req.asset_status = 'disposal'
-                req.tag.asset_seriali.status = 'disposed'
+                req.tag.asset_serial.status = 'disposed'
 
 
             
@@ -66,4 +68,17 @@ class DisPoseAsset(models.TransientModel):
             template_id = self.env.ref('InventoryTracking.email_template_create_asset_disposed').id
             template =  self.env['mail.template'].browse(template_id)
             template.send_mail(req.id,force_send=True)
-         
+        '''
+            @api.model
+                def create(self,vals):
+                    project_ids = []
+                    stage_obj = self.env['project.task.type']
+                    result = super(Project, self).create(vals)
+                    for resource in result:
+                        for source in resource.stage_ids:
+                            if source:
+                                stage_id = stage_obj.search([('id', '=',source.name.id)])
+                                project_ids.append(result.id)
+                                stage_id.update({'project_ids': [( 6, 0, project_ids)]})
+                    return result
+          '''
