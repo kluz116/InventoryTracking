@@ -96,7 +96,7 @@
                              <field name="current_user"  invisible='1'  />
                               <field name="current_ifra_manager"  invisible='1'  />
                               <field name = "tag" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
-                              <field name = "serial" widget="many2many_tags"  />
+                              <field name = "serial"  />
                               <field name="asset_type"  />
                              <field name = "make"  options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
                              <field name = "model"  options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />

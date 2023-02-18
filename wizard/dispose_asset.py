@@ -20,7 +20,7 @@ class DisPoseAsset(models.TransientModel):
 
     tag = fields.Many2one('inventory_track.asset_tags',string="Asset TAG",default=comp_asset_tag, required=True)
     #serial_set =   fields.Many2many(related='tag.asset_serial',string='Asset Serial')
-    serial_set = fields.One2many('inventory_track.asset_serial','asset_id' ,string='Asset Serial')
+    serial_set = fields.One2many(related='tag.asset_serial' ,string='Asset Serial')
     asset_type = fields.Selection(related='tag.asset_type',selection=[('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')])
     def comp_asset_serial(self):
         asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))
@@ -29,7 +29,7 @@ class DisPoseAsset(models.TransientModel):
 
     #serial = fields.Many2many('inventory_track.asset_serial',default=comp_asset_serial,string='Asset Serial',domain = " [('status','in',[serial_set])] ")
  
-    serial = fields.One2many('inventory_track.asset_serial','asset_id' ,string='Asset Serial')
+    serial = fields.One2many('inventory_track.asset_serial','asset_id',default=comp_asset_serial ,string='Asset Serial')
     
     
     def disposal_asset(self):
@@ -47,7 +47,7 @@ class DisPoseAsset(models.TransientModel):
                     if i.serial == self.serial.serial and i.status=='active':
                         i.status = 'disposed'
                         req.asset_status = 'active' 
-                        #req.tag.asset_serial = self.serial
+                        req.tag.asset_serial = self.serial.id
                         #req.tag.asset_serial.id.update({'serial' :[( 6, 0, self.serial)]}) 
             else:
                 req.asset_status = 'disposal'
