@@ -7,10 +7,14 @@
              <field name="arch" type="xml">
                 <tree string="Inventory"  default_order='created_on desc'>
                     <field name="asset_status"/>
+                    <field name="asset_type"  />
                     <field name="make" />
                     <field name="model" />
-                    <field name="serial" widget="many2many_tags" />
+                    
                     <field name="tag" />
+                    <field name="hdd" />
+                    <field name="ram" />
+                    <field name="os" />
                     <field name="created_on"/> 
                     <field name="created_by"/>   
                        

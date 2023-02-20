@@ -14,7 +14,8 @@ class Inventory(models.Model):
     asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Deployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Deployment Rejected'),('approved','Pending Activation')],string="Asset Status", required=True, default="new")
     tag = fields.Many2one('inventory_track.asset_tags',string="Asset Tag",domain = " [('status','=','approved')] " )
     #serial =   fields.Many2many(related='tag.asset_serial')
-    serial = fields.One2many(related='tag.asset_serial' ,string='Asset Serial')
+
+    serial = fields.One2many(related='tag.asset_serial' ,string='Asset Serial',domain = " [('status','in',['active'])] ")
     asset_type = fields.Selection(related='tag.asset_type',selection=[('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')])
     ram = fields.Selection([('one','1 GB'),('two','2 GB'),('three','3 GB'),('four','4 GB'),('six','6 GB'),('eight','8 GB'),('twelve','12 GB'),('sixteen','16 GB'),('thirty_two','32 GB')],string="RAM Size",  default="one")
     hdd = fields.Char(string="HDD OR SDD Size")
@@ -93,5 +94,13 @@ class Inventory(models.Model):
     def _compute_manager(self):
         for record in self:
             record.infr_manager = record.created_by.partner_id.supervisor
+
+
+    @api.depends('created_by')
+    def _compute_serial(self):
+        for record in self:
+            record.infr_manager = record.created_by.partner_id.supervisor
+
+   
 
    

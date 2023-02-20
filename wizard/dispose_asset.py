@@ -22,18 +22,20 @@ class DisPoseAsset(models.TransientModel):
     #serial_set =   fields.Many2many(related='tag.asset_serial',string='Asset Serial')
     serial_set = fields.One2many(related='tag.asset_serial' ,string='Asset Serial')
     asset_type = fields.Selection(related='tag.asset_type',selection=[('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')])
-    def comp_asset_serial(self):
-        asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))
-        for req in asset:
-            return req.tag.asset_serial
-
-    #serial = fields.Many2many('inventory_track.asset_serial',default=comp_asset_serial,string='Asset Serial',domain = " [('status','in',[serial_set])] ")
- 
-    serial = fields.One2many('inventory_track.asset_serial','asset_id',default=comp_asset_serial ,string='Asset Serial')
     
+    #def comp_asset_serial(self):
+       # asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))
+        #for req in asset:
+            #return req.tag.asset_serial
+
+    #serial = fields.one2many('inventory_track.asset_serial',default=comp_asset_serial,string='Asset Serial',domain = " [('status','in',[serial_set])] ")
+ 
+    #serial = fields.One2many('inventory_track.asset_serial',default=comp_asset_serial  ,string='Asset Serial')
+   # serial = fields.One2many('inventory_track.asset_serial','asset_id' ,string='Asset Serial',domain = " [('id','in',serial_set)]")
+    serial = fields.Many2many('inventory_track.asset_serial' ,string='Asset Serial',domain = " ['&',('id','in',serial_set),('status','in',['active'])]")
     
     def disposal_asset(self):
-        self.write({'asset_status': 'disposal'})
+        #self.write({'asset_status': 'disposal'})
         asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))
         for req in asset:
             req.asset_status = self.asset_status
@@ -45,16 +47,22 @@ class DisPoseAsset(models.TransientModel):
             if len(req.tag.asset_serial) > 1 :
                 for i in req.tag.asset_serial:
                     if i.serial == self.serial.serial and i.status=='active':
+
+                        serial_id = []
+                        
+                        
                         i.status = 'disposed'
                         req.asset_status = 'active' 
-                        req.tag.asset_serial = self.serial.id
+                        serial_id.append(self.serial.id)
+                        #req.tag.asset_serial = self.serial.id
+                        self.env['inventory_track.asset_serial'].write({'asset_id': [(4, self.serial)] })
+                        self.env['inventory_track.asset_serial'].update({'asset_id' :[( 6, 0, serial_id)]}) 
                         #req.tag.asset_serial.id.update({'serial' :[( 6, 0, self.serial)]}) 
             else:
                 req.asset_status = 'disposal'
                 req.tag.asset_serial.status = 'disposed'
+                
 
-
-            
             vals = { 
                 'asset_type':self.asset_type,
                 'asset_id': req.id, 
@@ -66,11 +74,12 @@ class DisPoseAsset(models.TransientModel):
                  }
 
             self.env['inventory_track.asset_dispose_log'].create(vals)
-
+               
             template_id = self.env.ref('InventoryTracking.email_template_create_asset_disposed').id
             template =  self.env['mail.template'].browse(template_id)
             template.send_mail(req.id,force_send=True)
-        '''
+        
+            ''''
             @api.model
                 def create(self,vals):
                     project_ids = []
