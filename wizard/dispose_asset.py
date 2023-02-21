@@ -63,6 +63,8 @@ class DisPoseAsset(models.TransientModel):
                         #self.env['inventory_track.asset_tags'].update({'asset_serial' :[( 6, 0, serial_id)]})
                         #  req.tag.asset_serial.write({'asset_serial' :[( 6, 0, serial_id)]})  
                         req.tag.write({'asset_serial' : serial_id}) 
+                        #raise exceptions.ValidationError(f"ID to Be Flagged OFF {serial_id}")
+
                         
             else:
                 pass
