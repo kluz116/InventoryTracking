@@ -12,6 +12,8 @@
                     <field name="model" />
                     
                     <field name="tag" />
+                    <field name="serial" widget="many2many_tags" />
+                    
                     <field name="hdd" />
                     <field name="ram" />
                     <field name="os" />

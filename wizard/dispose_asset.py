@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import api, fields, models,exceptions
 
 
 class DisPoseAsset(models.TransientModel):
@@ -38,29 +38,36 @@ class DisPoseAsset(models.TransientModel):
         #self.write({'asset_status': 'disposal'})
         asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))
         for req in asset:
-            req.asset_status = self.asset_status
+            #req.asset_status = self.asset_status
             req.disposal_comment = self.disposal_comment
             req.disposal_date = self.disposal_date
             req.disposed_by = self.disposed_by
 
             
             if len(req.tag.asset_serial) > 1 :
+                #raise exceptions.ValidationError(f"Hmmmmm Length of string {len(req.tag.asset_serial)} and List  {req.tag.asset_serial}  Type of {type(req.tag.asset_serial)}")
                 for i in req.tag.asset_serial:
                     if i.serial == self.serial.serial and i.status=='active':
+                        #raise exceptions.ValidationError(f"Hmmmmm Length of string {i.serial } {i.status} {self.serial.serial }")
 
                         serial_id = []
                         
-                        
-                        i.status = 'disposed'
-                        req.asset_status = 'active' 
+                        #i.status = 'disposed'
+                        #req.asset_status = 'active' 
                         serial_id.append(self.serial.id)
                         #req.tag.asset_serial = self.serial.id
-                        self.env['inventory_track.asset_serial'].write({'asset_id': [(4, self.serial)] })
-                        self.env['inventory_track.asset_serial'].update({'asset_id' :[( 6, 0, serial_id)]}) 
-                        #req.tag.asset_serial.id.update({'serial' :[( 6, 0, self.serial)]}) 
+                        #raise exceptions.ValidationError(f"Serial ID {serial_id}")
+                        #raise exceptions.ValidationError(f"Hmmmmm Length of string {req.tag.asset_serial}")
+
+                        #self.env['inventory_track.asset_serial'].write({'asset_id': [(4, self.serial)] })
+                        #self.env['inventory_track.asset_tags'].update({'asset_serial' :[( 6, 0, serial_id)]})
+                        #  req.tag.asset_serial.write({'asset_serial' :[( 6, 0, serial_id)]})  
+                        req.tag.write({'asset_serial' : serial_id}) 
+                        
             else:
-                req.asset_status = 'disposal'
-                req.tag.asset_serial.status = 'disposed'
+                pass
+                #req.asset_status = 'disposal'
+                #req.tag.asset_serial.status = 'disposed'
                 
 
             vals = { 
