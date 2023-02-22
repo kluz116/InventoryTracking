@@ -1,4 +1,5 @@
 from odoo import models,api,fields,exceptions
+from odoo.exceptions import ValidationError
 from dateutil.relativedelta import relativedelta
 from datetime import timedelta, date
 
@@ -7,11 +8,19 @@ class AssetSerial(models.Model):
     _description = "This is a serial model"
     _rec_name ="serial"
 
-    asset_id = fields.Many2one('inventory_track.asset_tags', string='Asset Tag')
+    #asset_id = fields.Many2one('inventory_track.asset_tags', string='Asset Tag')
+    #tag = fields.Char(related='asset_id.tag', string='Tag')
     serial = fields.Char(string="Asset Serial", required=True)
     status =  fields.Selection([('active','Active'),('innactive','Innactive'),('disposed','Disposed')],string="Status", required=True, default="innactive")
     serial_date =  fields.Datetime(string='Created Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Created By:',default=lambda self: self.env.user)
+
+    @api.constrains('serial')
+    def _check_Serial_unique(self):
+        for rec in self:
+            serial_counts = self.search_count([('serial', '=', rec.serial), ('id', '!=', rec.id)])
+            if serial_counts > 0:
+                raise ValidationError(f"Serial number {rec.serial} already exists!")
 
 class Tag(models.Model):
     _name = "inventory_track.asset_tags"
@@ -21,8 +30,8 @@ class Tag(models.Model):
     asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')],string="Asset Type", required=True, default="laptop")
     vendor_id = fields.Many2one('inventory_track.vendor',string='Vendor',required=True)
     tag = fields.Char(string="Asset TAG", required=True)
-    asset_serial = fields.One2many('inventory_track.asset_serial','asset_id' ,string='Asset Serial')
-    #asset_serial = fields.Many2many('inventory_track.asset_serial',ondelete='cascade',string='Asset Serial',domain = " [('status','=','innactive')] " )
+    #asset_serial = fields.One2many('inventory_track.asset_serial','asset_id' ,string='Asset Serial')
+    asset_serial = fields.Many2many('inventory_track.asset_serial',ondelete='cascade',string='Asset Serial',domain = " [('status','=','innactive')] " )
     status =  fields.Selection([('active','Active'),('innactive','Innactive'),('approved','Approved'),('rejected','Rejected')],string="Status", required=True, default="innactive")
     tag_date =  fields.Datetime(string='Created Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Created By:',default=lambda self: self.env.user)
@@ -68,3 +77,11 @@ class Tag(models.Model):
     @api.model
     def _update_warrant(self):
         self.search([('&'),('waranty_date', '<', date.today()),('warrant_status','=','on')]).write({'warrant_status': "off"})
+
+
+    @api.constrains('tag')
+    def _check_tag_unique(self):
+        for rec in self:
+            tag_counts = self.search_count([('tag', '=', rec.tag), ('id', '!=', rec.id)])
+            if tag_counts > 0:
+                raise ValidationError(f"Asset Tag {rec.tag} already exists!")

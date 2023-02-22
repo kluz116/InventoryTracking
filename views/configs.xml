@@ -67,7 +67,7 @@
              <field name="arch" type="xml">
                 <tree string="Serial" decoration-danger="status == 'Innactive'" default_order='serial_date desc'>
                     
-                    <field name="asset_id" />
+                    
                     <field name="serial" />
                     <field name="status" />
                     <field name="serial_date" />
