@@ -14,7 +14,7 @@ class Inventory(models.Model):
     asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Deployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Deployment Rejected'),('approved','Pending Activation')],string="Asset Status", required=True, default="new")
     tag = fields.Many2one('inventory_track.asset_tags',string="Asset Tag",domain = " [('status','=','approved')] " )
     serial =   fields.Many2many(related='tag.asset_serial')
-
+    batch_id = fields.Char(related='tag.batch_id', string='Batch')
     #serial = fields.One2many(related='tag.asset_serial' ,string='Asset Serial',domain = " [('status','in',['active'])] ")
     asset_type = fields.Selection(related='tag.asset_type',selection=[('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')])
     ram = fields.Selection([('one','1 GB'),('two','2 GB'),('three','3 GB'),('four','4 GB'),('six','6 GB'),('eight','8 GB'),('twelve','12 GB'),('sixteen','16 GB'),('thirty_two','32 GB')],string="RAM Size",  default="one")
@@ -66,6 +66,7 @@ class Inventory(models.Model):
     current_user = fields.Boolean('is current user ?', compute='_get_current_user')
 
     base_url = fields.Char('Base Url', compute='_get_url_id',store='True')
+    unique_field = fields.Char(compute='comp_name', string='Ref', store=True)
     
     
 
@@ -104,6 +105,17 @@ class Inventory(models.Model):
     def _compute_serial(self):
         for record in self:
             record.infr_manager = record.created_by.partner_id.supervisor
+
+
+    @api.depends('created_on')
+    def comp_name(self):
+        for rec in self:
+            value = 'INV'
+            date_time = rec.created_on.strftime("%m%d%Y")
+            last= '000'
+            rec.unique_field = (value or '')+''+(date_time or '')+''+(last or '')+''+(str(rec.id))
+
+
 
    
 

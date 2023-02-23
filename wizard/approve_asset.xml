@@ -7,7 +7,7 @@
                 <form string="Stock Asset">
 
                     <group>
-                        <field name="tag" readonly='1' options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />   
+                        <field name="tag" readonly='1' options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" style="color: #e60911; font-weight: bold;" />   
                         <field name="serial_set" readonly='1' />  
                         <field name="location_name" readonly='1' />  
                         

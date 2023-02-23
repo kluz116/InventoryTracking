@@ -53,6 +53,7 @@ class DisPoseAsset(models.TransientModel):
             else:
                 req.asset_status = 'disposal'
                 req.tag.asset_serial.status = 'disposed'
+                req.tag.status ='disposed'
 
 
       

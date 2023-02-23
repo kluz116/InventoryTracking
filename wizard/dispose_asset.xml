@@ -9,11 +9,11 @@
                         <field name="asset_type"/>   
                     </group> 
                     <group>
-                        <field name="tag" readonly='1' options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />   
+                        <field name="tag" readonly='1' options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" style="color: #e60911; font-weight: bold;"/>   
                         <field name="serial_set" widget="many2many_tags" />  
                     </group>
                     <group>
-                       <field name = "serial" widget="many2many_tags"   />
+                       <field name = "serial" widget="many2many_tags"  style="color: #e60911; font-weight: bold;" />
                     </group> 
                     <group>
                         <field name="disposal_comment"/>   

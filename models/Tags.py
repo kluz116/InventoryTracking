@@ -32,7 +32,7 @@ class Tag(models.Model):
     tag = fields.Char(string="Asset TAG", required=True)
     #asset_serial = fields.One2many('inventory_track.asset_serial','asset_id' ,string='Asset Serial')
     asset_serial = fields.Many2many('inventory_track.asset_serial',ondelete='cascade',string='Asset Serial',domain = " [('status','=','innactive')] " )
-    status =  fields.Selection([('active','Active'),('innactive','Innactive'),('approved','Approved'),('rejected','Rejected')],string="Status", required=True, default="innactive")
+    status =  fields.Selection([('active','Active'),('innactive','Innactive'),('approved','Approved'),('rejected','Rejected'),('disposed','Disposed Off')],string="Status", required=True, default="innactive")
     tag_date =  fields.Datetime(string='Created Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Created By:',default=lambda self: self.env.user)
     approval_comment = fields.Text(string="Approval Comment")
@@ -43,10 +43,11 @@ class Tag(models.Model):
     rejected_by = fields.Many2one('res.users','Rejected By:')
     effective_date =  fields.Date(string='Effective Date',default=lambda self: fields.date.today())
     waranty_date =  fields.Date(string='Warranty Due Date',compute='comp_time_hod', store=True)
-    year =  fields.Integer(string="Warranty Period (Years)", default="1")
+    year =  fields.Integer(string="Warranty(Years)", default="1")
     warrant_status =  fields.Selection([('off','OFF'),('on','ON')],string="Warrant Status", required=True, compute='get_warrant_status')
     recievd_date =  fields.Date(string='Recieved Date',default=lambda self: fields.date.today())
     base_url = fields.Char('Base Url', compute='_get_url_id',store='True')
+    batch_id = fields.Char(compute='comp_name', string='Batch', store=True)
     
     
     
@@ -60,7 +61,7 @@ class Tag(models.Model):
 
    
     
-    @api.depends('effective_date')
+    @api.depends('effective_date','year')
     def comp_time_hod(self):
         for e in self:
             currentTimeDate = e.effective_date + relativedelta(years=e.year)
@@ -85,3 +86,10 @@ class Tag(models.Model):
             tag_counts = self.search_count([('tag', '=', rec.tag), ('id', '!=', rec.id)])
             if tag_counts > 0:
                 raise ValidationError(f"Asset Tag {rec.tag} already exists!")
+            
+    @api.depends('recievd_date')
+    def comp_name(self):
+        for rec in self:
+            value = 'BATCHID'
+            date_time = rec.recievd_date.strftime("%m%d%Y")
+            rec.batch_id = (value or '')+'-'+(date_time or '')

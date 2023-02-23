@@ -6,14 +6,14 @@
             <field name="model">inventory_track.inventory</field>
              <field name="arch" type="xml">
                 <tree string="Inventory"  default_order='created_on desc'>
+                
+                    <field name="unique_field"/>
                     <field name="asset_status"/>
                     <field name="asset_type"  />
                     <field name="make" />
                     <field name="model" />
-                    
                     <field name="tag" />
                     <field name="serial" widget="many2many_tags" />
-                    
                     <field name="hdd" />
                     <field name="ram" />
                     <field name="os" />
@@ -101,8 +101,9 @@
                              <separator string="General Asset Details" colspan="2"/>
                              <field name="current_user"  invisible='1'  />
                               <field name="current_ifra_manager"  invisible='1'  />
-                              <field name = "tag" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
-                              <field name = "serial"  />
+                              <field name = "tag" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" style="color: #e60911; font-weight: bold;"/>
+                              <field name = "batch_id" style="color: #e60911; font-weight: bold;" />
+                              <field name = "serial"  style="color: #e60911; font-weight: bold;" />
                               <field name="asset_type"  />
                              <field name = "make"  options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
                              <field name = "model"  options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />

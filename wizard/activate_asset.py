@@ -27,7 +27,7 @@ class ActivateAsset(models.TransientModel):
         for req in asset:
             return req.tag.asset_serial
 
-    #serial = fields.Many2many('inventory_track.asset_serial',default=comp_asset_serial,string='Asset Serial',domain = " [('status','in',[serial_set])] ")
+    #serial = fields.Many2many('inventory_track.asset_serial' ,string='Disposable Serial',domain = " ['&',('id','in',serial_set),('status','in',['active'])]")
  
    
     
@@ -42,7 +42,7 @@ class ActivateAsset(models.TransientModel):
             
             if len(req.tag.asset_serial) > 1 :
                 for i in req.tag.asset_serial:
-                    if i.serial == self.serial.serial and i.status=='repair':
+                    if  i.status=='repair':
                         i.status = 'active'          
             else:
                 #req.asset_status = 'repair'
