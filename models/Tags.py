@@ -11,7 +11,7 @@ class AssetSerial(models.Model):
     #asset_id = fields.Many2one('inventory_track.asset_tags', string='Asset Tag')
     #tag = fields.Char(related='asset_id.tag', string='Tag')
     serial = fields.Char(string="Asset Serial", required=True)
-    status =  fields.Selection([('active','Active'),('innactive','Innactive'),('disposed','Disposed')],string="Status", required=True, default="innactive")
+    status =  fields.Selection([('active','Active'),('innactive','Innactive'),('disposed','Disposed'),(('repair','Repair'))],string="Status", required=True, default="innactive")
     serial_date =  fields.Datetime(string='Created Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Created By:',default=lambda self: self.env.user)
 

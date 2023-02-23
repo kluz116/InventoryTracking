@@ -39,6 +39,14 @@ class ActivateAsset(models.TransientModel):
             req.activated_comment = self.activated_comment
             req.activated_date = self.activated_date
             req.activated_by = self.activated_by
+            
+            if len(req.tag.asset_serial) > 1 :
+                for i in req.tag.asset_serial:
+                    if i.serial == self.serial.serial and i.status=='repair':
+                        i.status = 'active'          
+            else:
+                #req.asset_status = 'repair'
+                req.tag.asset_serial.status = 'active'
 
             vals = { 'asset_id': req.id, 
                  'asset_status': self.asset_status,

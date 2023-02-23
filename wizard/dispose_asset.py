@@ -20,7 +20,7 @@ class DisPoseAsset(models.TransientModel):
     serial_set =   fields.Many2many(related='tag.asset_serial',ondelete='cascade',string='Asset Serial')
     asset_type = fields.Selection(related='tag.asset_type',selection=[('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')])
     
-    serial = fields.Many2many('inventory_track.asset_serial' ,string='Asset Serial',domain = " ['&',('id','in',serial_set),('status','in',['active'])]")
+    serial = fields.Many2many('inventory_track.asset_serial' ,string='Disposable Serial',domain = " ['&',('id','in',serial_set),('status','in',['active'])]")
     
     def disposal_asset(self):
         asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))
@@ -28,30 +28,34 @@ class DisPoseAsset(models.TransientModel):
             req.disposal_comment = self.disposal_comment
             req.disposal_date = self.disposal_date
             req.disposed_by = self.disposed_by
-
+             
+            list1 = []
+            for i in req.tag.asset_serial:
+                list1.append(i.id)
             
             if len(req.tag.asset_serial) > 1 :
                 for i in req.tag.asset_serial:
-                    list1 = []
-                    list1.append(i.id)
                     if i.serial == self.serial.serial and i.status=='active':
+                        
                         serial_id = []
                       
                         #serial_id.append(self.serial.id)
                         serial_id.append(i.id)
                      
-                        #req.tag.write({'asset_serial' :[( 6, False, [54])]})  
-          
-                        #i.status = 'disposed'
-                        #req.asset_status = 'active' 
+                        req.tag.write({'asset_serial' :[( 6, False, list(filter(lambda serial: serial != self.serial.id, list1)))]})  
+                        i.status = 'disposed'
+                        req.asset_status = 'active' 
+
                         #req.tag.write({'asset_serial' : list(filter(lambda serial: serial != serial_id, list1))}) 
                         #raise exceptions.ValidationError(f"ID to Be Flagged OFF {list(filter(lambda serial: serial != serial_id, list1))} and {{'asset_serial' :[( 6, 0, {serial_id})]}} Lists {list1} hmmmm {req.tag.asset_serial}")  
-                        raise exceptions.ValidationError(f"What A Fuck a You Getting {list1}  hhhhh {serial_id}")    
+                        #raise exceptions.ValidationError(f"What A Fuck a You Getting {list1}  hhhhh {serial_id} Filtered {list(filter(lambda serial: serial != self.serial.id, list1))}")    
                      
             else:
                 req.asset_status = 'disposal'
                 req.tag.asset_serial.status = 'disposed'
-            
+
+
+      
 
             vals = { 
                 'asset_type':self.asset_type,
