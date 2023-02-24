@@ -129,6 +129,7 @@ access_infrastructure_ftb_admin1,inventory_tracker,model_inventory_track_asset_t
 access_infrastructure_ftb_admin2,inventory_tracker,model_inventory_track_asset_serial,ftb_admin,1,1,1,0
 access_infrastructure_ftb_admins1,inventory_tracker,model_inventory_track_vendor,admin_supervisor,1,1,1,0
 access_infrastructure_ftb_admin32,inventory_tracker,model_inventory_track_vendor,ftb_admin,1,1,1,0
+access_infrasss_ager4,inventory_tracker,model_inventory_track_vendor,ftb_admin,1,1,1,0
 
 
 

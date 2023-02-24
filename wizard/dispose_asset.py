@@ -35,7 +35,7 @@ class DisPoseAsset(models.TransientModel):
             
             if len(req.tag.asset_serial) > 1 :
                 for i in req.tag.asset_serial:
-                    if i.serial == self.serial.serial and i.status=='active':
+                    if  len(self.serial) < 2 and i.serial == self.serial.serial and i.status=='active':
                         
                         serial_id = []
                       
@@ -46,10 +46,16 @@ class DisPoseAsset(models.TransientModel):
                         i.status = 'disposed'
                         req.asset_status = 'active' 
 
+                       
                         #req.tag.write({'asset_serial' : list(filter(lambda serial: serial != serial_id, list1))}) 
                         #raise exceptions.ValidationError(f"ID to Be Flagged OFF {list(filter(lambda serial: serial != serial_id, list1))} and {{'asset_serial' :[( 6, 0, {serial_id})]}} Lists {list1} hmmmm {req.tag.asset_serial}")  
                         #raise exceptions.ValidationError(f"What A Fuck a You Getting {list1}  hhhhh {serial_id} Filtered {list(filter(lambda serial: serial != self.serial.id, list1))}")    
-                     
+                    elif   len(self.serial) > 1   and i.status=='active':
+
+                        #req.tag.write({'asset_serial' :[( 6, False, list1)]})  
+                        i.status = 'disposed'
+                        req.asset_status = 'disposal' 
+                    
             else:
                 req.asset_status = 'disposal'
                 req.tag.asset_serial.status = 'disposed'
@@ -61,7 +67,7 @@ class DisPoseAsset(models.TransientModel):
             vals = { 
                 'asset_type':self.asset_type,
                 'asset_id': req.id, 
-                'serial': self.serial.id,
+                'serial': self.serial,
                 'asset_status': self.asset_status,
                 'dispose_comment': self.disposal_comment,
                 'dispose_date': self.disposal_date,
