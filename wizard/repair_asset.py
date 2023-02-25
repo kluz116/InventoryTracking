@@ -6,7 +6,7 @@ class RepairAsset(models.TransientModel):
     _description = "Repair Asset "
     _rec_name = 'asset_status'
 
-    asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')],string="Asset Type", required=True)
+    #asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')],string="Asset Type", required=True)
     asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Diployment'),('active','Active'),('repair','Repair'),('disposal','Disposal')],string="Asset Status", required=True, default="repair")
     repaire_comment = fields.Text(string="Comment", required=True)
     repaire_date =  fields.Datetime(string='Repair Date', default=lambda self: fields.datetime.now())
@@ -18,6 +18,7 @@ class RepairAsset(models.TransientModel):
             return req.tag 
 
     tag = fields.Many2one('inventory_track.asset_tags',string="Asset TAG",default=comp_asset_tag, required=True)
+    asset_type = fields.Selection(related='tag.asset_type',selection=[('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')])
     serial_set =   fields.Many2many(related='tag.asset_serial',ondelete='cascade',string='Asset Serial')
     #serial_set = fields.One2many('inventory_track.asset_serial','asset_id' ,string='Asset Serial')
     
@@ -42,7 +43,10 @@ class RepairAsset(models.TransientModel):
 
             if len(req.tag.asset_serial) > 1 :
                 for i in req.tag.asset_serial:
-                    if i.serial == self.serial.serial and i.status=='active':
+                    if len(self.serial) < 2 and i.serial == self.serial.serial and i.status=='active':
+                        i.status = 'repair'
+                        req.asset_status = 'repair'
+                    elif   len(self.serial) > 1   and i.status=='active': 
                         i.status = 'repair'
                         req.asset_status = 'repair' 
 

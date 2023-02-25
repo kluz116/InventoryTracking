@@ -6,18 +6,16 @@
             <field name="arch" type="xml">
                 <form string="Repair  Asset">
                     <group>
-                            <field name="asset_type"/>   
+                            <field name="asset_type" readonly='1'/>   
                     </group> 
 
                     <group>
                          
-                    
                         <field name="tag" readonly='1' options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />   
-                        <field name="serial_set" widget="many2many_tags" invisible='1' />  
+                        <field name="serial_set" widget="many2many_tags" />  
                     </group>
                     <group>
-                    
-                        <field name = "serial"   widget="many2many_tags" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
+                       <field name = "serial" widget="many2many_tags"  style="color: #e60911; font-weight: bold;" />
                     </group> 
                     <group>
                         <field name="repaire_comment"/>   
