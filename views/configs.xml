@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
      
-        <record id="view_inventory_track_vendor_tree" model="ir.ui.view">
+        <record id="view_inventory_track_courier_tree" model="ir.ui.view">
+            <field name="name">inventory_track.courier.tree</field>
+            <field name="model">inventory_track.courier</field>
+             <field name="arch" type="xml">
+                <tree string="Courior">
+                    <field name="courier_name" />
+                    <field name="email" />
+                    <field name="phone" />
+                    <field name="created_by" />
+                </tree>
+            </field>
+        </record>
+         <record id="view_inventory_track_vendor_tree" model="ir.ui.view">
             <field name="name">inventory_track.vendor.tree</field>
             <field name="model">inventory_track.vendor</field>
              <field name="arch" type="xml">
@@ -73,6 +85,26 @@
                     <field name="serial_date" />
                     <field name="created_by" />
                 </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="inventory_track_courier_form_view">
+            <field name="name">inventory_track_courier.form</field>
+            <field name="model">inventory_track.courier</field>
+            <field name="arch" type="xml">
+                <form string="Add Courier" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="courier_name"/>
+                        </group>
+                        <group>
+                            <field name="email"/>
+                        </group>
+                           <group>
+                            <field name="phone"/>
+                        </group>
+                    </sheet>
+                </form>
             </field>
         </record>
 
@@ -268,6 +300,19 @@
                 </search>
             </field>
         </record>
+         <record model="ir.ui.view" id="inventory_track_courier_search_view">
+            <field name="name">inventory_track_courier.search</field>
+            <field name="model">inventory_track.courier</field>
+            <field name="arch" type="xml">
+                <search>
+                      <field name="courier_name" />
+                      <field name="email" />
+                      <field name="phone" />
+                      
+                </search>
+            </field>
+        </record>
+        
 
         <record model="ir.ui.view" id="inventory_track_asset_models_search_view">
             <field name="name">inventory_track_asset_models.search</field>
@@ -352,6 +397,15 @@
                 <p class="o_view_nocontent_smiling_face">Create new Serial</p>
             </field>
         </record>
+        <record model="ir.actions.act_window" id="asset_courier_lists_action">
+            <field name="name">Asset Courier</field>
+            <field name="res_model">inventory_track.courier</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create new courier</p>
+            </field>
+        </record>
+        
 
         
 
@@ -364,5 +418,6 @@
         <menuitem id="config_asset_location" name="Asset Locations" parent="config_mene_inv" sequence="9"  action="asset_location_lists_action" groups="InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin"  />
         <menuitem id="config_asset_tags" name="Asset Tags" parent="config_mene_inv" sequence="10"  action="asset_tags_lists_action" groups="InventoryTracking.ftb_admin,InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin,InventoryTracking.admin_supervisor" />
         <menuitem id="config_asset_serial" name="Asset Serial" parent="config_mene_inv" sequence="11"  action="asset_serial_lists_action" groups="InventoryTracking.ftb_admin,InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin,InventoryTracking.admin_supervisor" />
+        <menuitem id="config_courier" name="Asset Courier" parent="config_mene_inv" sequence="12"  action="asset_courier_lists_action" groups="InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin" />
         
 </odoo>

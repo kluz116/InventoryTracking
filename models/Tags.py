@@ -3,6 +3,19 @@ from odoo.exceptions import ValidationError
 from dateutil.relativedelta import relativedelta
 from datetime import timedelta, date
 
+
+class Courier(models.Model):
+    _name = "inventory_track.courier"
+    _description = "This model is for courier services"
+    _rec_name ="courier_name"
+
+    
+    courier_name = fields.Char(string="Courier Name ", required=True)
+    email = fields.Char(string="Email ")
+    phone = fields.Char(string="Phone ", required=True)
+    created_by = fields.Many2one('res.users','Created By:',default=lambda self: self.env.user)
+   
+
 class AssetSerial(models.Model):
     _name = "inventory_track.asset_serial"
     _description = "This is a serial model"
