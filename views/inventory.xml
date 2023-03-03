@@ -92,7 +92,7 @@
                         <!--<button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','diployment','active','verified_one','disposal','approved','rejected'])]}" type="action" string="Deploy Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager,InventoryTracking.infrastructure_admin" />-->
                         <button name="%(wizard_intiate_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','diployment','active','verified_one','disposal','approved','rejected'])]}" type="action" string="Initiate Diagnosis" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager,InventoryTracking.infrastructure_admin" />
 
-                        <button name="%(wizard_verify_asset_dis_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','active','disposal','approved','rejected'])]}" type="action" string="Dispose Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager"/>
+                        <!--<button name="%(wizard_verify_asset_dis_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','active','disposal','approved','rejected'])]}" type="action" string="Dispose Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager"/>-->
                         
                         <field name="asset_status" widget="statusbar" statusbar_visible="new,stocked,verified,verified_one,diployment,approved,rejected,active,repair,disposal" />
                     </header>
