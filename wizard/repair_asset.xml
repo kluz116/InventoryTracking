@@ -18,6 +18,10 @@
                        <field name = "serial" widget="many2many_tags"  style="color: #e60911; font-weight: bold;" />
                     </group> 
                     <group>
+                        <field name="repair_courier" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>   
+                    </group>
+                    
+                    <group>
                         <field name="repaire_comment"/>   
                     </group>
                     <group>

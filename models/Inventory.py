@@ -11,7 +11,7 @@ class Inventory(models.Model):
     #vendor_id = fields.Many2one('inventory_track.vendor',string='Vendor',required=True)
     make = fields.Many2one('inventory_track.make',ondelete='cascade',string='Asset Make')
     model = fields.Many2one('inventory_track.asset_models',string="Asset Model",domain = " [('asset_make','=',make)] " )
-    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Deployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Deployment Rejected'),('approved','Pending Activation')],string="Asset Status", required=True, default="new")
+    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Deployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Deployment Rejected'),('approved','Pending Activation'),('pending_diagnosis_approval','Pending Diagnosis Approval')],string="Asset Status", required=True, default="new")
     tag = fields.Many2one('inventory_track.asset_tags',string="Asset Tag",domain = " [('status','=','approved')] " )
     serial =   fields.Many2many(related='tag.asset_serial')
     batch_id = fields.Char(related='tag.batch_id', string='Batch')
@@ -20,7 +20,7 @@ class Inventory(models.Model):
     ram = fields.Selection([('one','1 GB'),('two','2 GB'),('three','3 GB'),('four','4 GB'),('six','6 GB'),('eight','8 GB'),('twelve','12 GB'),('sixteen','16 GB'),('thirty_two','32 GB')],string="RAM Size",  default="one")
     hdd = fields.Char(string="HDD OR SDD Size", required=True)
     os =  fields.Selection([('windows_10','Windows 10'),('windows_11','Windows 11'),('windows_12','Windows 12')],string="OS", required=True, default="windows_10")
-    comp_name=fields.Char(string="Computer Name",required=True)
+    comp_names=fields.Char(string="Computer Name")
     Processor=fields.Char(string="Processor",required=True)
     bios=fields.Char(string="BIOS Version/Date",required=True)
     os_build=fields.Char(string="OS & Build")
@@ -69,7 +69,12 @@ class Inventory(models.Model):
 
     base_url = fields.Char('Base Url', compute='_get_url_id',store='True')
     unique_field = fields.Char(compute='comp_name', string='Ref', store=True)
-    courier = fields.Many2one('inventory_track.courier',ondelete='cascade',string='Courie ')
+    courier = fields.Many2one('inventory_track.courier',ondelete='cascade',string='Courier ')
+    repair_courier = fields.Many2one('inventory_track.courier',ondelete='cascade',string='Repair Courier')
+    initiate_comment = fields.Text(string="Approval Comment")
+    initiated_date =  fields.Datetime(string='Intiated Date')
+    initiated_by = fields.Many2one('res.users','Intiated By:')
+    
     
     
 

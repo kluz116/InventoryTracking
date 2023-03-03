@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="inventory_track_intiatediagnosis_wizard" model="ir.ui.view">
+            <field name="name">inventory_track.intiatediagnosis.form</field>
+            <field name="model">inventory_track.intiatediagnosis</field>
+            <field name="arch" type="xml">
+                <form string="Stock Asset">
+
+                    <group>
+                        <field name="tag" readonly='1' options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" style="color: #e60911; font-weight: bold;" />   
+                        <field name="serial_set" readonly='1' />  
+       
+                 
+                    </group>
+        
+                    <group>
+                        <field name="initiate_comment"/>   
+                    </group>
+                    <group>
+                        <field name="initiated_date" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="initiated_by" readonly="1"/>
+                    </group>
+                    <footer>
+                        <button name="initiated_diagnosis" string="Initiated Diagnosis" type="object" class="btn btn-outline-primary"/>
+                        <button string="Cancel" class="btn-outline-dark" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_intiate_asset_manager" model="ir.actions.act_window">
+            <field name="name">Initiated Diagnosis</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inventory_track.intiatediagnosis</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="inventory_track_intiatediagnosis_wizard"/>
+            <field name="target">new</field>
+        </record>
+</odoo>

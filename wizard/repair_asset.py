@@ -11,6 +11,7 @@ class RepairAsset(models.TransientModel):
     repaire_comment = fields.Text(string="Comment", required=True)
     repaire_date =  fields.Datetime(string='Repair Date', default=lambda self: fields.datetime.now())
     repaired_by = fields.Many2one('res.users','Initiated By:',default=lambda self: self.env.user)
+    repair_courier = fields.Many2one('inventory_track.courier',ondelete='cascade',string='Repair Courier')
 
     def comp_asset_tag(self):
         asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))
@@ -57,7 +58,7 @@ class RepairAsset(models.TransientModel):
             vals = { 
                 'asset_type':self.asset_type,
                  'asset_id': req.id, 
-                 'serial': self.serial.id,
+                 'serial': self.serial,
                  'asset_status': self.asset_status,
                  'repaire_comment': self.repaire_comment,
                  'repaire_date': self.repaire_date,
