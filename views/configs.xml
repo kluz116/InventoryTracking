@@ -97,10 +97,13 @@
                         <group>
                             <field name="courier_name"/>
                         </group>
+                         <group>
+                            <field name="id"/>
+                        </group>
                         <group>
                             <field name="email"/>
                         </group>
-                           <group>
+                        <group>
                             <field name="phone"/>
                         </group>
                     </sheet>

@@ -117,14 +117,16 @@
                         </group> 
                         <group>
                             <separator string="Specifications" colspan="2"/>      
-                            <field name = "ram"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]}" />
-                            <field name = "hdd"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]}" />
-                            <field name = "os"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]} " />
-                            <field name = "Processor"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]} " />
-                            <field name = "bios"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]} " />
-                            <field name = "os_build"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]} " />
-                            <field name = "mac_address"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer'])]} " />
-                            
+                            <field name = "ram"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer','switch','router'])]}" />
+                            <field name = "hdd"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer','switch','router'])]}" />
+                            <field name = "os"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer','switch','router'])]} " />
+                            <field name = "comp_name"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer','switch','router'])]} " />
+                            <field name = "Processor"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer','switch','router'])]} " />
+                            <field name = "bios"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer','switch','router'])]} " />
+                            <field name = "os_build"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer','switch','router'])]} " />
+                            <field name = "mac_address"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer','switch','router'])]} " />
+                            <field name = "mac_address_wifi"  attrs="{'invisible':[('asset_type', 'in', ['monitor','printer','switch','router'])]} " />
+                        
                         </group> 
                         
                          <notebook>
@@ -150,7 +152,9 @@
                                 </page>  
                                 <page string="Deployment">
                                     <group>
+                                    
                                         <field name = "location_id"  readonly="1"/>
+                                        <field name = "courier"  readonly="1"/>
                                         <field name = "dispatched_to" readonly="1"/>
                                         <field name = "dispach_comment" readonly="1"/>
                                         <field name = "dispach_date" readonly="1"/>

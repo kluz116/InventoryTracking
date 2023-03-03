@@ -6,7 +6,8 @@ class DispatchAsset(models.TransientModel):
     _description = "dispatched asset"
     _rec_name ="asset_status"
   
-    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Diployment'),('active','Active'),('repair','Repair'),('disposal','Disposal')],string="Asset Status", required=True, default="new")
+    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Diployment'),('active','Active'),('repair','Repair'),('disposal','Disposal')],string="Asset Status", required=True, default="diployment")
+    courier = fields.Many2one('inventory_track.courier',ondelete='cascade',string='Courie ')
     location_id = fields.Many2one('inventory_track.asset_location',string ='Asset Location', required=True)
     dispatched_to = fields.Many2one('res.partner','User',domain="[('loaction_id_invetory', '=', location_id)]")
     dispach_comment = fields.Text(string="Comment")
@@ -16,7 +17,6 @@ class DispatchAsset(models.TransientModel):
   
 
     def dispatch__asset(self):
-        self.write({'asset_status': 'diployment'})
         asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))
         
         for req in asset:

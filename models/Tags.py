@@ -13,6 +13,7 @@ class Courier(models.Model):
     courier_name = fields.Char(string="Courier Name ", required=True)
     email = fields.Char(string="Email ")
     phone = fields.Char(string="Phone ", required=True)
+    id = fields.Binary('National ID',attachment=True, required=True)
     created_by = fields.Many2one('res.users','Created By:',default=lambda self: self.env.user)
    
 
@@ -40,7 +41,7 @@ class Tag(models.Model):
     _description = "This is a tag model"
     _rec_name ="tag"
     
-    asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')],string="Asset Type", required=True, default="laptop")
+    asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer'),('switch','Switch'),('router','Router')],string="Asset Type", required=True, default="laptop")
     vendor_id = fields.Many2one('inventory_track.vendor',string='Vendor',required=True)
     tag = fields.Char(string="Asset TAG", required=True)
     #asset_serial = fields.One2many('inventory_track.asset_serial','asset_id' ,string='Asset Serial')

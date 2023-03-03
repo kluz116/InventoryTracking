@@ -5,6 +5,10 @@
             <field name="model">inventory_track.dispatch_asset</field>
             <field name="arch" type="xml">
                 <form string="Deploy Asset">
+                
+                    <group>
+                        <field name="courier" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />   
+                    </group>
                     <group>
                         <field name="location_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />   
                     </group>

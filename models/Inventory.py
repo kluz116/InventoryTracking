@@ -20,10 +20,12 @@ class Inventory(models.Model):
     ram = fields.Selection([('one','1 GB'),('two','2 GB'),('three','3 GB'),('four','4 GB'),('six','6 GB'),('eight','8 GB'),('twelve','12 GB'),('sixteen','16 GB'),('thirty_two','32 GB')],string="RAM Size",  default="one")
     hdd = fields.Char(string="HDD OR SDD Size", required=True)
     os =  fields.Selection([('windows_10','Windows 10'),('windows_11','Windows 11'),('windows_12','Windows 12')],string="OS", required=True, default="windows_10")
+    comp_name=fields.Char(string="Computer Name",required=True)
     Processor=fields.Char(string="Processor",required=True)
-    bios=fields.Char(string="  BIOS Version/Date",required=True)
+    bios=fields.Char(string="BIOS Version/Date",required=True)
     os_build=fields.Char(string="OS & Build")
     mac_address=fields.Char(string="MAC ADDRESS")
+    mac_address_wifi=fields.Char(string="MAC ADDRESS WIFI")
     comment = fields.Text(string="comment",required=True)
     created_on =  fields.Datetime(string='Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Created By:',default=lambda self: self.env.user)
@@ -67,6 +69,7 @@ class Inventory(models.Model):
 
     base_url = fields.Char('Base Url', compute='_get_url_id',store='True')
     unique_field = fields.Char(compute='comp_name', string='Ref', store=True)
+    courier = fields.Many2one('inventory_track.courier',ondelete='cascade',string='Courie ')
     
     
 
