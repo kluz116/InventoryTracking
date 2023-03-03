@@ -4,16 +4,17 @@ from datetime import timedelta, date
 
 class Inventory(models.Model):
     _name = "inventory_track.inventory"
+    _inherit="mail.thread"
     _description = "This is an Inventory model"
     _rec_name ="tag"
 
     #asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')],string="Asset Type", required=True, default="laptop")
     #vendor_id = fields.Many2one('inventory_track.vendor',string='Vendor',required=True)
-    make = fields.Many2one('inventory_track.make',ondelete='cascade',string='Asset Make')
-    model = fields.Many2one('inventory_track.asset_models',string="Asset Model",domain = " [('asset_make','=',make)] " )
-    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Deployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Deployment Rejected'),('approved','Pending Activation'),('pending_diagnosis_approval','Pending Diagnosis Approval')],string="Asset Status", required=True, default="new")
-    tag = fields.Many2one('inventory_track.asset_tags',string="Asset Tag",domain = " [('status','=','approved')] " )
-    serial =   fields.Many2many(related='tag.asset_serial')
+    make = fields.Many2one('inventory_track.make',ondelete='cascade',string='Asset Make',track_visibility='always')
+    model = fields.Many2one('inventory_track.asset_models',string="Asset Model",domain = " [('asset_make','=',make)] ",track_visibility='always' )
+    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Deployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Rejected'),('approved','Approved'),('pending_diagnosis_approval','Diagnosis Approval'),('diagnosis_approved','Diagnosis Approved'),('diagnosis_rejected','Diagnosis Rejected'),('diagnosis','Diagnosis'),('repair_mode','Repair Mode')],string="Asset Status",track_visibility='always', required=True, default="new")
+    tag = fields.Many2one('inventory_track.asset_tags',string="Asset Tag",domain = " [('status','=','approved')] ",track_visibility='always' )
+    serial =   fields.Many2many(related='tag.asset_serial',track_visibility='always')
     batch_id = fields.Char(related='tag.batch_id', string='Batch')
     #serial = fields.One2many(related='tag.asset_serial' ,string='Asset Serial',domain = " [('status','in',['active'])] ")
     asset_type = fields.Selection(related='tag.asset_type',selection=[('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')])
@@ -35,26 +36,26 @@ class Inventory(models.Model):
     dispatched_to = fields.Many2one('res.partner','User')
     dispach_comment = fields.Text(string="Comment")
     dispach_date =  fields.Datetime(string='Deployed Date')
-    dispatched_by = fields.Many2one('res.users','Dispatched By:')
+    dispatched_by = fields.Many2one('res.users','Dispatched By:',track_visibility='always')
     stock_comment = fields.Text(string="Comment")
-    stock_date =  fields.Datetime(string='Stock Date')
+    stock_date =  fields.Datetime(string='Stock Date',track_visibility='always')
     cyber_comment = fields.Text(string="Comment")
-    cyber_date =  fields.Datetime(string='Cyber Verified Date')
+    cyber_date =  fields.Datetime(string='Cyber Verified Date',track_visibility='always')
     activated_comment = fields.Text(string="Activation Comment")
-    activated_date =  fields.Datetime(string='Activation Date')
-    activated_by = fields.Many2one('res.users','Activated By:')
+    activated_date =  fields.Datetime(string='Activation Date',track_visibility='always')
+    activated_by = fields.Many2one('res.users','Activated By:',track_visibility='always')
     repaire_comment = fields.Text(string="Comment")
-    repaire_date =  fields.Datetime(string='Repair Date')
-    repaired_by = fields.Many2one('res.users','Initiated By:')
+    repaire_date =  fields.Datetime(string='Repair Date',track_visibility='always')
+    repaired_by = fields.Many2one('res.users','Initiated By:',track_visibility='always')
     disposal_comment = fields.Text(string="Disposal Comment")
-    disposal_date =  fields.Datetime(string='Disposal Date')
-    disposed_by = fields.Many2one('res.users','Disposed By:')
+    disposal_date =  fields.Datetime(string='Disposal Date',track_visibility='always')
+    disposed_by = fields.Many2one('res.users','Disposed By:',track_visibility='always')
     reject_comment = fields.Text(string="Rejection Comment")
-    reject_date =  fields.Datetime(string='Rejection Date')
-    rejected_by = fields.Many2one('res.users','Rejected By:')
+    reject_date =  fields.Datetime(string='Rejection Date',track_visibility='always')
+    rejected_by = fields.Many2one('res.users','Rejected By:',track_visibility='always')
     approval_comment = fields.Text(string="Approval Comment")
     approval_date =  fields.Datetime(string='Approval Date')
-    approval_by = fields.Many2one('res.users','Approval By:')
+    approval_by = fields.Many2one('res.users','Approval By:',track_visibility='always')
     
    
     #effective_date =  fields.Date(string='Effective Date',default=lambda self: fields.date.today())
@@ -69,11 +70,14 @@ class Inventory(models.Model):
 
     base_url = fields.Char('Base Url', compute='_get_url_id',store='True')
     unique_field = fields.Char(compute='comp_name', string='Ref', store=True)
-    courier = fields.Many2one('inventory_track.courier',ondelete='cascade',string='Courier ')
-    repair_courier = fields.Many2one('inventory_track.courier',ondelete='cascade',string='Repair Courier')
+    courier = fields.Many2one('inventory_track.courier',ondelete='cascade',string='Courier ',track_visibility='always')
+    repair_courier = fields.Many2one('inventory_track.courier',ondelete='cascade',string='Repair Courier',track_visibility='always')
     initiate_comment = fields.Text(string="Approval Comment")
-    initiated_date =  fields.Datetime(string='Intiated Date')
-    initiated_by = fields.Many2one('res.users','Intiated By:')
+    initiated_date =  fields.Datetime(string='Intiated Date',track_visibility='always')
+    initiated_by = fields.Many2one('res.users','Intiated By:',track_visibility='always')
+    diagnosis_approved_comment = fields.Text(string="Comment")
+    diagnosis_approved_date =  fields.Datetime(string='Date',track_visibility='always')
+    diagnosis_approved_by = fields.Many2one('res.users','Intiated By:',track_visibility='always')
     
     
     

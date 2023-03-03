@@ -10,3 +10,4 @@ from . import approve_asset
 from . import approve_admin
 from . import reject_admin
 from . import initiate_diagnosis
+from . import approve
