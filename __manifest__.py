@@ -37,6 +37,8 @@
         'wizard/dispose_asset.xml',
         'wizard/approve.xml',
         'wizard/initiate_diagnosis.xml',
+        'wizard/diagnosis.xml',
+        'wizard/initiate_repair.xml',
         'views/inventory.xml',
         'views/configs.xml',
         'views/inventory_user.xml',

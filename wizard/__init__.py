@@ -11,3 +11,5 @@ from . import approve_admin
 from . import reject_admin
 from . import initiate_diagnosis
 from . import approve
+from . import diagnosis
+from . import initiate_repair

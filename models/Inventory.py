@@ -12,7 +12,7 @@ class Inventory(models.Model):
     #vendor_id = fields.Many2one('inventory_track.vendor',string='Vendor',required=True)
     make = fields.Many2one('inventory_track.make',ondelete='cascade',string='Asset Make',track_visibility='always')
     model = fields.Many2one('inventory_track.asset_models',string="Asset Model",domain = " [('asset_make','=',make)] ",track_visibility='always' )
-    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Deployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Rejected'),('approved','Approved'),('pending_diagnosis_approval','Diagnosis Approval'),('diagnosis_approved','Diagnosis Approved'),('diagnosis_rejected','Diagnosis Rejected'),('diagnosis','Diagnosis'),('repair_mode','Repair Mode')],string="Asset Status",track_visibility='always', required=True, default="new")
+    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Deployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Rejected'),('approved','Approved'),('pending_diagnosis_approval','Diagnosis Approval'),('diagnosis_approved','Diagnosis Approved'),('diagnosis_rejected','Diagnosis Rejected'),('repair_mode','Repair Mode')],string="Asset Status",track_visibility='always', required=True, default="new")
     tag = fields.Many2one('inventory_track.asset_tags',string="Asset Tag",domain = " [('status','=','approved')] ",track_visibility='always' )
     serial =   fields.Many2many(related='tag.asset_serial',track_visibility='always')
     batch_id = fields.Char(related='tag.batch_id', string='Batch')
@@ -62,6 +62,7 @@ class Inventory(models.Model):
     #waranty_date =  fields.Date(string='Warranty Due Date',compute='comp_time_hod', store=True)
     #year =  fields.Integer(string="Warranty Period (Years)", default="1")
     file_attach = fields.Binary('File',attachment=True)
+    file_attach_diagnosis = fields.Binary('File',attachment=True)
     infr_manager = fields.Integer(string='Infrastructure Manager',compute='_compute_manager')
     #warrant_status =  fields.Selection([('off','OFF'),('on','ON')],string="Warrant Status", required=True, compute='get_warrant_status')
 
@@ -78,6 +79,16 @@ class Inventory(models.Model):
     diagnosis_approved_comment = fields.Text(string="Comment")
     diagnosis_approved_date =  fields.Datetime(string='Date',track_visibility='always')
     diagnosis_approved_by = fields.Many2one('res.users','Intiated By:',track_visibility='always')
+    diagnosis_comment = fields.Text(string="Approval Comment")
+    diagnosis_date =  fields.Datetime(string='Date', track_visibility='always')
+    diagnosis_by = fields.Many2one('res.users','Diagnosed By:',track_visibility='always')
+    currency_id = fields.Many2one('res.currency', string='Currency',required=True)
+    repair_amount = fields.Monetary(string='Repair Amount', required=True,)
+    initiate_repair_comment = fields.Text(string="Repair Comment")
+    initiate_repair_date =  fields.Datetime(string='Repair Date',track_visibility='always')
+    initiate_repair_by = fields.Many2one('res.users','Repair By:',track_visibility='always')
+    file_attach_initiate_repair = fields.Binary('Repair File',attachment=True)
+    
     
     
     
