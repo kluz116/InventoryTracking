@@ -13,6 +13,13 @@
     # for the full list
     'category': 'Finance',
     'version': '0.1',
+
+    'external_dependencies': {
+        'python': [
+            'xlsxwriter',
+            'xlrd',
+        ],
+    },
     
     # any module necessary for this one to work correctly
     'depends': ['mail','base'],
@@ -42,6 +49,8 @@
         'views/inventory.xml',
         'views/configs.xml',
         'views/inventory_user.xml',
+        'reports/report_inventoryTracking.xml',
+        'reports/asset_transfer.xml',
     
     ],
     # only loaded in demonstration mode

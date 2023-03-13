@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="paperformat_request_landscape" model="report.paperformat">
+        <field name="name">Requests Landscape</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="dpi">90</field>
+        </record>
+    
+    <report
+        id="inventory_track_inventory_rpt"
+        model="inventory_track.inventory"
+        string="Asset Transfer Report"
+        report_type="qweb-pdf"
+        name="inventory_track.inventory_rpt"
+        file="inventory_track.inventory_rpt"/>
+
+
+    <report
+        id="inventory_report_xlsx"
+        model="inventory_track.inventory"
+        string="Export Inventory to XLSX"
+        report_type="xlsx"
+        name="inventory_track.inventory_list"
+        file="Inventory"
+        attachment_use="False"/>
+
+
+    </data>
+</odoo>
+
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="inventory_rpt">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                       <h4 style="text-align: center;">Asset Transfer Form</h4>
+                       <t t-foreach="docs" t-as="x">
+                          <p>Asset Code : <strong t-field="x.tag.tag"/></p>
+                          <p>Asset Description   : <strong t-field="x.comment"/></p>
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr class="bg-primary">
+                                   <th></th>
+                                   <th>PARTICULARS</th>
+                                    <th>CURRENCY</th>
+                                    <th>AMOUNT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!--<t t-foreach="docs" t-as="x">-->
+                                <!--<tr> <td rowspan="9"> <strong>A</strong></td></tr>
+                                <tr> <td rowspan="8" ><strong>Good Currency</strong> </td></tr>-->
+                                <tr>
+                                    <td>
+                                        OS
+                                    </td>
+                                     <td>
+                                         <span t-field="x.os"/>
+                                        
+                                    </td>
+                                </tr>  
+                                
+                                
+                            <!--</t>-->
+                            </tbody>
+                        </table>
+                        <p>Authorized By : <strong  t-field="x.approval_by.name"/> Date : <strong  t-field="x.approval_date"/> </p>
+                        <p>Delivered By : <strong  t-field="x.dispatched_by.name"/> Date : <strong  t-field="x.dispach_date"/> </p>
+                        <p>Recieved By : <strong  t-field="x.courier.name"/> Date : <strong  t-field="x.dispach_date"/> </p>
+                        
+                        </t>
+                    </div>
+                </t>
+            </t>
+    
+    </template>
+</odoo>

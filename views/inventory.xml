@@ -94,10 +94,10 @@
                         <button name="%(wizard_stock_diagnosis_approved_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','diployment','active','verified_one','disposal','approved','rejected','diagnosis_approved','diagnosis_rejected','repair_mode','repair'])]}" type="action" string="Approve" class="btn btn-success" groups="InventoryTracking.head_department" />
                         <button name="%(wizard_intiate_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','diployment','active','verified_one','disposal','approved','rejected','diagnosis_approved','diagnosis_rejected','repair_mode','repair'])]}" type="action" string="Reject" class="btn btn-danger" groups="InventoryTracking.head_department" />
                         <button name="%(wizard_asset_diagnosis)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','diployment','active','verified_one','disposal','approved','rejected','diagnosis_rejected','repair_mode','repair','pending_diagnosis_approval'])]}" type="action" string="Diagnosis" class="btn btn-danger" groups="InventoryTracking.infrastructure_manager,InventoryTracking.infrastructure_admin" />
-                        <button name="%(wizard_i_repair_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','diployment','active','verified_one','disposal','approved','rejected','diagnosis_rejected','repair','pending_diagnosis_approval'])]}" type="action" string="Initiate Repair" class="btn btn-danger" groups="InventoryTracking.infrastructure_manager,InventoryTracking.infrastructure_admin" />
+                        <button name="%(wizard_i_repair_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','diployment','active','verified_one','disposal','approved','rejected','diagnosis_rejected','repair','pending_diagnosis_approval','diagnosis_approved'])]}" type="action" string="Initiate Repair" class="btn btn-danger" groups="InventoryTracking.infrastructure_manager,InventoryTracking.infrastructure_admin" />
                         <!--<button name="%(wizard_verify_asset_dis_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','active','disposal','approved','rejected'])]}" type="action" string="Dispose Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager"/>-->
                         
-                        <field name="asset_status" widget="statusbar" statusbar_visible="new,stocked,verified,verified_one,diployment,approved,rejected,active,repair,pending_diagnosis_approval,disposal,diagnosis_approved,diagnosis_rejected,repair_mode" />
+                        <field name="asset_status" widget="statusbar" statusbar_visible="new,stocked,verified,verified_one,diployment,approved,rejected,active,repair,pending_diagnosis_approval,disposal,diagnosis_approved,diagnosis_rejected,repair_mode"  invisible='1'/>
                     </header>
                 </xpath>
                    <sheet>
@@ -105,6 +105,7 @@
                              <separator string="General Asset Details" colspan="2"/>
                              <field name="current_user"  invisible='1'  />
                               <field name="current_ifra_manager"  invisible='1'  />
+                              <field name="asset_status"  readonly='1'  />
                               <field name = "tag" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" style="color: #e60911; font-weight: bold;"/>
                               <field name = "batch_id" style="color: #e60911; font-weight: bold;" />
                               <field name = "serial"  style="color: #e60911; font-weight: bold;" />
