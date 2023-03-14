@@ -12,15 +12,19 @@
         <field name="orientation">Landscape</field>
         <field name="dpi">90</field>
         </record>
-    
-    <report
-        id="inventory_track_inventory_rpt"
-        model="inventory_track.inventory"
-        string="Asset Transfer Report"
-        report_type="qweb-pdf"
-        name="inventory_track.inventory_rpt"
-        file="inventory_track.inventory_rpt"/>
 
+
+        <record id="inventory_track_inventory_rpts" model="ir.actions.report">
+            <field name="name">Asset Transfer Report</field>
+            <field name="model">inventory_track.inventory</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">InventoryTracking.inventory_rpt</field>
+            <field name="report_file">InventoryTracking.inventory_rpt</field>
+            <field name="print_report_name">'Asset Transfer  - %s' % (object.tag.tag or '')  </field>
+            <field name="binding_model_id" ref="model_inventory_track_inventory"/>
+            <field name="binding_type">report</field>
+        </record>
+    
 
     <report
         id="inventory_report_xlsx"
@@ -34,5 +38,6 @@
 
     </data>
 </odoo>
+
 
 

@@ -3,44 +3,129 @@
     <template id="inventory_rpt">
             <t t-call="web.html_container">
                 <t t-call="web.external_layout">
-                    <div class="page">
+                    <!--<div class="page">-->
                        <h4 style="text-align: center;">Asset Transfer Form</h4>
                        <t t-foreach="docs" t-as="x">
                           <p>Asset Code : <strong t-field="x.tag.tag"/></p>
+                          <p>Asset Type : <strong t-field="x.tag.asset_type"/></p>
+                          <p>Asset Location : <strong t-field="x.location_id.location_name"/></p>
+                          <p>Asset Custodian : <strong t-field="x.dispatched_to.name"/></p>
                           <p>Asset Description   : <strong t-field="x.comment"/></p>
-                        <table class="table table-bordered table-sm">
-                            <thead>
+                          <br/>
+                          <br/>
+                        <table class="table table-bordered table-sm o_main_table">
+                           <thead>
                                 <tr class="bg-primary">
-                                   <th></th>
-                                   <th>PARTICULARS</th>
-                                    <th>CURRENCY</th>
-                                    <th>AMOUNT</th>
+                                   <th colspan="2">Asset Specifications</th>
                                 </tr>
                             </thead>
+                       
                             <tbody>
                             <!--<t t-foreach="docs" t-as="x">-->
                                 <!--<tr> <td rowspan="9"> <strong>A</strong></td></tr>
                                 <tr> <td rowspan="8" ><strong>Good Currency</strong> </td></tr>-->
+                                  <tr>  
+                                    <td>
+                                        <strong>Computer Name</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.comp_names"/>
+                                        
+                                    </td>
+                                    
+                                </tr>  
+                                <tr>  
+                                    <td>
+                                        <strong>Processor</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.Processor"/>
+                                        
+                                    </td>
+                                    
+                                </tr>  
+                                <tr>  
+                                    <td>
+                                        <strong>Bios</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.bios"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr>  
+                                    <td>
+                                       <strong> OS Build</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.os_build"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr>  
+                                    <td>
+                                        <strong>Mac Address</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.mac_address"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr>  
+                                    <td>
+                                        <strong>Mac Address Wifi</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.mac_address_wifi"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
                                 <tr>
                                     <td>
-                                        OS
+                                        <strong>OS</strong>
                                     </td>
                                      <td>
                                          <span t-field="x.os"/>
                                         
                                     </td>
                                 </tr>  
+                                <tr>  
+                                    <td>
+                                        <strong>HDD</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.hdd"/>
+                                        
+                                    </td>
+                                    
+                                </tr>  
+                                <tr>  
+                                    <td>
+                                        <strong>RAM</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.ram"/>
+                                        
+                                    </td>
+                                    
+                                </tr>  
                                 
                                 
                             <!--</t>-->
                             </tbody>
                         </table>
+                        <br/>
+                        <br/>
                         <p>Authorized By : <strong  t-field="x.approval_by.name"/> Date : <strong  t-field="x.approval_date"/> </p>
                         <p>Delivered By : <strong  t-field="x.dispatched_by.name"/> Date : <strong  t-field="x.dispach_date"/> </p>
-                        <p>Recieved By : <strong  t-field="x.courier.name"/> Date : <strong  t-field="x.dispach_date"/> </p>
+                        <p>Recieved By : <strong  t-field="x.courier.courier_name"/> Date : <strong  t-field="x.dispach_date"/> </p>
                         
                         </t>
-                    </div>
+                    <!--</div>-->
                 </t>
             </t>
     
