@@ -49,6 +49,7 @@
         'views/inventory.xml',
         'views/configs.xml',
         'views/inventory_user.xml',
+        'reports/layout.xml',
         'reports/report_inventoryTracking.xml',
         'reports/asset_transfer.xml',
     

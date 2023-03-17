@@ -38,28 +38,29 @@ class AssetSerial(models.Model):
 
 class Tag(models.Model):
     _name = "inventory_track.asset_tags"
-    _description = "This is a tag model"
+    _inherit="mail.thread"
+    _description = "Asset Tag"
     _rec_name ="tag"
     
-    asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer'),('switch','Switch'),('router','Router')],string="Asset Type", required=True, default="laptop")
-    vendor_id = fields.Many2one('inventory_track.vendor',string='Vendor',required=True)
-    tag = fields.Char(string="Asset TAG", required=True)
+    asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer'),('switch','Switch'),('router','Router')],string="Asset Type", required=True, default="laptop",track_visibility='always')
+    vendor_id = fields.Many2one('inventory_track.vendor',string='Vendor',required=True,track_visibility='always')
+    tag = fields.Char(string="Asset TAG", required=True,track_visibility='always')
     #asset_serial = fields.One2many('inventory_track.asset_serial','asset_id' ,string='Asset Serial')
-    asset_serial = fields.Many2many('inventory_track.asset_serial',ondelete='cascade',string='Asset Serial',domain = " [('status','=','innactive')] " )
-    status =  fields.Selection([('active','Active'),('innactive','Innactive'),('approved','Approved'),('rejected','Rejected'),('disposed','Disposed Off')],string="Status", required=True, default="innactive")
-    tag_date =  fields.Datetime(string='Created Date', default=lambda self: fields.datetime.now())
+    asset_serial = fields.Many2many('inventory_track.asset_serial',ondelete='cascade',string='Asset Serial',domain = " [('status','=','innactive')] " ,track_visibility='always')
+    status =  fields.Selection([('active','Active'),('innactive','Innactive'),('approved','Approved'),('rejected','Rejected'),('disposed','Disposed Off')],string="Status", required=True, default="innactive",track_visibility='always')
+    tag_date =  fields.Datetime(string='Created Date', default=lambda self: fields.datetime.now(),track_visibility='always')
     created_by = fields.Many2one('res.users','Created By:',default=lambda self: self.env.user)
     approval_comment = fields.Text(string="Approval Comment")
-    approval_date =  fields.Datetime(string='Approval Date')
-    approval_by = fields.Many2one('res.users','Approval By:')
+    approval_date =  fields.Datetime(string='Approval Date',track_visibility='always')
+    approval_by = fields.Many2one('res.users','Approval By:',track_visibility='always')
     reject_comment = fields.Text(string="Rejection Comment")
-    reject_date =  fields.Datetime(string='Rejection Date')
-    rejected_by = fields.Many2one('res.users','Rejected By:')
+    reject_date =  fields.Datetime(string='Rejection Date',track_visibility='always')
+    rejected_by = fields.Many2one('res.users','Rejected By:',track_visibility='always')
     effective_date =  fields.Date(string='Effective Date',default=lambda self: fields.date.today())
     waranty_date =  fields.Date(string='Warranty Due Date',compute='comp_time_hod', store=True)
     year =  fields.Integer(string="Warranty(Years)", default="1")
     warrant_status =  fields.Selection([('off','OFF'),('on','ON')],string="Warrant Status", required=True, compute='get_warrant_status')
-    recievd_date =  fields.Date(string='Recieved Date',default=lambda self: fields.date.today())
+    recievd_date =  fields.Date(string='Recieved Date',default=lambda self: fields.date.today(),track_visibility='always')
     base_url = fields.Char('Base Url', compute='_get_url_id',store='True')
     batch_id = fields.Char(compute='comp_name', string='Batch', store=True)
     

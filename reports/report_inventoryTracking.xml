@@ -29,7 +29,7 @@
     <report
         id="inventory_report_xlsx"
         model="inventory_track.inventory"
-        string="Export Inventory to XLSX"
+        string="Print Inventory to XLSX"
         report_type="xlsx"
         name="inventory_track.inventory_list"
         file="Inventory"

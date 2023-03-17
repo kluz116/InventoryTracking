@@ -5,7 +5,7 @@ from datetime import timedelta, date
 class Inventory(models.Model):
     _name = "inventory_track.inventory"
     _inherit="mail.thread"
-    _description = "This is an Inventory model"
+    _description = "Inventory Tracking"
     _rec_name ="tag"
 
     #asset_type =  fields.Selection([('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')],string="Asset Type", required=True, default="laptop")

@@ -7,7 +7,7 @@ class InventoryXlsx(models.AbstractModel):
     _name = 'report.inventory_track.inventory_list'
     _inherit = 'report.report_xlsx.abstract'
     
-    def generate_xlsx_report(self, workbook, data, requests):
+    def generate_xlsx_report(self, workbook, data, inventory):
         bold = workbook.add_format({'bold': True})
         sheet = workbook.add_worksheet("Asset Inventory report")
          
@@ -27,7 +27,7 @@ class InventoryXlsx(models.AbstractModel):
         sheet.write(0, 13, "BIOS",bold)
         sheet.write(0, 14, "OS Build",bold)  
 
-        for obj in requests:
+        for obj in inventory:
             #report_name = obj.name
             # One sheet by partner
          

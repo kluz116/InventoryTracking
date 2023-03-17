@@ -8,7 +8,7 @@
                     <!--<div style="width: 45%;float: left;">
                         <img src='/web/binary/company_logo' style="width:100%"/>
                     </div>-->
-                       <h4 style="text-align: center;"><strong>Asset Transfer Form</strong></h4>
+                       <h4 style="text-align: center;">Asset Transfer Form</h4>
                        <t t-foreach="docs" t-as="x">
                           <p>Asset Code : <strong t-field="x.tag.tag"/></p>
                           <p>Asset Type : <strong t-field="x.tag.asset_type"/></p>
@@ -17,14 +17,14 @@
                           <p>Asset Description   : <strong t-field="x.comment"/></p>
                           <br/>
                           <br/>
-                        <table class="table table-sm o_main_table">
+                        <table class="table table-bordered table-sm o_main_table">
                            <thead>
                                 <tr class="bg-dark">
                                    <th colspan="2">Asset Specifications</th>
                                 </tr>
                             </thead>
                        
-                            <tbody >
+                            <tbody>
                             <!--<t t-foreach="docs" t-as="x">-->
                                 <!--<tr> <td rowspan="9"> <strong>A</strong></td></tr>
                                 <tr> <td rowspan="8" ><strong>Good Currency</strong> </td></tr>-->
@@ -124,70 +124,10 @@
                         </table>
                         <br/>
                         <br/>
-
-                         <table class="table table-sm o_main_table">
-                           <thead>
-                                <tr class="bg-dark">
-                                   <th colspan="4">Official Use</th>
-                                </tr>
-                            </thead>
-                            <tbody >
-                                <tr>  
-                                    <td>
-                                        <strong>Authorized By</strong>
-                                    </td>
-                                     <td>
-                                         <span t-field="x.approval_by.name"/>
-                                        
-                                    </td>
-                                     <td>
-                                        <strong>Date</strong>
-                                    </td>
-                                     <td>
-                                         <span t-field="x.approval_date"/>
-                                        
-                                    </td>
-                                    
-                                </tr>  
-                                <tr>  
-                                    <td>
-                                        <strong>Delivered By</strong>
-                                    </td>
-                                     <td>
-                                         <span t-field="x.courier.courier_name"/>
-                                        
-                                    </td>
-                                     <td>
-                                        <strong>Date</strong>
-                                    </td>
-                                     <td>
-                                         <span t-field="x.approval_date"/>
-                                        
-                                    </td>
-                                    
-                                </tr> 
-                                <tr>  
-                                    <td>
-                                        <strong>Recieved By</strong>
-                                    </td>
-                                     <td>
-                                         <span t-field="x.activated_by.name"/>
-                                        
-                                    </td>
-                                     <td>
-                                        <strong>Date</strong>
-                                    </td>
-                                     <td>
-                                         <span t-field="x.activated_date"/>
-                                        
-                                    </td>
-                                    
-                                </tr> 
-                            </tbody>
-                          </table>
-                       
-                       
-            
+                        <p>Authorized By : <strong  t-field="x.approval_by.name"/> Date : <strong  t-field="x.approval_date"/> </p>
+                        <p>Delivered By : <strong  t-field="x.dispatched_by.name"/> Date : <strong  t-field="x.dispach_date"/> </p>
+                        <p>Recieved By : <strong  t-field="x.courier.courier_name"/> Date : <strong  t-field="x.dispach_date"/> </p>
+                        
                         </t>
                     </div>
                 </t>

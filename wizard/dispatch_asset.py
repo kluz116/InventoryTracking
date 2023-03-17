@@ -7,7 +7,7 @@ class DispatchAsset(models.TransientModel):
     _rec_name ="asset_status"
   
     asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Diployment'),('active','Active'),('repair','Repair'),('disposal','Disposal')],string="Asset Status", required=True, default="diployment")
-    courier = fields.Many2one('inventory_track.courier',ondelete='cascade',string='Courie ')
+    courier = fields.Many2one('inventory_track.courier',ondelete='cascade',string='Courier ')
     location_id = fields.Many2one('inventory_track.asset_location',string ='Asset Location', required=True)
     dispatched_to = fields.Many2one('res.partner','User',domain="[('loaction_id_invetory', '=', location_id)]")
     dispach_comment = fields.Text(string="Comment")
@@ -26,6 +26,7 @@ class DispatchAsset(models.TransientModel):
             req.dispach_comment = self.dispach_comment
             req.dispach_date = self.dispach_date
             req.dispatched_by = self.dispatched_by.id
+            req.courier = self.courier.id
             
 
             template_id = self.env.ref('InventoryTracking.email_template_create_asset_notify_approver').id

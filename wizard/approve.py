@@ -22,7 +22,7 @@ class DiagnosisApproved(models.TransientModel):
             req.diagnosis_approved_by = self.diagnosis_approved_by
             
 
-            #template_id = self.env.ref('InventoryTracking.email_template_create_asset_verify').id
-            #template =  self.env['mail.template'].browse(template_id)
-            #template.send_mail(req.id,force_send=True)
+            template_id = self.env.ref('InventoryTracking.email_template_create_asset_diagnosis_approved').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(req.id,force_send=True)
          

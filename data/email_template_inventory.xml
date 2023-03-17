@@ -497,6 +497,76 @@
           
     </record>
 
+    <record id="email_template_create_asset_diagnosis_approval" model="mail.template">
+            <field name="name">Inventory Tracker: Asset Diagnosis</field>
+            <field name="model_id" ref="model_inventory_track_inventory"/>
+            <field name="email_from">{{ object.initiated_by.email }}</field>
+            <field name="email_to">infrastructure@financetrust.co.ug,hd@domain.com</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <field name="subject">Asset {{object.tag.tag}} has been initiated for Diagnosis and pending approval </field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Dear Team
+                    Asset <strong t-out="object.asset_type"></strong>  with TagID <strong t-out="object.tag.tag"></strong>    has been initiated for Diagnosis and pending approval  by <strong t-out="object.initiated_by.name or ''"></strong>.
+                    <br/>
+                    
+                    <br/>
+
+                    Comment : <strong t-out="object.initiate_comment"></strong> 
+                    <br/>
+                     Date: <strong t-out="object.initiate_date"></strong>  
+                    <br/>
+                       <div class="col text-left">
+                        <a t-attf-href="{{ object.base_url }} "> Click Here To Access Asset <strong t-out="object.tag.tag"></strong></a>
+        
+                    </div>
+
+                    <br/>
+                    Regards,<br/>
+                    Business Technologies.
+                </p>
+            </div>
+            </field>
+          
+    </record>
+
+    
+    <record id="email_template_create_asset_diagnosis_approved" model="mail.template">
+            <field name="name">Inventory Tracker: Asset Diagnosis Approval</field>
+            <field name="model_id" ref="model_inventory_track_inventory"/>
+            <field name="email_from">{{ object.diagnosis_approved_by.email }}</field>
+            <field name="email_to">infrastructure@financetrust.co.ug,{{ object.initiated_by.email }}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <field name="subject">Asset {{object.tag.tag}} has been initiated for Diagnosis has been approved </field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Dear Team
+                    Asset <strong t-out="object.asset_type"></strong>  with TagID <strong t-out="object.tag.tag"></strong>    has been initiated for Diagnosis has been approved   by <strong t-out="object.diagnosis_approved_by.name or ''"></strong>.
+                    <br/>
+                    
+                    <br/>
+
+                    Comment : <strong t-out="object.diagnosis_approved_comment"></strong> 
+                    <br/>
+                     Date: <strong t-out="object.diagnosis_approved_date"></strong>  
+                    <br/>
+                       <div class="col text-left">
+                        <a t-attf-href="{{ object.base_url }} "> Click Here To Access Asset <strong t-out="object.tag.tag"></strong></a>
+        
+                    </div>
+
+                    <br/>
+                    Regards,<br/>
+                    Business Technologies.
+                </p>
+            </div>
+            </field>
+          
+    </record>
+
+
 
 
     </data>
