@@ -38,7 +38,7 @@ class AssetDiagnosis(models.TransientModel):
             
             
 
-            ##template_id = self.env.ref('InventoryTracking.email_template_create_asset_deployment_user').id
-            #template =  self.env['mail.template'].browse(template_id)
-            #template.send_mail(req.id,force_send=True)
+            template_id = self.env.ref('InventoryTracking.email_template_create_asset_diagnosis').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(req.id,force_send=True)
          
