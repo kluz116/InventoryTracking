@@ -46,14 +46,15 @@
         'wizard/initiate_diagnosis.xml',
         'wizard/diagnosis.xml',
         'wizard/initiate_repair.xml',
+        'wizard/internal_initiate_repair.xml',
         'views/inventory.xml',
         'views/configs.xml',
         'views/inventory_user.xml',
-        'reports/layout.xml',
         'reports/report_inventoryTracking.xml',
         'reports/asset_transfer.xml',
     
     ],
+
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',

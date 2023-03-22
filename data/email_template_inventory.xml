@@ -515,7 +515,7 @@
 
                     Comment : <strong t-out="object.initiate_comment"></strong> 
                     <br/>
-                     Date: <strong t-out="object.initiate_date"></strong>  
+                     Date: <strong t-out="object.initiated_date"></strong>  
                     <br/>
                        <div class="col text-left">
                         <a t-attf-href="{{ object.base_url }} "> Click Here To Access Asset <strong t-out="object.tag.tag"></strong></a>

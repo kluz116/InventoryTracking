@@ -13,3 +13,4 @@ from . import initiate_diagnosis
 from . import approve
 from . import diagnosis
 from . import initiate_repair
+from . import internal_initiate_repair
