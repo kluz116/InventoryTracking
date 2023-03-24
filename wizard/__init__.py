@@ -14,3 +14,5 @@ from . import approve
 from . import diagnosis
 from . import initiate_repair
 from . import internal_initiate_repair
+from . import infra_approve_deployment
+from . import infra_reject_deployment
