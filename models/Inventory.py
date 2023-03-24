@@ -12,7 +12,7 @@ class Inventory(models.Model):
     #vendor_id = fields.Many2one('inventory_track.vendor',string='Vendor',required=True)
     make = fields.Many2one('inventory_track.make',ondelete='cascade',string='Asset Make',track_visibility='always')
     model = fields.Many2one('inventory_track.asset_models',string="Asset Model",domain = " [('asset_make','=',make)] ",track_visibility='always' )
-    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Deployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Rejected'),('approved','Approved'),('pending_diagnosis_approval','Diagnosis Approval'),('diagnosis_approved','Diagnosis Approved'),('diagnosis_rejected','Diagnosis Rejected'),('repair_mode','Repair Mode'),('infra_approve','Deployment Approved'),('infra_reject','Deployment Rejected')],string="Asset Status",track_visibility='always', required=True, default="new")
+    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Deployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Rejected'),('approved','Approved'),('pending_diagnosis_approval','Diagnosis Approval'),('diagnosis_approved','Diagnosis Approved'),('diagnosis_rejected','Diagnosis Rejected'),('repair_mode','Repair Mode'),('infra_approve','Deployment Approved'),('infra_reject','Deployment Rejected'),('reject_verify','Reject Verification')],string="Asset Status",track_visibility='always', required=True, default="new")
     tag = fields.Many2one('inventory_track.asset_tags',string="Asset Tag",domain = " [('status','=','approved')] ",track_visibility='always' )
     serial =   fields.Many2many(related='tag.asset_serial',track_visibility='always')
     batch_id = fields.Char(related='tag.batch_id', string='Batch')
@@ -88,6 +88,34 @@ class Inventory(models.Model):
     initiate_repair_date =  fields.Datetime(string='Repair Date',track_visibility='always')
     initiate_repair_by = fields.Many2one('res.users','Repair By:',track_visibility='always')
     file_attach_initiate_repair = fields.Binary('Repair File',attachment=True)
+    infra_approve_comment = fields.Text(string="Comment")
+    infra_approve_date =  fields.Datetime(string='Date',track_visibility='always')
+    infra_approve_by = fields.Many2one('res.users','Intiated By:',track_visibility='always')
+    infra_reject_comment = fields.Text(string="Comment")
+    infra_reject_date =  fields.Datetime(string='Date',track_visibility='always')
+    infra_reject_by = fields.Many2one('res.users','Intiated By:',track_visibility='always')
+    verify_reject_comment = fields.Text(string="Comment")
+    verify_reject_date =  fields.Datetime(string='Verified Date' ,track_visibility='always')
+    verify_reject_by = fields.Many2one('res.users','Intiated By:',track_visibility='always')
+    manager_by = fields.Many2one('res.users','Intiated By:',track_visibility='always')
+
+
+    infra_comp_name = fields.Char(string="Computer Name")
+    Operating_system_Build = fields.Char(string=" Operating system Build")
+    Microsoft_office = fields.Selection([('2016','2016'),('2019','2019')])
+    browser = fields.Selection([('no','No'),('yes','Yes')],string="Browsers Firefox and Chrome installed")
+    Antivirus = fields.Selection([('no','No'),('yes','Yes')],string="Antivirus: Kaspersky installed and activated")
+    os_updates = fields.Selection([('no','No'),('yes','Yes')],string="OS updates installed and up to date")
+    user_file = fields.Selection([('no','No'),('yes','Yes')],string="User files transferred/backed up")
+    guest_account = fields.Selection([('no','No'),('yes','Yes')],string="Guest Accounts disabled")
+    ou = fields.Selection([('no','No'),('yes','Yes')],string="Computer added to correct OU")
+    user_department = fields.Char(string="Computer User Department")
+    other_information = fields.Char(string="Other information")
+   
+   
+   
+    
+   
     
     
     

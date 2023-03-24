@@ -49,6 +49,7 @@
         'wizard/internal_initiate_repair.xml',
         'wizard/infra_approve_deployment.xml',
         'wizard/infra_reject_deployment.xml',
+        'wizard/verify_asset_reject.xml',
         'views/inventory.xml',
         'views/configs.xml',
         'views/inventory_user.xml',

@@ -7,7 +7,7 @@ class InitiateRepair(models.TransientModel):
     _rec_name = 'asset_status'
 
     
-    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Diployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Rejected'),('approved','Pending Activation'),('repair_mode','Repair Mode')],string="Asset Status", required=True, default="verified_one")
+    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Diployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Rejected'),('approved','Pending Activation'),('repair_mode','Repair Mode')],string="Asset Status", required=True, default="verified")
     currency_id = fields.Many2one('res.currency', string='Currency',required=True)
     repair_amount = fields.Monetary(string='Amount', required=True,track_visibility='always')
     initiate_repair_comment = fields.Text(string="Repair Comment",required=True)

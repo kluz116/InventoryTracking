@@ -11,6 +11,9 @@
                     <group>
                         <field name="from_manager_date" readonly="1"/>
                     </group>
+                     <group>
+                        <field name="manager_by" readonly="1"/>
+                    </group>
                     <footer>
                         <button name="verify__asset" string="Verify Asset" type="object" class="btn btn-outline-primary"/>
                         <button string="Cancel" class="btn-outline-dark" special="cancel"/>

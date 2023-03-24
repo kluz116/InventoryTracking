@@ -134,7 +134,47 @@
           
     </record>
     
-        <record id="email_template_create_asset_verify" model="mail.template">
+    <record id="email_template_create_asset_verify" model="mail.template">
+            <field name="name">Inventory Tracker: Asset Verification</field>
+            <field name="model_id" ref="model_inventory_track_inventory"/>
+            <field name="email_from">{{ object.created_by.email }}</field>
+            <field name="email_to">{{ object.created_by.supervisor.email }}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <field name="subject">Asset Verification Pending </field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Dear <strong t-out="object.created_by.supervisor.name"></strong><br/>
+                    Asset <strong t-out="object.asset_type"></strong>  with TagID <strong t-out="object.tag.tag"></strong>    created by <strong t-out="object.created_by.name or ''"></strong> is still pending your verification .
+                    <br/>
+                    <br/>
+
+                    Vendor : <strong t-out="object.tag.vendor_id.vendor_name"></strong> 
+                    <br/>
+                     Make: <strong t-out="object.make.make_name"></strong>  
+                    <br/>
+                     Model: <strong t-out="object.model.asset_model"></strong>  
+                     <br/>
+                     RAM: <strong t-out="object.ram"></strong>  
+                     <br/>
+                     HD: <strong t-out="object.hdd"></strong> 
+                     <br/>
+                     HD: <strong t-out="object.os"></strong> 
+                     <div class="col text-left">
+                        <a t-attf-href="{{ object.base_url }} ">Please  Click Here To Access Asset <strong t-out="object.tag.tag"></strong></a>
+        
+                    </div>
+
+                    
+                    <br/>
+                    Regards,<br/>
+                    Business Technologies.
+                </p>
+            </div>
+            </field>
+          
+    </record>
+    <record id="email_template_create_asset_verify_reject" model="mail.template">
             <field name="name">Inventory Tracker: Asset Verification</field>
             <field name="model_id" ref="model_inventory_track_inventory"/>
             <field name="email_from">{{ object.created_by.email }}</field>
@@ -175,11 +215,12 @@
           
     </record>
 
+
      <record id="email_template_create_asset_verify_cyber" model="mail.template">
             <field name="name">Inventory Tracker: Asset Verification</field>
             <field name="model_id" ref="model_inventory_track_inventory"/>
-            <field name="email_from">{{ object.created_by.supervisor.email }}</field>
-            <field name="email_to">Allan.Musembya@financetrust.co.ug</field>
+            <field name="email_from">{{ object.manager_by.email }}</field>
+            <field name="email_to">{{object.created_by.email}}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">Asset Verification Pending </field>
             <field name="body_html" type="html">
