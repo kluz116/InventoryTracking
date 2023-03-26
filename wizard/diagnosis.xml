@@ -9,20 +9,24 @@
                     <group>
                         <field name="tag" readonly='1' options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" style="color: #e60911; font-weight: bold;" />   
                         <field name="serial_set" readonly='1' />  
-              
-                        
+                
                     </group>
                      <group>
                         <field name="file_attach_diagnosis"/>  
                      </group>
+                     <group>
+                        <field name="Proposed_cost_of_repair"/>   
+                        <field name="book_value"/>  
+                        <field name="currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/> 
+                    </group>
                     <group>
                         <field name="diagnosis_comment"/>   
                     </group>
                     <group>
-                        <field name="diagnosis_date" readonly="1"/>
+                        <field name="diagnosis_date" invisible="1"/>
                     </group>
                     <group>
-                        <field name="diagnosis_by" readonly="1"/>
+                        <field name="diagnosis_by" invisible="1"/>
                     </group>
                     <footer>
                         <button name="diagnosis_asset" string="Asset Diagnosis" type="object" class="btn btn-outline-primary"/>

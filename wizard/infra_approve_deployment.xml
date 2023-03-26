@@ -5,8 +5,9 @@
             <field name="model">inventory_track.infra_approve_deployment</field>
             <field name="arch" type="xml">
                 <form string="Approve">
-                    <group>
-                        <separator string="Asset Approval Checklist" colspan="2"/>
+                 <separator string="Asset Approval Checklist" colspan="2"/>
+                    <group colspan="8" col="4">
+                       
                         <field name="infra_comp_name"/>   
                         <field name="Operating_system_Build"/>   
                         <field name = "Microsoft_office" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>

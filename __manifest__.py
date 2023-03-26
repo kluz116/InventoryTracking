@@ -55,6 +55,8 @@
         'views/inventory_user.xml',
         'reports/report_inventoryTracking.xml',
         'reports/asset_transfer.xml',
+        'reports/assest_checklist.xml',
+        
     
     ],
 

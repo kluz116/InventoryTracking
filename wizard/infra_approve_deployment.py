@@ -10,7 +10,7 @@ class InfraApprove(models.TransientModel):
     asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Diployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('diagnosis_approved','Diagnosis Approved'),('diagnosis_rejected','Diagnosis Rejected'),('infra_approve','Deployment Approved'),('infra_reject','Deployment Rejected')],string="Asset Status", required=True, default="infra_approve")
     infra_comp_name = fields.Char(string="Computer Name", required=True)
     Operating_system_Build = fields.Char(string=" Operating system Build", required=True)
-    Microsoft_office = fields.Selection([('2016','2016'),('2019','2019')],string="Microsoft Office", required=True)
+    Microsoft_office = fields.Selection([('2016','2016'),('2019','2019')],string="Microsoft Office", required=True,default='2016')
     browser = fields.Selection([('no','No'),('yes','Yes')],string="Browsers Firefox and Chrome installed", required=True,default='no')
     Antivirus = fields.Selection([('no','No'),('yes','Yes')],string="Antivirus: Kaspersky installed and activated", required=True,default='no')
     os_updates = fields.Selection([('no','No'),('yes','Yes')],string="OS updates installed and up to date", required=True,default='no')

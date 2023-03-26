@@ -39,6 +39,33 @@
                 </tree>
             </field>
         </record>
+
+        <record id="view_inventory_checklist_log_tree" model="ir.ui.view">
+            <field name="name">asset_checklist_log.tree</field>
+            <field name="model">inventory_track.asset_checklist_log</field>
+             <field name="arch" type="xml">
+              <tree string="Check Lists">
+                <field name="infra_comp_name"/> 
+                 <field name="asset_id"/> 
+                 <field name="Operating_system_Build"  /> 
+                <field name="Microsoft_office"/> 
+                <field name="browser"/> 
+                <field name="Antivirus"/> 
+                <field name="os_updates"/>
+                 <field name="user_file"/> 
+                <field name="guest_account"/> 
+                <field name="ou"/>  
+                <field name="user_department"/> 
+                <field name="infra_approve_by"/> 
+                       
+                </tree>
+            </field>
+        </record>
+
+
+
+
+   
              <record id="view_asset_dispose_log_tree" model="ir.ui.view">
             <field name="name">asset_dispose_log.tree</field>
             <field name="model">inventory_track.asset_dispose_log</field>
@@ -237,7 +264,6 @@
             <field name="model">inventory_track.inventory</field>
             <field name="arch" type="xml">
                 <search>
-            
                     <field name="make" />
                     <field name="model" />
                     <field name="serial" />
@@ -255,6 +281,19 @@
                         <field name="repaire_comment"/> 
                         <field name="repaire_date"/> 
                         <field name="repaired_by"/>   
+                </search>
+            </field>
+        </record>
+
+              <record model="ir.ui.view" id="asset_checklist_log_search_view">
+            <field name="name">inventory_track.asset_checklist_log.search</field>
+            <field name="model">inventory_track.asset_checklist_log</field>
+            <field name="arch" type="xml">
+                <search>
+                        <field name="asset_id"/> 
+                        <field name="infra_comp_name"/> 
+                        <field name="infra_approve_by"/> 
+                        <field name="Operating_system_Build"/>  
                 </search>
             </field>
         </record>
@@ -319,7 +358,14 @@
                 <p class="o_view_nocontent_smiling_face">Create new Inventory</p>
             </field>
         </record>
-        
+         <record model="ir.actions.act_window" id="asset_checklist_log_lists_action">
+            <field name="name">Assets Checklist</field>
+            <field name="res_model">inventory_track.asset_checklist_log</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Check List</p>
+            </field>
+        </record>
 
         <!-- top level menu: no parent -->
         <menuitem id="main_inventory_menu" name="Online Inventory Tracker"/>
@@ -328,4 +374,5 @@
         <menuitem id="config_Repairs" name="Asset Repairs" parent="config_menu_inventory" sequence="5"  action="repair_lists_action" />   
         <menuitem id="config_active" name="Active Assets" parent="config_menu_inventory" sequence="6"  action="active_lists_action" /> 
         <menuitem id="config_dis" name="Asset Disposl" parent="config_menu_inventory" sequence="7"  action="asset_dispose_log_lists_action" />   
+        <menuitem id="config_check_list" name="Asset Check Lists" parent="config_menu_inventory" sequence="8"  action="asset_checklist_log_lists_action" />   
 </odoo>

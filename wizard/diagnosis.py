@@ -12,6 +12,9 @@ class AssetDiagnosis(models.TransientModel):
     diagnosis_date =  fields.Datetime(string='Diagnosis Date', default=lambda self: fields.datetime.now())
     diagnosis_by = fields.Many2one('res.users','Diagnosis By:',default=lambda self: self.env.user)
     file_attach_diagnosis = fields.Binary('Diagnosis File',attachment=True)
+    currency_id = fields.Many2one('res.currency', string='Currency',required=True)
+    Proposed_cost_of_repair = fields.Monetary(string='Proposed cost of repair', required=True,track_visibility='always')
+    book_value = fields.Monetary(string='Book Value or Asset Value(UGX)', required=True,track_visibility='always')
     
     def comp_asset_tag(self):
         asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))

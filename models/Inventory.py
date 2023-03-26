@@ -111,6 +111,10 @@ class Inventory(models.Model):
     ou = fields.Selection([('no','No'),('yes','Yes')],string="Computer added to correct OU")
     user_department = fields.Char(string="Computer User Department")
     other_information = fields.Char(string="Other information")
+
+    Proposed_cost_of_repair = fields.Monetary(string='Proposed cost of repair',track_visibility='always')
+    book_value = fields.Monetary(string='Book Value or Asset Value(UGX)',track_visibility='always')
+    
    
    
    

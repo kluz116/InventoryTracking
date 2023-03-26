@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="inventory_rpt">
+    <template id="inventory_checklist_rpts">
             <t t-call="web.html_container">
                 <t t-call="web.external_layout">
           
                     <div class="page">
-                    <!--<div style="width: 45%;float: left;">
-                        <img src='/web/binary/company_logo' style="width:100%"/>
-                    </div>-->
-                       <h4 style="text-align: center;"><strong>Asset Transfer Form</strong></h4>
+               
+                       <h5 style="text-align: center;"><strong>Asset Installation Check List</strong></h5>
                        <t t-foreach="docs" t-as="x">
-                          <p>Asset Code : <strong t-field="x.tag.tag"/></p>
-                          <p>Asset Type : <strong t-field="x.tag.asset_type"/></p>
-                          <p>Asset Location : <strong t-field="x.location_id.location_name"/></p>
-                          <p>Asset Custodian : <strong t-field="x.dispatched_to.name"/></p>
-                          <p>Asset Description   : <strong t-field="x.comment"/></p>
-                          <br/>
-                          <br/>
+                          <!--<p>Asset Code : <strong t-field="x.tag.tag"/></p>-->
                         <table class="table table-sm o_main_table">
                            <thead>
                                 <tr class="bg-success">
@@ -25,15 +17,12 @@
                             </thead>
                        
                             <tbody >
-                            <!--<t t-foreach="docs" t-as="x">-->
-                                <!--<tr> <td rowspan="9"> <strong>A</strong></td></tr>
-                                <tr> <td rowspan="8" ><strong>Good Currency</strong> </td></tr>-->
                                   <tr>  
                                     <td>
-                                        <strong>Computer Name</strong>
+                                        <strong>Asset Code</strong>
                                     </td>
                                      <td>
-                                         <span t-field="x.comp_names"/>
+                                         <span t-field="x.tag.tag"/>
                                         
                                     </td>
                                     
@@ -123,66 +112,135 @@
                             </tbody>
                         </table>
                         <br/>
-                        <br/>
-
+                    
                          <table class="table table-sm o_main_table">
                            <thead>
                                 <tr class="bg-success">
-                                   <th colspan="4">Official Use</th>
+                                   <th colspan="4">Check List</th>
                                 </tr>
                             </thead>
                             <tbody >
                                 <tr>  
                                     <td>
-                                        <strong>Authorized By</strong>
+                                        <strong>Computer Name</strong>
                                     </td>
                                      <td>
-                                         <span t-field="x.approval_by.name"/>
+                                         <span t-field="x.infra_comp_name"/>
                                         
                                     </td>
+
+                                </tr>  
+                                <tr>  
                                      <td>
-                                        <strong>Date</strong>
+                                
+                                        <strong>Operating System Build</strong>
                                     </td>
                                      <td>
-                                         <span t-field="x.approval_date"/>
+                                         <span t-field="x.Operating_system_Build"/>
                                         
                                     </td>
                                     
                                 </tr>  
                                 <tr>  
                                     <td>
-                                        <strong>Delivered By</strong>
+                                        <strong>Microsoft office</strong>
                                     </td>
                                      <td>
-                                         <span t-field="x.courier.courier_name"/>
+                                         <span t-field="x.Microsoft_office"/>
                                         
                                     </td>
+                                </tr>  
+                                <tr> 
                                      <td>
-                                        <strong>Date</strong>
+                                        <strong>Browsers Firefox and Chrome installed</strong>
                                     </td>
                                      <td>
-                                         <span t-field="x.approval_date"/>
-                                        
-                                    </td>
-                                    
-                                </tr> 
-                                <tr>  
-                                    <td>
-                                        <strong>Recieved By</strong>
-                                    </td>
-                                     <td>
-                                         <span t-field="x.activated_by.name"/>
-                                        
-                                    </td>
-                                     <td>
-                                        <strong>Date</strong>
-                                    </td>
-                                     <td>
-                                         <span t-field="x.activated_date"/>
+                                         <span t-field="x.browser"/>
                                         
                                     </td>
                                     
                                 </tr> 
+                                    
+                                <tr> 
+                                     <td>
+                                        <strong>Antivirus: Kaspersky installed and activated</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.Antivirus"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr> 
+                                     <td>
+                                        <strong>OS updates installed and up to date</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.os_updates"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr> 
+                                     <td>
+                                        <strong>User files transferred/backed up</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.user_file"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr> 
+                                     <td>
+                                        <strong>Guest Accounts disabled</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.guest_account"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr> 
+                                     <td>
+                                        <strong>Computer added to correct OU</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.ou"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr> 
+                                     <td>
+                                        <strong>Computer User Department</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.user_department"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr> 
+                                     <td>
+                                        <strong>Other information</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.other_information"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr> 
+                                     <td>
+                                        <strong>Intiated By</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.infra_approve_by.name"/>
+                                        
+                                    </td>
+                                    
+                                </tr>                  
                             </tbody>
                           </table>
                        

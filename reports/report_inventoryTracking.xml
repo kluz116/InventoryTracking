@@ -24,6 +24,17 @@
             <field name="binding_model_id" ref="model_inventory_track_inventory"/>
             <field name="binding_type">report</field>
         </record>
+
+        <record id="inventory_track_inventory_checklist_rpts" model="ir.actions.report">
+            <field name="name">Asset Checklist Report</field>
+            <field name="model">inventory_track.inventory</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">InventoryTracking.inventory_checklist_rpts</field>
+            <field name="report_file">InventoryTracking.inventory_checklist_rpts</field>
+            <field name="print_report_name">'Asset Checklist  - %s' % (object.tag.tag or '')  </field>
+            <field name="binding_model_id" ref="model_inventory_track_inventory"/>
+            <field name="binding_type">report</field>
+        </record>
     
 
     <report
