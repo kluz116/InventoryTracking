@@ -29,7 +29,7 @@
                         <field name="initiate_repair_by" readonly="1"/>
                     </group>
                     <footer>
-                        <button name="initiate_repair_req" string="Repair Mode" type="object" class="btn btn-outline-primary"/>
+                        <button name="initiate_repair_req" string="Initiate Repair" type="object" class="btn btn-outline-primary"/>
                         <button string="Cancel" class="btn-outline-dark" special="cancel"/>
                     </footer>
                 </form>

@@ -51,6 +51,8 @@ access_infrastruc23,inventory_tracker,model_inventory_track_infra_approve_deploy
 access_infrastruc24,inventory_tracker,model_inventory_track_infra_reject_deployment,infrastructure_manager,1,1,1,0
 access_infrastruc25,inventory_tracker,model_inventory_track_reject_verify_asset,infrastructure_manager,1,1,1,0
 access_infrastruc26,inventory_tracker,model_inventory_track_asset_checklist_log,infrastructure_manager,1,1,1,0
+access_infrastruc27,inventory_tracker,model_inventory_track_asset_approval_repair,infrastructure_manager,1,1,1,0
+access_infrastruc28,inventory_tracker,model_inventory_track_asset_reject_repair,infrastructure_manager,1,1,1,0
 
 
 
@@ -59,7 +61,8 @@ access_infrastruc26,inventory_tracker,model_inventory_track_asset_checklist_log,
 
 
 
-access_inventory_admin1,inventory_tracker,model_inventory_track_inventory,Inventory_admin,1,1,1,
+
+access_inventory_admin1,inventory_tracker,model_inventory_track_inventory,Inventory_admin,1,1,1,1
 access_inventory_admin2,inventory_tracker,model_inventory_track_vendor,Inventory_admin,1,1,1,1
 access_inventory_admin3,inventory_tracker,model_inventory_track_make,Inventory_admin,1,1,1,1
 access_inventory_admin4,inventory_tracker,model_inventory_track_asset_models,Inventory_admin,1,1,1,1
@@ -80,7 +83,7 @@ access_inventory_admin18,inventory_tracker,model_inventory_track_asset_tag_appro
 access_inventory_admins18,inventory_tracker,model_inventory_track_asset_tag_approval,Inventory_admin,1,1,0,0
 access_inventory_admins19,inventory_tracker,model_inventory_track_asset_tag_rejection,Inventory_admin,1,1,0,0
 access_inventory_admins20,inventory_tracker,model_inventory_track_courier,Inventory_admin,1,1,1,1
-access_inventory_admins21,inventory_tracker,model_inventory_track_asset_checklist_log,Inventory_admin,1,1,1,0
+access_inventory_admins21,inventory_tracker,model_inventory_track_asset_checklist_log,Inventory_admin,1,1,1,1
 
 
 access_inventory_cyber1,inventory_tracker,model_inventory_track_inventory,cyber_admin,1,1,0,0
@@ -154,6 +157,9 @@ head_department21,inventory_tracker,model_inventory_track_diagnosis_approved,hea
 head_department22,inventory_tracker,model_inventory_track_asset_diagnosis,head_department,1,1,1,0
 head_department23,inventory_tracker,model_inventory_track_asset_checklist_log,head_department,1,1,0,0
 head_department24,inventory_tracker,model_inventory_track_courier,head_department,1,1,0,0
+head_department25,inventory_tracker,model_inventory_track_asset_approval_repair,head_department,1,1,0,0
+head_department26,inventory_tracker,model_inventory_track_asset_reject_repair,head_department,1,1,0,0
+
 
 
 access_infrastructure_ftb_admin1,inventory_tracker,model_inventory_track_asset_tags,ftb_admin,1,1,1,0

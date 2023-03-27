@@ -38,6 +38,10 @@ class AssetDiagnosis(models.TransientModel):
             req.diagnosis_date = self.diagnosis_date
             req.diagnosis_by = self.diagnosis_by
             req.file_attach_diagnosis = self.file_attach_diagnosis
+            req.Proposed_cost_of_repair = self.Proposed_cost_of_repair
+            req.book_value = self.book_value
+            req.currency_id = self.currency_id
+            
             
             
 

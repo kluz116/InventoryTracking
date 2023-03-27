@@ -50,6 +50,8 @@
         'wizard/infra_approve_deployment.xml',
         'wizard/infra_reject_deployment.xml',
         'wizard/verify_asset_reject.xml',
+        'wizard/approve_repair.xml',
+        'wizard/reject_repair.xml',
         'views/inventory.xml',
         'views/configs.xml',
         'views/inventory_user.xml',

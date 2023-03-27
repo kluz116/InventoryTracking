@@ -12,7 +12,7 @@ class Inventory(models.Model):
     #vendor_id = fields.Many2one('inventory_track.vendor',string='Vendor',required=True)
     make = fields.Many2one('inventory_track.make',ondelete='cascade',string='Asset Make',track_visibility='always')
     model = fields.Many2one('inventory_track.asset_models',string="Asset Model",domain = " [('asset_make','=',make)] ",track_visibility='always' )
-    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Deployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Rejected'),('approved','Approved'),('pending_diagnosis_approval','Diagnosis Approval'),('diagnosis_approved','Diagnosis Approved'),('diagnosis_rejected','Diagnosis Rejected'),('repair_mode','Repair Mode'),('infra_approve','Deployment Approved'),('infra_reject','Deployment Rejected'),('reject_verify','Reject Verification')],string="Asset Status",track_visibility='always', required=True, default="new")
+    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Deployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Rejected'),('approved','Approved'),('pending_diagnosis_approval','Diagnosis Approval'),('diagnosis_approved','Diagnosis Approved'),('diagnosis_rejected','Diagnosis Rejected'),('repair_mode','Repair Mode'),('infra_approve','Deployment Approved'),('infra_reject','Deployment Rejected'),('reject_verify','Reject Verification'),('repair_approval','Repair Mode(Outside)'),('repair_rejected','Repair Rejected')],string="Asset Status",track_visibility='always', required=True, default="new")
     tag = fields.Many2one('inventory_track.asset_tags',string="Asset Tag",domain = " [('status','=','approved')] ",track_visibility='always' )
     serial =   fields.Many2many(related='tag.asset_serial',track_visibility='always')
     batch_id = fields.Char(related='tag.batch_id', string='Batch')
@@ -115,7 +115,15 @@ class Inventory(models.Model):
     Proposed_cost_of_repair = fields.Monetary(string='Proposed cost of repair',track_visibility='always')
     book_value = fields.Monetary(string='Book Value or Asset Value(UGX)',track_visibility='always')
     
-   
+    repair_approval_comment = fields.Text(string="Approval Comment")
+    repair_approval_date =  fields.Datetime(string='Approval Date')
+    repair_approval_by = fields.Many2one('res.users','Approval By:')
+    
+    repair_reject_comment = fields.Text(string="Rejection Comment")
+    repair_reject_date =  fields.Datetime(string='Rejection Date')
+    repair_reject_by = fields.Many2one('res.users','Rejected By:')
+    
+    
    
    
     
