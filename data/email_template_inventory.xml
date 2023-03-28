@@ -679,6 +679,110 @@
 
 
 
+     <record id="email_template_repair_approval" model="mail.template">
+            <field name="name">Inventory Tracker: Asset Repair Approval</field>
+            <field name="model_id" ref="model_inventory_track_inventory"/>
+            <field name="email_from">{{ object.repair_approval_by.email }}</field>
+            <field name="email_to">infrastructure@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <field name="subject">Asset {{object.tag.tag}} has been approved for repair </field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Dear Team
+                    Asset <strong t-out="object.asset_type"></strong>  with TagID <strong t-out="object.tag.tag"></strong>    has been approved for repair  by <strong t-out="object.repair_approval_by.name or ''"></strong>.
+                    <br/>
+                    
+                    <br/>
+
+                    Comment : <strong t-out="object.repaire_comment"></strong> 
+                    <br/>
+                     Date: <strong t-out="object.repaire_date"></strong>  
+                    <br/>
+                       <div class="col text-left">
+                        <a t-attf-href="{{ object.base_url }} "> Click Here To Access Asset <strong t-out="object.tag.tag"></strong></a>
+        
+                    </div>
+
+                    <br/>
+                    Regards,<br/>
+                    Business Technologies.
+                </p>
+            </div>
+            </field>
+          
+    </record>
+
+
+    <record id="email_template_repair_rejected" model="mail.template">
+            <field name="name">Inventory Tracker: Asset Repair Rejection</field>
+            <field name="model_id" ref="model_inventory_track_inventory"/>
+            <field name="email_from">{{ object.repair_reject_by.email }}</field>
+            <field name="email_to">infrastructure@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <field name="subject">Asset {{object.tag.tag}} has been rejected for repair </field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Dear Team
+                    Asset <strong t-out="object.asset_type"></strong>  with TagID <strong t-out="object.tag.tag"></strong>    has been rejected for repair  by <strong t-out="object.repair_reject_by.name or ''"></strong>.
+                    <br/>
+                    
+                    <br/>
+
+                    Comment : <strong t-out="object.repaire_comment"></strong> 
+                    <br/>
+                     Date: <strong t-out="object.repaire_date"></strong>  
+                    <br/>
+                       <div class="col text-left">
+                        <a t-attf-href="{{ object.base_url }} "> Click Here To Access Asset <strong t-out="object.tag.tag"></strong></a>
+        
+                    </div>
+
+                    <br/>
+                    Regards,<br/>
+                    Business Technologies.
+                </p>
+            </div>
+            </field>
+          
+    </record>
+
+    <record id="email_template_create_asset_diagnosis" model="mail.template">
+            <field name="name">Inventory Tracker: Asset Diagnosis</field>
+            <field name="model_id" ref="model_inventory_track_inventory"/>
+            <field name="email_from">{{ object.diagnosis_by.email }}</field>
+            <field name="email_to">infrastructure@financetrust.co.ug,hd@domain.com</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <field name="subject">Asset {{object.tag.tag}} has been initiated for Diagnosis </field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Dear Team
+                    Asset <strong t-out="object.asset_type"></strong>  with TagID <strong t-out="object.tag.tag"></strong>    has been initiated for Diagnosis  by <strong t-out="object.diagnosis_by.name or ''"></strong>.
+                    <br/>
+                    
+                    <br/>
+
+                    Comment : <strong t-out="object.initiate_comment"></strong> 
+                    <br/>
+                     Date: <strong t-out="object.initiated_date"></strong>  
+                    <br/>
+                       <div class="col text-left">
+                        <a t-attf-href="{{ object.base_url }} "> Click Here To Access Asset <strong t-out="object.tag.tag"></strong></a>
+        
+                    </div>
+
+                    <br/>
+                    Regards,<br/>
+                    Business Technologies.
+                </p>
+            </div>
+            </field>
+          
+    </record>
+
+
 
 
     </data>
