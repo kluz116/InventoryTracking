@@ -5,7 +5,7 @@
             <field name="model">inventory_track.verify_asset_cyber</field>
             <field name="arch" type="xml">
                 <form string="Verify Asset">
-                     <separator string="Asset Approval Checklist" colspan="2"/>
+                    <separator string="Asset Approval Checklist" colspan="2"/>
                     <group  col="4">
                         
                         <field name="infra_comp_name" readonly="1"/>  

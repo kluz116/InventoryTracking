@@ -11,7 +11,8 @@ class InitiateDiagonosis(models.TransientModel):
     initiate_comment = fields.Text(string="Intiated Comment",required=True)
     initiated_date =  fields.Datetime(string='Intiated Date', default=lambda self: fields.datetime.now())
     initiated_by = fields.Many2one('res.users','Intiated By:',default=lambda self: self.env.user)
-    
+    courier_diagnosis = fields.Many2one('inventory_track.courier',ondelete='cascade',string='Courier ',required=True)
+
     def comp_asset_tag(self):
         asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))
         for req in asset:
@@ -33,6 +34,7 @@ class InitiateDiagonosis(models.TransientModel):
             req.initiate_comment = self.initiate_comment
             req.initiated_date = self.initiated_date
             req.initiated_by = self.initiated_by
+            req.courier_diagnosis = self.courier_diagnosis
             
             
 

@@ -5,22 +5,25 @@
             <field name="model">inventory_track.infra_approve_deployment</field>
             <field name="arch" type="xml">
                 <form string="Approve">
-                 <separator string="Asset Approval Checklist" colspan="2"/>
-                    <group colspan="8" col="4">
-                       
-                        <field name="infra_comp_name"/>   
-                        <field name="Operating_system_Build"/>   
-                        <field name = "Microsoft_office" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
-                        <field name = "browser" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
-                        <field name = "Antivirus" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
-                        <field name = "os_updates" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
-                        <field name = "user_file" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
-                        <field name = "guest_account" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
-                        <field name = "ou" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
-                        <field name="user_department"/>   
-                        <field name="other_information"/>   
+
+                    <separator string="Asset Approval Checklist" colspan="2"/>
+                    <group  col="4">
+                        
+                        <field name="infra_comp_name" readonly="1"/>  
+                        <field name="Operating_system_Build" readonly="1"/>  
+                        <field name = "Microsoft_office" widget="checkbox"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;" readonly="1"/>
+                         <field name = "browser" widget="checkbox"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;" readonly="1"/>
+                         <field name = "Antivirus" widget="checkbox"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;" readonly="1"/>
+                         <field name = "os_updates" widget="checkbox"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;" readonly="1"/>
+                         <field name = "user_file" widget="checkbox"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;" readonly="1"/>
+                         <field name = "guest_account" widget="checkbox"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;" readonly="1"/>
+                         <field name = "ou" widget="checkbox"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;" readonly="1"/>
+                          <field name="user_department" readonly="1"/>  
+                        <field name="other_information" readonly="1"/>  
                     </group>
+          
                     <group>
+                        <separator string="Approval Comment" colspan="2"/>
                         <field name="infra_approve_comment"/>   
                     </group>
                      <group>

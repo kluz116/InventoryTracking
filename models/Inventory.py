@@ -82,8 +82,8 @@ class Inventory(models.Model):
     diagnosis_comment = fields.Text(string="Approval Comment")
     diagnosis_date =  fields.Datetime(string='Date', track_visibility='always')
     diagnosis_by = fields.Many2one('res.users','Diagnosed By:',track_visibility='always')
-    currency_id = fields.Many2one('res.currency', string='Currency',required=True)
-    repair_amount = fields.Monetary(string='Repair Amount', required=True,)
+    currency_id = fields.Many2one('res.currency', string='Currency')
+    repair_amount = fields.Monetary(string='Repair Amount')
     initiate_repair_comment = fields.Text(string="Repair Comment")
     initiate_repair_date =  fields.Datetime(string='Repair Date',track_visibility='always')
     initiate_repair_by = fields.Many2one('res.users','Repair By:',track_visibility='always')
@@ -122,6 +122,8 @@ class Inventory(models.Model):
     repair_reject_comment = fields.Text(string="Rejection Comment")
     repair_reject_date =  fields.Datetime(string='Rejection Date')
     repair_reject_by = fields.Many2one('res.users','Rejected By:')
+    courier_diagnosis = fields.Many2one('inventory_track.courier',ondelete='cascade',string='Courier',track_visibility='always')
+
     
     
    
