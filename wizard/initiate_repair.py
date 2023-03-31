@@ -8,8 +8,6 @@ class InitiateRepair(models.TransientModel):
 
     
     asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Diployment'),('active','Active'),('repair','Repair'),('disposal','Disposal'),('rejected','Rejected'),('approved','Pending Activation'),('repair_mode','Repair Mode')],string="Asset Status", required=True, default="verified")
-    currency_id = fields.Many2one('res.currency', string='Currency',required=True)
-    repair_amount = fields.Monetary(string='Amount', required=True,track_visibility='always')
     initiate_repair_comment = fields.Text(string="Repair Comment",required=True)
     initiate_repair_date =  fields.Datetime(string='Repair Date', default=lambda self: fields.datetime.now())
     initiate_repair_by = fields.Many2one('res.users','Repair By:',default=lambda self: self.env.user)

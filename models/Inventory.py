@@ -83,7 +83,6 @@ class Inventory(models.Model):
     diagnosis_date =  fields.Datetime(string='Date', track_visibility='always')
     diagnosis_by = fields.Many2one('res.users','Diagnosed By:',track_visibility='always')
     currency_id = fields.Many2one('res.currency', string='Currency')
-    repair_amount = fields.Monetary(string='Repair Amount')
     initiate_repair_comment = fields.Text(string="Repair Comment")
     initiate_repair_date =  fields.Datetime(string='Repair Date',track_visibility='always')
     initiate_repair_by = fields.Many2one('res.users','Repair By:',track_visibility='always')

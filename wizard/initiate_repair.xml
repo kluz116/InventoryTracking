@@ -4,18 +4,12 @@
             <field name="name">inventory_track.asset_initiate_repair.form</field>
             <field name="model">inventory_track.asset_initiate_repair</field>
             <field name="arch" type="xml">
-                <form string="Repair Mode">
+                <form string="Repair Mode(Out Side)">
 
                     <group>
                         <field name="tag" readonly='1' options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" style="color: #e60911; font-weight: bold;" />   
                         <field name="serial_set" readonly='1' />  
-       
                     </group>
-                    <group>
-                        <field name="currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>   
-                        <field name="repair_amount"/>   
-                    </group>
-        
                     <group>
                         <field name="initiate_repair_comment"/>   
                     </group>
@@ -23,13 +17,13 @@
                         <field name="file_attach_initiate_repair"/>   
                     </group>
                     <group>
-                        <field name="initiate_repair_date" readonly="1"/>
+                        <field name="initiate_repair_date" invisible="1"/>
                     </group>
                     <group>
-                        <field name="initiate_repair_by" readonly="1"/>
+                        <field name="initiate_repair_by" invisible="1"/>
                     </group>
                     <footer>
-                        <button name="initiate_repair_req" string="Initiate Repair" type="object" class="btn btn-outline-primary"/>
+                        <button name="initiate_repair_req" string="Recieve Asset From Repair" type="object" class="btn btn-outline-primary"/>
                         <button string="Cancel" class="btn-outline-dark" special="cancel"/>
                     </footer>
                 </form>
