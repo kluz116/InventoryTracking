@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="inventory_rpt">
+    <template id="inventory_rpts_diagnosis">
             <t t-call="web.html_container">
                 <t t-call="web.external_layout">
           
                     <div class="page">
-                    <!--<div style="width: 45%;float: left;">
-                        <img src='/web/binary/company_logo' style="width:100%"/>
-                    </div>-->
-                       <h4 style="text-align: center;"><strong>Asset Transfer Form</strong></h4>
+                       <h4 style="text-align: center;"><strong>Asset Transfer Diagnosis Form</strong></h4>
                        <t t-foreach="docs" t-as="x">
                           <p>Asset Code : <strong t-field="x.tag.tag"/></p>
                           <p>Asset Type : <strong t-field="x.tag.asset_type"/></p>
                           <p>Asset Location : <strong t-field="x.location_id.location_name"/></p>
                           <p>Asset Custodian : <strong t-field="x.dispatched_to.name"/></p>
-                          <p>Asset Description   : <strong t-field="x.comment"/></p>
+                
                           <br/>
                           <br/>
                         <table class="table table-sm o_main_table">
@@ -25,9 +22,6 @@
                             </thead>
                        
                             <tbody >
-                            <!--<t t-foreach="docs" t-as="x">-->
-                                <!--<tr> <td rowspan="9"> <strong>A</strong></td></tr>
-                                <tr> <td rowspan="8" ><strong>Good Currency</strong> </td></tr>-->
                                   <tr>  
                                     <td>
                                         <strong>Computer Name</strong>
@@ -124,7 +118,6 @@
                         </table>
                         <br/>
                         <br/>
-
                          <table class="table table-sm o_main_table">
                            <thead>
                                 <tr class="bg-success">
@@ -137,14 +130,14 @@
                                         <strong>Authorized By</strong>
                                     </td>
                                      <td>
-                                         <span t-field="x.approval_by.name"/>
+                                         <span t-field="x.diagnosis_approved_by.name"/>
                                         
                                     </td>
                                      <td>
                                         <strong>Date</strong>
                                     </td>
                                      <td>
-                                         <span t-field="x.approval_date"/>
+                                         <span t-field="x.diagnosis_approved_date"/>
                                         
                                     </td>
                                     
@@ -154,31 +147,31 @@
                                         <strong>Delivered By</strong>
                                     </td>
                                      <td>
-                                         <span t-field="x.courier.courier_name"/>
+                                         <span t-field="x.courier_diagnosis.courier_name"/>
                                         
                                     </td>
                                      <td>
                                         <strong>Date</strong>
                                     </td>
                                      <td>
-                                         <span t-field="x.approval_date"/>
+                                         <span t-field="x.diagnosis_approved_date"/>
                                         
                                     </td>
                                     
                                 </tr> 
                                 <tr>  
                                     <td>
-                                        <strong>Recieved By</strong>
+                                        <strong>Diagnosis Initiated By</strong>
                                     </td>
                                      <td>
-                                         <span t-field="x.activated_by.name"/>
+                                         <span t-field="x.initiated_by.name"/>
                                         
                                     </td>
                                      <td>
                                         <strong>Date</strong>
                                     </td>
                                      <td>
-                                         <span t-field="x.activated_date"/>
+                                         <span t-field="x.initiated_date"/>
                                         
                                     </td>
                                     

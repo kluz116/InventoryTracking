@@ -58,6 +58,9 @@
         'reports/report_inventoryTracking.xml',
         'reports/asset_transfer.xml',
         'reports/assest_checklist.xml',
+        'reports/asset_transfer_diagnosis.xml',
+    
+    
         
     
     ],
