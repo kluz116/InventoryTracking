@@ -373,7 +373,7 @@
         </record>
 
         <!-- top level menu: no parent -->
-        <menuitem id="main_inventory_menu" name="Online Inventory Tracker"/>
+        <menuitem id="main_inventory_menu" name="Que"/>
         <menuitem id="config_menu_inventory" name="Inventory" sequence="11"  parent="main_inventory_menu"  />
         <menuitem id="config_inventories" name="Inventory" parent="config_menu_inventory" sequence="4"  action="inventory_lists_action" />
         <menuitem id="config_Repairs" name="Asset Repairs" parent="config_menu_inventory" sequence="5"  action="repair_lists_action" />   
