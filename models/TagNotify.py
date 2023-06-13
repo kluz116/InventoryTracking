@@ -17,9 +17,9 @@ class TagNotify(models.Model):
         
         
 
-        template_id = self.env.ref('InventoryTracking.email_template_create_asset_tag').id
-        template =  self.env['mail.template'].browse(template_id)
-        template.send_mail(res.id,force_send=True)
+        #template_id = self.env.ref('InventoryTracking.email_template_create_asset_tag').id
+        #template =  self.env['mail.template'].browse(template_id)
+        #template.send_mail(res.id,force_send=True)
         return res
 
 

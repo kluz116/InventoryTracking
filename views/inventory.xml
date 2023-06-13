@@ -5,20 +5,19 @@
             <field name="name">inventory_track_inventory.tree</field>
             <field name="model">inventory_track.inventory</field>
              <field name="arch" type="xml">
-                <tree string="Inventory"  default_order='created_on desc'>
+                <tree string="Inventory"   default_order='created_on desc'>
                 
                     <field name="unique_field"/>
-                    <field name="asset_status"/>
+                    <field name="asset_status"  decoration-bf = "1" decoration-danger  = "1"/>
                     <field name="asset_type"  />
                     <field name="make" />
                     <field name="model" />
-                    <field name="tag" />
+                    <field name="tag"  decoration-bf = "1" decoration-success  = "1"/>
                     <field name="serial" widget="many2many_tags" />
                     <field name="hdd" />
                     <field name="ram" />
-                    <field name="os" />
-                    <field name="created_on"/> 
-                    <field name="created_by"/>   
+                    <field name="location_id"/> 
+                    <field name="dispatched_to"/>   
                        
                 </tree>
             </field>
@@ -100,7 +99,7 @@
             <field name="name">inventory_track.inventory.form</field>
             <field name="model">inventory_track.inventory</field>
             <field name="arch" type="xml">
-                <form string="Create Inventory Record" create="false" edit="false">
+                <form string="Create Inventory Record" create="false" edit="true">
                  <xpath expr="//sheet" position="before">
                     <header> 
                         <button name="%(wizard_stock_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['stocked','verified','reject_verify','verified_one','diployment','active','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Stock Asset" class="btn btn-primary"  groups="InventoryTracking.infrastructure_admin"/>
@@ -138,6 +137,9 @@
                         <button name="%(inventory_track_asset_reject_repair)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','reject_verify','diployment','active','verified_one','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Reject Repair" class="btn btn-danger" groups="InventoryTracking.infrastructure_manager,InventoryTracking.head_department" />
                         <button name="%(wizard_i_repair_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','reject_verify','diployment','active','verified_one','disposal','approved','rejected','diagnosis_rejected','repair_mode','repair','pending_diagnosis_approval','diagnosis_approved','infra_approve','infra_reject','repair_rejected'])]}" type="action" string="Initiate Repair" class="btn btn-danger" groups="InventoryTracking.infrastructure_admin" /> 
                          
+
+                          <button name="%(wizard_verify_asset_activate_location)d"  type="action" string="Activate Asset" class="btn btn-primary"  />
+                          <button name="%(wizard_dispatch_asset_manager)d"  type="action" string="Deploy Asset" class="btn btn-primary" />
                         <!--<button name="%(wizard_verify_asset_dis_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','active','disposal','approved','rejected'])]}" type="action" string="Dispose Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager"/>-->
                         
                         <field name="asset_status" widget="statusbar" statusbar_visible="new,stocked,verified,verified_one,diployment,approved,rejected,active,repair,pending_diagnosis_approval,disposal,diagnosis_approved,diagnosis_rejected,repair_mode,infra_approve,infra_reject,reject_verify,repair_approval,repair_rejected"  invisible='1'/>
@@ -336,6 +338,7 @@
             <field name="name">Inventory</field>
             <field name="res_model">inventory_track.inventory</field>
             <field name="view_mode">tree,form</field>
+             <field name="limit">15</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Create new Inventory</p>
             </field>
@@ -344,6 +347,7 @@
             <field name="name">Repairs</field>
             <field name="res_model">inventory_track.asset_repair_log</field>
             <field name="view_mode">tree</field>
+            <field name="limit">15</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Create new Inventory</p>
             </field>
@@ -360,6 +364,7 @@
             <field name="name">Active Assets</field>
             <field name="res_model">inventory_track.asset_activate_log</field>
             <field name="view_mode">tree</field>
+            <field name="limit">15</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Create new Inventory</p>
             </field>
@@ -368,6 +373,7 @@
             <field name="name">Assets Checklist</field>
             <field name="res_model">inventory_track.asset_checklist_log</field>
             <field name="view_mode">tree</field>
+            <field name="limit">15</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Check List</p>
             </field>

@@ -58,18 +58,17 @@
             <field name="name">inventory_track.tag.tree</field>
             <field name="model">inventory_track.asset_tags</field>
              <field name="arch" type="xml">
-                <tree string="Tags" default_order='tag_date desc'>
-        
-                     <field name="tag"  decoration-bf = "1" decoration-success  = "1"/>
+                <tree string="Tags" decoration-danger="status == 'Innactive'" default_order='tag_date desc'>
+                    <field name="tag" />
                     <field name="asset_type"/>
                     <field name="vendor_id" />
                     <field name="asset_serial" widget="many2many_tags" />
-                    <field name="status"  decoration-bf = "1" decoration-danger  = "1"/>
+                    <field name="status" />
                     <field name="tag_date" />
                     <field name="effective_date" />
                     <field name="waranty_date" />
                     <field name="year" />
-                    <field name="warrant_status" decoration-bf = "1" decoration-warning  = "1" />
+                    <field name="warrant_status" />
                     <field name="created_by" />
                 </tree>
             </field>
@@ -81,8 +80,8 @@
                 <tree string="Serial" decoration-danger="status == 'Innactive'" default_order='serial_date desc'>
                     
                     
-                    <field name="serial"  decoration-bf = "1" decoration-success  = "1" />
-                    <field name="status" decoration-bf = "1" decoration-danger  = "1" />
+                    <field name="serial" />
+                    <field name="status" />
                     <field name="serial_date" />
                     <field name="created_by" />
                 </tree>
@@ -183,7 +182,7 @@
             <field name="name">inventory_track_asset_tags.form</field>
             <field name="model">inventory_track.asset_tags</field>
             <field name="arch" type="xml">
-                <form string="Add Asset Tags" create="false" edit="true">
+                <form string="Add Asset Tags" create="false" edit="false">
                 <xpath expr="//sheet" position="before">
                     <header> 
                         <button name="%(wizard_approve_asset_track_asset_tag_approval)d" attrs="{'invisible':[('status', 'in', ['active','approved','rejected'])]}" type="action" string="Approve Tag" class="btn btn-success" groups="InventoryTracking.admin_supervisor"  />
@@ -250,7 +249,7 @@
             <field name="name">inventory_track_asset_serial.form</field>
             <field name="model">inventory_track.asset_serial</field>
             <field name="arch" type="xml">
-                <form string="Add Asset Serial" create="false" edit="true">
+                <form string="Add Asset Serial" create="false" edit="false">
                     <sheet>
                         <group>
                             <field name="serial"/>
@@ -275,8 +274,6 @@
             <field name="arch" type="xml">
                 <search>
                       <field name="tag" />
-                      <field name="asset_serial" />
-                      <field name="vendor_id" />
                       <field name="tag_date" />
                       <field name="status" />
                       <field name="created_by" />
@@ -387,7 +384,6 @@
             <field name="name">Asset Location</field>
             <field name="res_model">inventory_track.asset_location</field>
             <field name="view_mode">tree,form</field>
-            <field name="limit">15</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Create new location</p>
             </field>
@@ -396,7 +392,6 @@
             <field name="name">Asset Tags</field>
             <field name="res_model">inventory_track.asset_tags</field>
             <field name="view_mode">tree,form</field>
-            <field name="limit">15</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Create new Tag</p>
             </field>
@@ -405,7 +400,6 @@
             <field name="name">Asset Serial</field>
             <field name="res_model">inventory_track.asset_serial</field>
             <field name="view_mode">tree,form</field>
-            <field name="limit">15</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Create new Serial</p>
             </field>
