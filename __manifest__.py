@@ -22,7 +22,7 @@
     },
     
     # any module necessary for this one to work correctly
-    'depends': ['mail','base'],
+    'depends': ['mail','base','board'],
   
     # always loaded
     'data': [
@@ -52,16 +52,15 @@
         'wizard/verify_asset_reject.xml',
         'wizard/approve_repair.xml',
         'wizard/reject_repair.xml',
+        'wizard/change_location.xml',
         'views/inventory.xml',
         'views/configs.xml',
         'views/inventory_user.xml',
+        'views/dashboard.xml',
         'reports/report_inventoryTracking.xml',
         'reports/asset_transfer.xml',
         'reports/assest_checklist.xml',
         'reports/asset_transfer_diagnosis.xml',
-    
-    
-        
     
     ],
 

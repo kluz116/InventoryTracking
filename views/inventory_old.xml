@@ -5,24 +5,24 @@
             <field name="name">inventory_track_inventory.tree</field>
             <field name="model">inventory_track.inventory</field>
              <field name="arch" type="xml">
-                <tree string="Inventory"  default_order='created_on desc'>
+                <tree string="Inventory"   default_order='created_on desc'>
                 
                     <field name="unique_field"/>
-                    <field name="asset_status"/>
+                    <field name="asset_status"  decoration-bf = "1" decoration-danger  = "1"/>
                     <field name="asset_type"  />
                     <field name="make" />
                     <field name="model" />
-                    <field name="tag" />
+                    <field name="tag"  decoration-bf = "1" decoration-success  = "1"/>
                     <field name="serial" widget="many2many_tags" />
                     <field name="hdd" />
                     <field name="ram" />
-                    <field name="os" />
-                    <field name="created_on"/> 
-                    <field name="created_by"/>   
-                    <field name="location_id"/>   
-                    <field name="dispatched_to"/>   
-                    
-                       
+                    <field name="comp_names" />
+                    <field name="Processor" />
+                    <field name="bios" />
+                     <field name="os_build" />
+                      <field name="mac_address" />
+                    <field name="location_id"/> 
+                    <field name="dispatched_to"/>          
                 </tree>
             </field>
         </record>
@@ -103,7 +103,7 @@
             <field name="name">inventory_track.inventory.form</field>
             <field name="model">inventory_track.inventory</field>
             <field name="arch" type="xml">
-                <form string="Create Inventory Record" create="false" edit="false">
+                <form string="Create Inventory Record" create="false" edit="true">
                  <xpath expr="//sheet" position="before">
                     <header> 
                         <button name="%(wizard_stock_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['stocked','verified','reject_verify','verified_one','diployment','active','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Stock Asset" class="btn btn-primary"  groups="InventoryTracking.infrastructure_admin"/>
@@ -111,7 +111,7 @@
                         <button name="%(wizard_reject_verify_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','verified','reject_verify','verified_one','diployment','active','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Reject Verification" class="btn btn-danger" groups="InventoryTracking.infrastructure_manager"/>
                         <!--<button name="%(wizard_verify_asset_cyber_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified_one','diployment','active','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode'])]}" type="action" string="Cyber Verify Asset" class="btn btn-primary"  groups="InventoryTracking.cyber_admin"/>
                         <button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','diployment','active','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode'])]}" type="action" string="Deploy Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager,InventoryTracking.infrastructure_admin" />-->
-                        <button name="%(wizard_verify_asset_cyber_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified_one','verified','reject_verify','active','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Approve Deployment" class="btn btn-primary"  groups="InventoryTracking.cyber_admin"/>
+                        <button name="%(wizard_verify_asset_cyber_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified_one','verified','reject_verify','active','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Cyber Verify Asset" class="btn btn-primary"  groups="InventoryTracking.cyber_admin"/>
                         <button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','reject_verify','verified_one','diployment','active','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Deploy Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_admin" />
                         
                         <button name="%(wizard_infra_approve)d" attrs="{'invisible':[('asset_status' , 'in', ['new','stocked','verified','reject_verify','verified_one','active','repair','disposal','approved','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_reject','infra_approve','repair_approval','repair_rejected'])]} " type="action" string="Approve Deployment" class="btn btn-success" groups="InventoryTracking.infrastructure_manager" />
@@ -119,17 +119,18 @@
                         <button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','reject_verify','verified_one','diployment','active','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','repair_approval','repair_rejected'])]}" type="action" string="Deploy Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_admin" />
 
 
-                        <button name="%(wizard_reject_asset_manager)d" attrs="{'invisible':[('asset_status' , 'in', ['new','stocked','verified','reject_verify','diployment','active','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]} " type="action" string="Reject Deployment" class="btn btn-danger"  groups="InventoryTracking.head_department" />
-                        <button name="%(wizard_approve_asset_manager)d" attrs="{'invisible':[('asset_status' , 'in', ['new','stocked','verified','reject_verify','diployment','active','repair','disposal','approved','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]} " type="action" string="Approve Deployment" class="btn btn-success"  groups="InventoryTracking.head_department"/>
+                        <button name="%(wizard_reject_asset_manager)d" attrs="{'invisible':[('asset_status' , 'in', ['new','stocked','verified','reject_verify','diployment','active','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]} " type="action" string="Reject" class="btn btn-danger"  groups="InventoryTracking.head_department" />
+                        <button name="%(wizard_approve_asset_manager)d" attrs="{'invisible':[('asset_status' , 'in', ['new','stocked','verified','reject_verify','diployment','active','repair','disposal','approved','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]} " type="action" string="Approve" class="btn btn-success"  groups="InventoryTracking.head_department"/>
                         <button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status' , 'in', ['new','stocked','verified','reject_verify','verified_one','active','repair','disposal','approved','diployment','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]} " type="action" string="Deploy Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_admin" />
                         <!--<button name="%(wizard_verify_asset_activate_location)d" attrs="{'invisible':['|',('asset_status', 'in', ['new','stocked','verified','verified_one','active','repair','disposal']),('current_user', '=', False)]}" type="action" string="Activate Asset" class="btn btn-primary"  />-->
                         <button name="%(wizard_verify_asset_activate_location)d" attrs="{'invisible':['|',('current_user', '=', False), ('asset_status' , 'in', ['new','stocked','verified','reject_verify','verified_one','active','repair','disposal','rejected','diployment','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]} " type="action" string="Activate Asset" class="btn btn-primary"  />
                         <!--<button name="%(wizard_verify_asset_activate_location)d"    type="action" string="Activate Asset" class="btn btn-primary" attrs="{'invisible':[('current_user', '=', False)]}"   />-->
                         <button name="%(wizard_verify_asset_repaire_assets)d" attrs="{'invisible':['|',('current_user', '=', False),('asset_status', 'in', ['new','stocked','verified','reject_verify','verified_one','diployment','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Repair Asset" class="btn btn-primary"  />
-                        <button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','reject_verify','verified_one','diployment','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Relocate" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager,InventoryTracking.infrastructure_admin" />
+                        <button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':['|',('current_ifra_manager', '=', False),('asset_status', 'in', ['new','stocked','verified','reject_verify','verified_one','diployment','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Relocate" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager,InventoryTracking.infrastructure_admin" />
                         <button name="%(wizard_verify_asset_dis_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','reject_verify','verified_one','diployment','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Dispose Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager,InventoryTracking.infrastructure_admin"/>
                         <!--<button name="%(wizard_dispatch_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','diployment','active','verified_one','disposal','approved','rejected'])]}" type="action" string="Deploy Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager,InventoryTracking.infrastructure_admin" />-->
                         <button name="%(wizard_intiate_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','reject_verify','diployment','active','verified_one','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Initiate Diagnosis" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager,InventoryTracking.infrastructure_admin" />
+                        <button name="%(wizard_verify_asset_dis_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','reject_verify','diployment','active','verified_one','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Dispose" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager,InventoryTracking.infrastructure_admin" />
 
                         <button name="%(wizard_stock_diagnosis_approved_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','reject_verify','diployment','active','verified_one','disposal','approved','rejected','diagnosis_approved','diagnosis_rejected','repair_mode','repair','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Approve" class="btn btn-success" groups="InventoryTracking.head_department" />
                         <button name="%(wizard_intiate_asset_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','reject_verify','diployment','active','verified_one','disposal','approved','rejected','diagnosis_approved','diagnosis_rejected','repair_mode','repair','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Reject" class="btn btn-danger" groups="InventoryTracking.head_department" />
@@ -139,12 +140,15 @@
                         <button name="%(inventory_track_asset_approval_repair)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','reject_verify','diployment','active','verified_one','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Approve Repair" class="btn btn-success" groups="InventoryTracking.infrastructure_manager,InventoryTracking.head_department" />
                         <button name="%(inventory_track_asset_reject_repair)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','reject_verify','diployment','active','verified_one','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Reject Repair" class="btn btn-danger" groups="InventoryTracking.infrastructure_manager,InventoryTracking.head_department" />
                         <button name="%(wizard_i_repair_manager)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','reject_verify','diployment','active','verified_one','disposal','approved','rejected','diagnosis_rejected','repair_mode','repair','pending_diagnosis_approval','diagnosis_approved','infra_approve','infra_reject','repair_rejected'])]}" type="action" string="Initiate Repair" class="btn btn-danger" groups="InventoryTracking.infrastructure_admin" /> 
-                        
-                        <!--<button name="%(wizard_dispatch_asset_manager)d"  type="action" string="Relocate Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager,InventoryTracking.infrastructure_admin" />
-                         <button name="%(wizard_verify_asset_dis_assets)d" type="action" string="Dispose Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_admin"/>-->
+                         
+
+                          <!--<button name="%(wizard_verify_asset_activate_location)d"  type="action" string="Activate Asset" class="btn btn-primary"  />
+                          <button name="%(wizard_dispatch_asset_manager)d"  type="action" string="Deploy Asset" class="btn btn-primary" />-->
                         <!--<button name="%(wizard_verify_asset_dis_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','verified_one','diployment','active','disposal','approved','rejected'])]}" type="action" string="Dispose Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager"/>-->
-                        <button name="%(wizard_change_asset_manager)d" type="action" string="Change Location" class="btn btn-primary" groups="InventoryTracking.Inventory_admin"/>
-                        <field name="asset_status" widget="statusbar" statusbar_visible="new,stocked,verified,verified_one,diployment,approved,rejected,active,repair,pending_diagnosis_approval,disposal,diagnosis_approved,diagnosis_rejected,repair_mode,infra_approve,infra_reject,reject_verify,repair_approval,repair_rejected"  invisible='1'/>
+                        <button name="%(wizard_verify_asset_repaire_assets)d" attrs="{'invisible':[('asset_status', 'in', ['new','stocked','verified','reject_verify','verified_one','diployment','repair','disposal','approved','rejected','pending_diagnosis_approval','diagnosis_approved','diagnosis_rejected','repair_mode','infra_approve','infra_reject','repair_approval','repair_rejected'])]}" type="action" string="Repair Asset" class="btn btn-primary"  />
+                        <!---
+                        <button name="%(wizard_dispatch_asset_manager)d"  type="action" string="Relocate Asset" class="btn btn-primary" groups="InventoryTracking.infrastructure_manager,InventoryTracking.infrastructure_admin" />
+                        <field name="asset_status" widget="statusbar" statusbar_visible="new,stocked,verified,verified_one,diployment,approved,rejected,active,repair,pending_diagnosis_approval,disposal,diagnosis_approved,diagnosis_rejected,repair_mode,infra_approve,infra_reject,reject_verify,repair_approval,repair_rejected"  invisible='1'/>-->
                     </header>
                 </xpath>
                    <sheet>
@@ -278,28 +282,8 @@
                     <field name="model" />
                     <field name="serial" />
                     <field name="tag" />
-                    <field name="location_id"/>   
-                    <field name="dispatched_to"/> 
-                    <field name="asset_status"/>
-                    <field name="asset_type"  />  
-                </search>
-            </field>
-        </record>
-        <record model="ir.ui.view" id="inventory_approval_search_view">
-            <field name="name">inventory_track.inventory.search</field>
-            <field name="model">inventory_track.inventory</field>
-            <field name="arch" type="xml">
-                <search>
-                    <field name="make" />
-                    <field name="model" />
-                    <field name="serial" />
-                    <field name="tag" />
-                    <field name="location_id"/>   
-                    <field name="dispatched_to"/> 
-                    <field name="asset_status"/>
-                    <field name="asset_type"  /> 
-                        <separator/>
-                     <filter name="invent_asset_status" string="Pending Approvals" domain="[('asset_status', '=','diployment')]" /> 
+                    <field name="asset_status"/> 
+                    <field name="location_id"/> 
                 </search>
             </field>
         </record>
@@ -362,6 +346,7 @@
             <field name="name">Inventory</field>
             <field name="res_model">inventory_track.inventory</field>
             <field name="view_mode">tree,form</field>
+             <field name="limit">15</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Create new Inventory</p>
             </field>
@@ -370,6 +355,7 @@
             <field name="name">Repairs</field>
             <field name="res_model">inventory_track.asset_repair_log</field>
             <field name="view_mode">tree</field>
+            <field name="limit">15</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Create new Inventory</p>
             </field>
@@ -386,6 +372,7 @@
             <field name="name">Active Assets</field>
             <field name="res_model">inventory_track.asset_activate_log</field>
             <field name="view_mode">tree</field>
+            <field name="limit">15</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Create new Inventory</p>
             </field>
@@ -394,50 +381,18 @@
             <field name="name">Assets Checklist</field>
             <field name="res_model">inventory_track.asset_checklist_log</field>
             <field name="view_mode">tree</field>
+            <field name="limit">15</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Check List</p>
             </field>
         </record>
-        <record model="ir.actions.act_window" id="inventory_approval_lists_action">
-            <field name="name">Pending Approvals - Infra Manager</field>
-            <field name="res_model">inventory_track.inventory</field>
-            <field name="view_mode">tree,form</field>
-            <field name ="context">{}</field>
-            <field name="domain">[('asset_status', 'in',['diployment','stocked'])]</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">Inventory</p>
-            </field>
-        </record>
-        <record model="ir.actions.act_window" id="inventory_approval_hd_lists_action">
-            <field name="name">Pending Approvals - Head Department</field>
-            <field name="res_model">inventory_track.inventory</field>
-            <field name="view_mode">tree,form</field>
-            <field name ="context">{}</field>
-            <field name="domain">[('asset_status', '=','verified_one')]</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">Inventory</p>
-            </field>
-        </record>
-        <record model="ir.actions.act_window" id="inventory_approval_cyber_lists_action">
-            <field name="name">Pending Approvals - Cyber</field>
-            <field name="res_model">inventory_track.inventory</field>
-            <field name="view_mode">tree,form</field>
-            <field name ="context">{}</field>
-            <field name="domain">[('asset_status', '=','infra_approve')]</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">Inventory</p>
-            </field>
-        </record>
 
         <!-- top level menu: no parent -->
-        <menuitem id="main_inventory_menu" name="Que"/>
-        <menuitem id="config_menu_inventory" name="Inventory" sequence="11"  parent="main_inventory_menu"  />
+        <menuitem id="main_inventory_menu" name="Que" groups="InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin,InventoryTracking.ftb_admin" />
+        <menuitem id="config_menu_inventory" name="Inventory" sequence="12"  parent="main_inventory_menu"  />
         <menuitem id="config_inventories" name="Inventory" parent="config_menu_inventory" sequence="4"  action="inventory_lists_action" />
-        <menuitem id="config_pending" name="Pending Approvals - Infra Manager" parent="config_menu_inventory" sequence="5"  action="inventory_approval_lists_action" /> 
-        <menuitem id="config_pending_hd" name="Pending Approvals - Head Department" parent="config_menu_inventory" sequence="6"  action="inventory_approval_hd_lists_action" /> 
-         <menuitem id="config_pending_cyber" name="Pending Approvals - Cyber" parent="config_menu_inventory" sequence="7"  action="inventory_approval_cyber_lists_action" />
-        <menuitem id="config_Repairs" name="Asset Repairs" parent="config_menu_inventory" sequence="8"  action="repair_lists_action" />   
-        <menuitem id="config_active" name="Active Assets" parent="config_menu_inventory" sequence="9"  action="active_lists_action" /> 
-        <menuitem id="config_dis" name="Asset Disposl" parent="config_menu_inventory" sequence="10"  action="asset_dispose_log_lists_action" />    
-        <menuitem id="config_check_list" name="Asset Check Lists" parent="config_menu_inventory" sequence="11"  action="asset_checklist_log_lists_action" />   
+        <menuitem id="config_Repairs" name="Asset Repairs" parent="config_menu_inventory" sequence="5"  action="repair_lists_action" />   
+        <menuitem id="config_active" name="Active Assets" parent="config_menu_inventory" sequence="6"  action="active_lists_action" /> 
+        <menuitem id="config_dis" name="Asset Disposl" parent="config_menu_inventory" sequence="7"  action="asset_dispose_log_lists_action" />   
+        <menuitem id="config_check_list" name="Asset Check Lists" parent="config_menu_inventory" sequence="8"  action="asset_checklist_log_lists_action" />   
 </odoo>

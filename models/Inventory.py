@@ -17,7 +17,7 @@ class Inventory(models.Model):
     serial =   fields.Many2many(related='tag.asset_serial',track_visibility='always')
     batch_id = fields.Char(related='tag.batch_id', string='Batch')
     #serial = fields.One2many(related='tag.asset_serial' ,string='Asset Serial',domain = " [('status','in',['active'])] ")
-    asset_type = fields.Selection(related='tag.asset_type',selection=[('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')])
+    asset_type = fields.Selection(related='tag.asset_type',selection=[('laptop','Laptop Computer'),('desktop_cpu','Desktop & CPU'),('cpu','CPU Only'),('monitor','Monitor'),('printer','Printer')],store="True")
     ram = fields.Selection([('one','1 GB'),('two','2 GB'),('three','3 GB'),('four','4 GB'),('six','6 GB'),('eight','8 GB'),('twelve','12 GB'),('sixteen','16 GB'),('thirty_two','32 GB')],string="RAM Size",  default="four")
     hdd = fields.Char(string="HDD OR SDD Size", required=True, default='500 GB')
     os =  fields.Selection([('windows_10','Windows 10'),('windows_11','Windows 11'),('windows_12','Windows 12')],string="OS", required=True, default="windows_10")
@@ -33,6 +33,7 @@ class Inventory(models.Model):
     from_manager_comment = fields.Text(string="Comment")
     from_manager_date =  fields.Datetime(string='Verified Date')
     location_id = fields.Many2one('inventory_track.asset_location',string ='Asset Location')
+    #location = fields.Integer(related='location_id.id' ,string='Location',store="True")
     dispatched_to = fields.Many2one('res.partner','Custodian')
     dispach_comment = fields.Text(string="Comment")
     dispach_date =  fields.Datetime(string='Deployed Date')
@@ -141,10 +142,6 @@ class Inventory(models.Model):
             action_id = self.env.ref('InventoryTracking.inventory_lists_action', raise_if_not_found=False)
             rec.base_url = """{}/web#id={}&view_type=form&model=inventory_track.inventory&action={}""".format(web_base_url,rec.id,action_id.id)
 
-
-
-
-    
     @api.depends('infr_manager')
     def _get_infran_manager(self):
         for e in self:
@@ -181,6 +178,75 @@ class Inventory(models.Model):
 
 
 
-   
+    @api.model
+    def _update_notified_pending_activation(self):
+        pending_conf = self.env['inventory_track.inventory'].search([('asset_status', 'in', ['approved'])])
+        for req in pending_conf:
+            if req.asset_status =='approved':
+                template_id = self.env.ref('InventoryTracking.email_template_create_asset_deployment_user').id
+                template =  self.env['mail.template'].browse(template_id)
+                template.send_mail(req.id,force_send=True)
+                
+    
+    @api.model
+    def _update_notified_pending_stocking(self):
+        pending_conf = self.env['inventory_track.inventory'].search([('asset_status', 'in', ['stocked'])])
+        for req in pending_conf:
+            if req.asset_status =='stocked':
+                template_id = self.env.ref('InventoryTracking.email_template_create_asset_verify').id
+                template =  self.env['mail.template'].browse(template_id)
+                template.send_mail(req.id,force_send=True)
+    
+    @api.model
+    def _update_notified_pending_diployment_approval_InfraManager(self):
+        pending_conf = self.env['inventory_track.inventory'].search([('asset_status', 'in', ['diployment'])])
+        for req in pending_conf:
+            if req.asset_status =='diployment':
+                template_id = self.env.ref('InventoryTracking.email_template_create_asset_notify_approver').id
+                template =  self.env['mail.template'].browse(template_id)
+                template.send_mail(req.id,force_send=True)
+                
+                
+    @api.model
+    def _update_notified_pending_diployment_approval_Cyber(self):
+        pending_conf = self.env['inventory_track.inventory'].search([('asset_status', 'in', ['infra_approve'])])
+        for req in pending_conf:
+            if req.asset_status =='infra_approve':
+                template_id = self.env.ref('InventoryTracking.email_template_cyber_approval_deployment').id
+                template =  self.env['mail.template'].browse(template_id)
+                template.send_mail(req.id,force_send=True)
+                
+    
+    @api.model
+    def _update_notified_pending_diployment_approval_Infra_Admin(self):
+        pending_conf = self.env['inventory_track.inventory'].search([('asset_status', 'in', ['verified'])])
+        for req in pending_conf:
+            if req.asset_status =='verified':
+                template_id = self.env.ref('InventoryTracking.email_template_asset_stocked_infra').id
+                template =  self.env['mail.template'].browse(template_id)
+                template.send_mail(req.id,force_send=True)
+                
+    
+    @api.model
+    def _update_notified_pending_diployment_approval_head(self):
+        pending_conf = self.env['inventory_track.inventory'].search([('asset_status', 'in', ['verified_one'])])
+        for req in pending_conf:
+            if req.asset_status =='verified_one':
+                template_id = self.env.ref('InventoryTracking.email_template_create_asset_deployment').id
+                template =  self.env['mail.template'].browse(template_id)
+                template.send_mail(req.id,force_send=True)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
 
    

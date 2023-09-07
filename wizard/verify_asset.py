@@ -7,7 +7,7 @@ class VerifyAsset(models.TransientModel):
     _rec_name = 'asset_status'
 
     
-    asset_status = fields.Selection([('available','Available'),('verified','Verified'),('rejected','Rejected'),('dispatched','Dispatched'),('recieved','Recieved')],string="Asset Status", required=True, default="available")
+    asset_status = fields.Selection([('available','Available'),('verified','Verified'),('rejected','Rejected'),('dispatched','Dispatched'),('recieved','Recieved')],string="Asset Status", required=True, default="verified")
     from_manager_comment = fields.Text(string="Comment")
     from_manager_date =  fields.Datetime(string='Verified Date', default=lambda self: fields.datetime.now())
     manager_by = fields.Many2one('res.users','Intiated By:',default=lambda self: self.env.user)
@@ -23,7 +23,7 @@ class VerifyAsset(models.TransientModel):
             req.manager_by = self.manager_by
             
 
-            template_id = self.env.ref('InventoryTracking.email_template_create_asset_verify_cyber').id
+            template_id = self.env.ref('InventoryTracking.email_template_asset_stocked_infra').id
             template =  self.env['mail.template'].browse(template_id)
             template.send_mail(req.id,force_send=True)
          

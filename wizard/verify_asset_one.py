@@ -7,7 +7,7 @@ class VerifyAssetCyber(models.TransientModel):
     _rec_name = 'asset_status'
 
     
-    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Diployment'),('active','Active'),('repair','Repair'),('disposal','Disposal')],string="Asset Status", required=True, default="new")
+    asset_status = fields.Selection([('new','New'),('stocked','Stocked'),('verified','Verified'),('verified_one','Cyber Verified'),('diployment','Diployment'),('active','Active'),('repair','Repair'),('disposal','Disposal')],string="Asset Status", required=True, default="verified_one")
     cyber_comment = fields.Text(string="Comment")
     cyber_date =  fields.Datetime(string='Verified Date', default=lambda self: fields.datetime.now())
    

@@ -423,8 +423,8 @@
         
 
         <!-- top level menu: no parent -->
-        <menuitem id="main_inventory_menu" name="Online Inventory Tracker"/>
-        <menuitem id="config_mene_inv" name="Configurations" sequence="12"  parent="main_inventory_menu"  />
+        <menuitem id="main_inventory_menu" name="Que" groups="InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin,InventoryTracking.ftb_admin" />
+        <menuitem id="config_mene_inv" name="Configurations" sequence="13"  parent="main_inventory_menu"  />
         <menuitem id="config_ven" name="Vendors" parent="config_mene_inv" sequence="6"  action="vendor_lists_action" groups="InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin,InventoryTracking.ftb_admin"  />
         <menuitem id="config_make" name="Asset Makes" parent="config_mene_inv" sequence="7"  action="make_lists_action" groups="InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin"  />
         <menuitem id="config_model" name="Asset Models" parent="config_mene_inv" sequence="8"  action="asset_models_lists_action" groups="InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin" />

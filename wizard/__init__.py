@@ -19,3 +19,4 @@ from . import infra_reject_deployment
 from . import verify_asset_reject
 from .import approve_repair
 from . import reject_repair
+from . import change_location

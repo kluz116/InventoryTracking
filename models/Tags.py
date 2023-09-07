@@ -58,7 +58,7 @@ class Tag(models.Model):
     rejected_by = fields.Many2one('res.users','Rejected By:',track_visibility='always')
     effective_date =  fields.Date(string='Effective Date',default=lambda self: fields.date.today())
     waranty_date =  fields.Date(string='Warranty Due Date',compute='comp_time_hod', store=True)
-    year =  fields.Integer(string="Warranty(Years)", default="1")
+    year =  fields.Integer(string="Warranty(Years)", default="3")
     warrant_status =  fields.Selection([('off','OFF'),('on','ON')],string="Warrant Status", required=True, compute='get_warrant_status')
     recievd_date =  fields.Date(string='Recieved Date',default=lambda self: fields.date.today(),track_visibility='always')
     base_url = fields.Char('Base Url', compute='_get_url_id',store='True')

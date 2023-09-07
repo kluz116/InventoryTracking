@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record model="ir.ui.view" id="view_inventory">
+        <field name="name">inventory_track.graph</field>
+        <field name="model">inventory_track.inventory</field>
+        <field name="type">graph</field>
+        <field name="arch" type="xml">
+                <graph string="Inventory" type="bar">
+                    <field name="asset_status" group="True"/>
+                    <!--<field name="created_by" operator="*"/>-->
+                </graph>
+        </field>
+        </record>
+
+        <record id="list_action_inventory" model="ir.actions.act_window">
+            <field name="name">Inventory</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inventory_track.inventory</field>
+            <field name="view_mode">graph</field>
+             <field name="view_id" ref="view_inventory"/>
+        </record>
+
+        <record model="ir.ui.view" id="view_inventory_pie">
+            <field name="name">incidents.graph</field>
+            <field name="model">inventory_track.inventory</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                    <graph string="Inventory" type="pie" sample="1">
+                        <field name="asset_status" group="True"/>
+                    </graph>
+            </field>
+        </record>
+
+        <record id="list_action_inventory_piew" model="ir.actions.act_window">
+            <field name="name">Inventory</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inventory_track.inventory</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_inventory_pie"/>
+        </record>
+
+        <record model="ir.ui.view" id="view_inventory_make">
+            <field name="name">incidents.graph</field>
+            <field name="model">inventory_track.inventory</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                    <graph string="Inventory" type="line" sample="1">
+                        <field name="make" group="True"/>
+                    </graph>
+            </field>
+        </record>
+
+        <record id="list_action_inventory_make" model="ir.actions.act_window">
+            <field name="name">Inventory</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inventory_track.inventory</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_inventory_make"/>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_inventory_asset_type">
+            <field name="name">incidents.graph</field>
+            <field name="model">inventory_track.inventory</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                    <graph string="Inventory" type="pie" sample="1">
+                        <field name="asset_type" group="True"/>
+                    </graph>
+            </field>
+        </record>
+
+        <record id="list_action_inventory_asset_type" model="ir.actions.act_window">
+            <field name="name">Inventory</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inventory_track.inventory</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_inventory_asset_type"/>
+        </record>
+
+
+
+        <record model="ir.ui.view" id="inventory_dashboard_view">
+            <field name="name">Inventory Dashboard</field>
+            <field name="model">board.board</field>
+            <field name="arch" type="xml">
+                <form>
+                    <board style="1-1">
+                        <column>
+                           <action string="Inventory By Status (Pie)" name="%(list_action_inventory_piew)d"/>
+                           <action string="Inventory By Asset Make" name="%(list_action_inventory_make)d"/>
+                        </column>
+                        <column>
+                           <action string="Inventory By Status  (Bar)" name="%(list_action_inventory)d"/>
+                           <action string="Inventory By Asset Type " name="%(list_action_inventory_asset_type)d"/>
+                    
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+  
+
+        <record id="action_dashboard" model="ir.actions.act_window">
+            <field name="name">Inventory Dashboard</field>
+            <field name="res_model">board.board</field>
+            <field name="view_mode">form</field>
+             <field name="usage">menu</field>
+             <field name="view_id" ref="inventory_dashboard_view"/>
+        </record>
+
+
+        <menuitem id="main_inventory_menu" name="Que" groups="InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin,InventoryTracking.ftb_admin" />
+        <menuitem id="config_dashboard_inv" name="Dashboards" sequence="11"  parent="main_inventory_menu"  />
+        <menuitem id="config_dashboard" name="Inventory Dashboard" parent="config_dashboard_inv" sequence="12"  action="action_dashboard"  />
+
+</odoo>

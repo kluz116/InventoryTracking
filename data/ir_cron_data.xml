@@ -1,14 +1,79 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <odoo>
-    <record id="_update_warrant_cron" model="ir.cron">
-        <field name="name">Expire Asset Warant</field>
+    <record id="_update_activation_cron" model="ir.cron">
+        <field name="name">Pending Activation</field>
         <field name="model_id" ref="model_inventory_track_inventory"/>
         <field name="state">code</field>
-        <field name="code">model._update_warrant()</field>
-        <field name="interval_number">10</field>
+        <field name="code">model._update_notified_pending_activation()</field>
+        <field name="interval_number">360</field>
         <field name="interval_type">minutes</field>
         <field name="numbercall">-1</field>
         <field name="doall" eval="True"/>
     </record>
+
+    <record id="_update_stocking_cron" model="ir.cron">
+        <field name="name">Pending Stocking</field>
+        <field name="model_id" ref="model_inventory_track_inventory"/>
+        <field name="state">code</field>
+        <field name="code">model._update_notified_pending_stocking()</field>
+        <field name="interval_number">360</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="_update_infra_cron" model="ir.cron">
+        <field name="name">Pending Deployment Infra Manager</field>
+        <field name="model_id" ref="model_inventory_track_inventory"/>
+        <field name="state">code</field>
+        <field name="code">model._update_notified_pending_diployment_approval_InfraManager()</field>
+        <field name="interval_number">360</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="_update_cyber_cron" model="ir.cron">
+        <field name="name">Pending Deployment Cyber</field>
+        <field name="model_id" ref="model_inventory_track_inventory"/>
+        <field name="state">code</field>
+        <field name="code">model._update_notified_pending_diployment_approval_Cyber()</field>
+        <field name="interval_number">360</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    
+    <record id="_update_available_cron" model="ir.cron">
+        <field name="name">Available for Deployment Reminder</field>
+        <field name="model_id" ref="model_inventory_track_inventory"/>
+        <field name="state">code</field>
+        <field name="code">model._update_notified_pending_diployment_approval_Infra_Admin()</field>
+        <field name="interval_number">720</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="_update_head_cron" model="ir.cron">
+        <field name="name">Deployment Approval Reminder</field>
+        <field name="model_id" ref="model_inventory_track_inventory"/>
+        <field name="state">code</field>
+        <field name="code">model._update_notified_pending_diployment_approval_head()</field>
+        <field name="interval_number">520</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+
+
+
+
+
+
+
+
 
 </odoo>

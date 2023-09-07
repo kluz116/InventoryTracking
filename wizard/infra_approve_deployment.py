@@ -93,7 +93,6 @@ class InfraApprove(models.TransientModel):
     other_information = fields.Char(default=other_informations,string="Other information")
 
 
-    
     def infra_approved_asset(self):
         asset = self.env['inventory_track.inventory'].browse(self._context.get('active_ids'))
         for req in asset:
@@ -102,7 +101,7 @@ class InfraApprove(models.TransientModel):
             req.infra_approve_date = self.infra_approve_date
             req.infra_approve_by = self.infra_approve_by
      
-            #template_id = self.env.ref('InventoryTracking.email_template_create_asset_diagnosis_approved').id
-            ##template =  self.env['mail.template'].browse(template_id)
-            #template.send_mail(req.id,force_send=True)
+            template_id = self.env.ref('InventoryTracking.email_template_cyber_approval_deployment').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(req.id,force_send=True)
          

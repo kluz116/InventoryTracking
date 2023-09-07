@@ -22,7 +22,7 @@ class ApproveAssetTags(models.TransientModel):
             req.approval_by = self.approval_by
             
     
-            #template_id = self.env.ref('InventoryTracking.email_template_approve_asset_tag').id
-            #template =  self.env['mail.template'].browse(template_id)
-            #template.send_mail(req.id,force_send=True)
+            template_id = self.env.ref('InventoryTracking.email_template_approve_asset_tag').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(req.id,force_send=True)
          

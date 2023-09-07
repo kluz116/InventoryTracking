@@ -46,8 +46,8 @@
     <record model="ir.rule" id="asset_custodian_view_rule">
         <field name="name">Custodian View Rule</field>
         <field name="model_id" ref="model_inventory_track_inventory"/>
-        <field name="groups" eval="[(4, ref('InventoryTracking.asset_custodian'))]" />
-        <field name="domain_force">[('dispatched_to','=', user.partner_id.id)]</field>    
+        <field name="groups" eval="[(4, ref('InventoryTracking.asset_custodian'))]" /> 
+        <field name="domain_force">[('location_id.id','=', user.partner_id.loaction_id_invetory.id)]</field>   
     </record>
 
 </odoo>

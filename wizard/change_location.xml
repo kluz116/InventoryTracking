@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="inventory_track_change_location_wizard" model="ir.ui.view">
+            <field name="name">inventory_track.change_location.form</field>
+            <field name="model">inventory_track.change_location</field>
+            <field name="arch" type="xml">
+                <form string="Change Location">
+                    <group>
+                        <field name="location_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />   
+                    </group>
+                    <group>
+                        <field name="dispatched_to" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>   
+                    </group>
+
+                    <footer>
+                        <button name="change_location" string="Change Location" type="object" class="btn btn-outline-primary"/>
+                        <button string="Cancel" class="btn-outline-dark" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_change_asset_manager" model="ir.actions.act_window">
+            <field name="name">Change Location</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inventory_track.change_location</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="inventory_track_change_location_wizard"/>
+            <field name="target">new</field>
+        </record>
+</odoo>

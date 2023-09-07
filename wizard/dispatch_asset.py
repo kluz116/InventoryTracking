@@ -88,9 +88,9 @@ class DispatchAsset(models.TransientModel):
             self.env['inventory_track.asset_checklist_log'].create(vals)
             
 
-            #template_id = self.env.ref('InventoryTracking.email_template_create_asset_notify_approver').id
-            #template =  self.env['mail.template'].browse(template_id)
-            #template.send_mail(req.id,force_send=True)
+            template_id = self.env.ref('InventoryTracking.email_template_create_asset_notify_approver').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(req.id,force_send=True)
          
 
    
