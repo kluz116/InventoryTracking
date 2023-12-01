@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="inventory_repair_rpt">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+          
+                    <div class="page">
+                    <!--<div style="width: 45%;float: left;">
+                        <img src='/web/binary/company_logo' style="width:100%"/>
+                    </div>-->
+                       <h4 style="text-align: center;"><strong>Repair Asset Transfer Form</strong></h4>
+                       <t t-foreach="docs" t-as="x">
+                          <p>Asset Code : <strong t-field="x.tag.tag"/></p>
+                          <p>Asset Type : <strong t-field="x.tag.asset_type"/></p>
+                          <p>Asset Location : <strong t-field="x.location_id.location_name"/></p>
+                          <p>Asset Custodian : <strong t-field="x.dispatched_to.name"/></p>
+                          <p>Repair Comment   : <strong t-field="x.repaire_comment"/></p>
+                          <br/>
+                          
+                        <table class="table table-sm o_main_table">
+                           <thead>
+                                <tr class="bg-success">
+                                   <th colspan="2">Asset Specifications</th>
+                                </tr>
+                            </thead>
+                       
+                            <tbody >
+                            <!--<t t-foreach="docs" t-as="x">-->
+                                <!--<tr> <td rowspan="9"> <strong>A</strong></td></tr>
+                                <tr> <td rowspan="8" ><strong>Good Currency</strong> </td></tr>-->
+                                  <tr>  
+                                    <td>
+                                        <strong>Computer Name</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.comp_names"/>
+                                        
+                                    </td>
+                                    
+                                </tr>  
+                                <tr>  
+                                    <td>
+                                        <strong>Processor</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.Processor"/>
+                                        
+                                    </td>
+                                    
+                                </tr>  
+                                <tr>  
+                                    <td>
+                                        <strong>Bios</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.bios"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr>  
+                                    <td>
+                                       <strong> OS Build</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.os_build"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr>  
+                                    <td>
+                                        <strong>Mac Address</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.mac_address"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr>  
+                                    <td>
+                                        <strong>Mac Address Wifi</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.mac_address_wifi"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr>
+                                    <td>
+                                        <strong>OS</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.os"/>
+                                        
+                                    </td>
+                                </tr>  
+                                <tr>  
+                                    <td>
+                                        <strong>HDD</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.hdd"/>
+                                        
+                                    </td>
+                                    
+                                </tr>  
+                                <tr>  
+                                    <td>
+                                        <strong>RAM</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.ram"/>
+                                        
+                                    </td>
+                                    
+                                </tr>  
+                                
+                                
+                            <!--</t>-->
+                            </tbody>
+                        </table>
+                        <br/>
+                        <br/>
+
+                         <table class="table table-sm o_main_table">
+                           <thead>
+                                <tr class="bg-success">
+                                   <th colspan="4">Official Use</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr>  
+                                    <td>
+                                        <strong>Authorized By</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.repaired_by.name"/>
+                                        
+                                    </td>
+                                     <td>
+                                        <strong>Date</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.repaire_date"/>
+                                        
+                                    </td>
+                                    
+                                </tr>  
+                                <tr>  
+                                    <td>
+                                        <strong>Delivered By</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.repair_courier.courier_name"/>
+                                        
+                                    </td>
+                                     <td>
+                                        <strong>Date</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.repaire_date"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+               
+                            </tbody>
+                          </table>
+                    
+                        </t>
+                    </div>
+                </t>
+            </t>
+    
+    </template>
+</odoo>

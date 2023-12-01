@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="inventory_infra_approve_deployment_network_wizard" model="ir.ui.view">
+            <field name="name">inventory_track.infra_approve_deployment_network.form</field>
+            <field name="model">inventory_track.infra_approve_deployment_network</field>
+            <field name="arch" type="xml">
+                <form string="Approve">
+
+                    <separator string="Asset Approval Checklist" colspan="2"/>
+                    <group  col="4">
+                        <field name="infra_comp_name" readonly="1"/>  
+                        <field name="asset_serial" readonly="1"/>  
+                        <field name="asset_type" readonly="1"/>  
+                        <field name="asset_make" readonly="1"/>  
+                        <field name="asset_model" readonly="1"/> 
+                        
+             
+                    </group>
+          
+                    <group>
+                        <separator string="Approval Comment" colspan="2"/>
+                        <field name="infra_approve_comment"/>   
+                    </group>
+                     <group>
+                        <field name="infra_approve_by" invisible="1"/>   
+                    </group>
+                    <group>
+                        <field name="infra_approve_date" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button name="infra_approved_asset_netwotk" string="Approve Deployment" type="object" class="btn btn-outline-primary"/>
+                        <button string="Cancel" class="btn-outline-dark" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_infra_approve" model="ir.actions.act_window">
+            <field name="name">Deployment Approval</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inventory_track.infra_approve_deployment_network</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="inventory_infra_approve_deployment_network_wizard"/>
+            <field name="target">new</field>
+        </record>
+</odoo>

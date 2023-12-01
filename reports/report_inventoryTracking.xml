@@ -25,6 +25,18 @@
             <field name="binding_type">report</field>
         </record>
 
+        <record id="inventory_track_net_inventory_rpts" model="ir.actions.report">
+            <field name="name">NetWork Device Asset Transfer Report</field>
+            <field name="model">inventory_track.inventory</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">InventoryTracking.net_inventory_rpt</field>
+            <field name="report_file">InventoryTracking.net_inventory_rpt</field>
+            <field name="print_report_name">'Asset Transfer  - %s' % (object.tag.tag or '')  </field>
+            <field name="binding_model_id" ref="model_inventory_track_inventory"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
          <record id="inventory_track_inventory_rpts_diagnosis" model="ir.actions.report">
             <field name="name">Asset Transfer Diagnosis Report</field>
             <field name="model">inventory_track.inventory</field>
@@ -46,8 +58,18 @@
             <field name="binding_model_id" ref="model_inventory_track_inventory"/>
             <field name="binding_type">report</field>
         </record>
-    
 
+        <record id="inventory_track_inventory_repair_rpt" model="ir.actions.report">
+            <field name="name">Repair Asset Transfer Report</field>
+            <field name="model">inventory_track.inventory</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">InventoryTracking.inventory_repair_rpt</field>
+            <field name="report_file">InventoryTracking.inventory_repair_rpt</field>
+            <field name="print_report_name">'Asset Transfer  - %s' % (object.tag.tag or '')  </field>
+            <field name="binding_model_id" ref="model_inventory_track_inventory"/>
+            <field name="binding_type">report</field>
+        </record>
+    
     <report
         id="inventory_report_xlsx"
         model="inventory_track.inventory"

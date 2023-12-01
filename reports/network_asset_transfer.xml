@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="net_inventory_rpt">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+          
+                    <div class="page">
+                    <!--<div style="width: 45%;float: left;">
+                        <img src='/web/binary/company_logo' style="width:100%"/>
+                    </div>-->
+                       <h4 style="text-align: center;"><strong>Asset Transfer Form</strong></h4>
+                       <t t-foreach="docs" t-as="x">
+                          <p>Asset Code : <strong t-field="x.tag.tag"/></p>
+                          <ul>
+                                <t t-foreach="x.tag.asset_serial" t-as="obj">          
+                                    <li> Asset Serial : <strong><span t-esc="obj.serial"/></strong></li>          
+                                </t>
+                          </ul> 
+                        
+                          <p>Asset Type : <strong t-field="x.tag.asset_type"/></p>
+                          <p>Asset Location : <strong t-field="x.location_id.location_name"/></p>
+                          <p>Asset Custodian : <strong t-field="x.dispatched_to.name"/></p>
+                          <p>Asset Description   : <strong t-field="x.comment"/></p>
+                          <br/>
+                          <br/>
+                        <br/>
+                        <br/>
+
+                         <table class="table table-sm o_main_table">
+                           <thead>
+                                <tr class="bg-success">
+                                   <th colspan="4">Official Use</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr>  
+                                    <td>
+                                        <strong>Authorized By</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.approval_by.name"/>
+                                        
+                                    </td>
+                                     <td>
+                                        <strong>Date</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.approval_date"/>
+                                        
+                                    </td>
+                                    
+                                </tr>  
+                                <tr>  
+                                    <td>
+                                        <strong>Delivered By</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.courier.courier_name"/>
+                                        
+                                    </td>
+                                     <td>
+                                        <strong>Date</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.approval_date"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                                <tr>  
+                                    <td>
+                                        <strong>Recieved By</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.activated_by.name"/>
+                                        
+                                    </td>
+                                     <td>
+                                        <strong>Date</strong>
+                                    </td>
+                                     <td>
+                                         <span t-field="x.activated_date"/>
+                                        
+                                    </td>
+                                    
+                                </tr> 
+                            </tbody>
+                          </table>
+                    
+                        </t>
+                    </div>
+                </t>
+            </t>
+    
+    </template>
+</odoo>

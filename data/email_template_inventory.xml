@@ -6,9 +6,8 @@
             <field name="name">Inventory Tracker: Asset Tag</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_asset_tags"/>
             <!--<field name="email_from">{{ object.created_by.email }}</field>-->
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">infrastructure@financetrust.co.ug,{{ object.created_by.email }}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">New Asset Tag has been created</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -34,10 +33,9 @@
     <record id="email_template_approve_asset_tag" model="mail.template">
             <field name="name">Inventory Tracker: Asset Tag Approval</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_asset_tags"/>
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <!--<field name="email_from">{{ object.approval_by.email }}</field>-->
             <field name="email_to">infrastructure@financetrust.co.ug,{{object.created_by.email}}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">New Asset Tag has been approved</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -67,9 +65,8 @@
             <field name="name">Inventory Tracker: Asset Tag Rejection</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_asset_tags"/>
             <!--<field name="email_from">{{ object.approval_by.email }}</field>-->
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">{{ object.created_by.email }}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">Asset Tag has been rejected</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -97,9 +94,9 @@
             <field name="name">Inventory Tracker: Asset Created</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.created_by.email }}</field>-->
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">infrastructure@financetrust.co.ug</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">New Asset Tag has been created</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -139,9 +136,9 @@
             <field name="name">Inventory Tracker: Asset Stocked</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.created_by.email }}</field>-->
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">infrastructure@financetrust.co.ug,{{ object.manager_by.supervisor.email}}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset Tag has been stocked and available for deployment</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -182,9 +179,9 @@
             <field name="name">Inventory Tracker: Asset Pending Stock Verification</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.created_by.email }}</field>-->
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">{{object.created_by.supervisor.email }}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,{{object.created_by.email}}</field>
+            <field name="email_cc">{{object.created_by.email}}</field>
             <field name="subject">Asset Verification Pending </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -223,9 +220,9 @@
             <field name="name">Inventory Tracker: Asset Verification</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.created_by.email }}</field>-->
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">{{object.created_by.supervisor.email }}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset Verification Pending </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -266,7 +263,7 @@
             <field name="name">Inventory Tracker: Asset Verification</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.manager_by.email }}</field>-->
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">cybersecurity@financetrust.co.ug</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug,infrastructure@financetrust.co.ug</field>
             <field name="subject">Asset Pending Deployment Approval </field>
@@ -306,12 +303,12 @@
     </record>
     <!--Allan Check-->
         <record id="email_template_create_asset_deployment" model="mail.template">
-            <field name="name">Inventory Tracker: Asset Deployment</field>
+            <field name="name">Inventory Tracker: Asset Deployment Pending Head</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.created_by.email }}</field>-->
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">{{object.manager_by.supervisor.email }},infrastructure@financetrust.co.ug</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset Deployment Pending </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -350,44 +347,20 @@
             <field name="name">Inventory Tracker: Asset Deployment</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.dispatched_by.email }}</field>-->
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">Infrastructure@financetrust.co.ug,{{object.dispatched_to.email}}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
-            <field name="subject">Asset {{object.tag.tag}} has been deployed </field>
+            <field name="subject">Asset {{object.asset_type}} with tag {{object.tag.tag}}  has been assigned to you </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Dear <strong t-out="object.dispatched_to.name"></strong><br/>
-                    Asset <strong t-out="object.asset_type"></strong>  with TagID <strong t-out="object.tag.tag"></strong>   created by <strong t-out="object.created_by.name or ''"></strong> has been deployed at location <strong t-out="object.location_id.location_name or ''"></strong> .
+                    Dear <strong t-out="object.dispatched_to.name"></strong>,<br/>
+                    Asset <strong t-out="object.asset_type"></strong> with tag <strong t-out="object.tag.tag"></strong> has been assigned to you. Please utilize the provided <a t-attf-href="{{ object.base_url }} "> Asset Access Link </a> to the Que system and confirm your custodianship of this asset. Login with your usersname and pasword i.e <strong> john.james@financetrust.co.ug</strong> <br/>
+                    Failure to accept will result in the asset's deactivation within 2 days.
                     <br/>
-                    
                     <br/>
-
-                    Vendor : <strong t-out="object.tag.vendor_id.vendor_name"></strong> 
-                    <br/>
-                     Make: <strong t-out="object.make.make_name"></strong>  
-                    <br/>
-                     Model: <strong t-out="object.model.asset_model"></strong>  
-                     <br/>
-                     RAM: <strong t-out="object.ram"></strong>  
-                     <br/>
-                     HD: <strong t-out="object.hdd"></strong> 
-                     <br/>
-                     HD: <strong t-out="object.os"></strong> 
-
-                     <br/>
-                     Please take time and Activate Asset <strong t-out="object.tag.tag"></strong>  to stop this escalation email via  <a t-attf-href="{{ object.base_url }} "> Please Click Here To Activate</a>
-                     <br/>
-                     <br/>
-
-                    <div class="col text-left">
-                        <a t-attf-href="{{ object.base_url }} "> Please Click Here To Access Asset <strong t-out="object.tag.tag"></strong></a>
-        
-                    </div>
-
-                    
-                    <br/>
-                    Regards,<br/>
+                    Best regards,<br/>
+                    <strong t-out="object.dispatched_by.name"></strong>,<br/>
                     Business Technologies.
                 </p>
             </div>
@@ -398,12 +371,12 @@
 
     
         <record id="email_template_create_asset_deployment_rejected" model="mail.template">
-            <field name="name">Inventory Tracker: Asset Deployment Pending</field>
+            <field name="name">Inventory Tracker: Asset Deployment Rejected</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
            <!--<field name="email_from">{{ object.rejected_by.email }}</field>-->
-           <field name="email_from">cclog@financetrust.co.ug</field>
+           <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">{{ object.created_by.supervisor.email }},{{ object.created_by.email }}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset Deployment Rejected </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -442,9 +415,9 @@
     <record id="email_template_create_asset_notify_approver" model="mail.template">
             <field name="name">Inventory Tracker: Asset Pending Approval</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">{{object.created_by.supervisor.email}},{{ object.created_by.email }},Ronald.EmbrissWasswa@financetrust.co.ug</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset Pending Approval</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -483,9 +456,9 @@
     <record id="email_template_create_asset_activated" model="mail.template">
             <field name="name">Inventory Tracker: Asset Activated</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">{{ object.dispatched_by.email }},{{ object.created_by.email }},Infrastructure@financetrust.co.ug</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+              <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset {{object.tag.tag}} has been activated </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -526,9 +499,9 @@
             <field name="name">Inventory Tracker: Asset Repair</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.repaired_by.email }}</field>-->
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">infrastructure@financetrust.co.ug,{{object.repaired_by.email}}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+              <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset {{object.tag.tag}} has been initiated for repair </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -559,9 +532,9 @@
             <field name="name">Inventory Tracker: Asset Disposal</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.disposed_by.email }}</field>-->
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">infrastructure@financetrust.co.ug</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+              <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset {{object.tag.tag}} has been initiated for disposal </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -595,9 +568,9 @@
             <field name="name">Inventory Tracker: Asset Diagnosis</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.initiated_by.email }}</field>-->
-            <field name="email_from">cclog@financetrust.co.ug</field>
+            <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">infrastructure@financetrust.co.ug,Lawrence.Filly@financetrust.co.ug</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+              <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset {{object.tag.tag}} has been initiated for Diagnosis and pending approval </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -631,9 +604,9 @@
             <field name="name">Inventory Tracker: Asset Diagnosis Approval</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.diagnosis_approved_by.email }}</field>-->
-             <field name="email_from">cclog@financetrust.co.ug</field>
+             <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">infrastructure@financetrust.co.ug,{{ object.initiated_by.email }}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+              <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset {{object.tag.tag}} has been initiated for Diagnosis has been approved </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -666,9 +639,9 @@
             <field name="name">Inventory Tracker: Asset Diagnosis</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.diagnosis_by.email }}</field>-->
-             <field name="email_from">cclog@financetrust.co.ug</field>
+             <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">infrastructure@financetrust.co.ug,{{ object.diagnosis_approved_by.email }}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+              <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset {{object.tag.tag}} Diagnosis </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -702,9 +675,9 @@
             <field name="name">Inventory Tracker: Asset Repair Initiated</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.initiate_repair_by.email }}</field>-->
-             <field name="email_from">cclog@financetrust.co.ug</field>
+             <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">infrastructure@financetrust.co.ug,{{ object.diagnosis_approved_by.email }}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+              <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset {{object.tag.tag}} Repaired </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -740,9 +713,9 @@
             <field name="name">Inventory Tracker: Asset Repair Approval</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.repair_approval_by.email }}</field>-->
-             <field name="email_from">cclog@financetrust.co.ug</field>
+             <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">infrastructure@financetrust.co.ug</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+              <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset {{object.tag.tag}} has been approved for repair </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -776,9 +749,9 @@
             <field name="name">Inventory Tracker: Asset Repair Rejection</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.repair_reject_by.email }}</field>-->
-             <field name="email_from">cclog@financetrust.co.ug</field>
+             <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">infrastructure@financetrust.co.ug</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset {{object.tag.tag}} has been rejected for repair </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -811,9 +784,9 @@
             <field name="name">Inventory Tracker: Asset Diagnosis</field>
             <field name="model_id" ref="InventoryTracking.model_inventory_track_inventory"/>
             <!--<field name="email_from">{{ object.diagnosis_by.email }}</field>-->
-             <field name="email_from">cclog@financetrust.co.ug</field>
+             <field name="email_from">que@financetrust.co.ug</field>
             <field name="email_to">infrastructure@financetrust.co.ug,Lawrence.Filly@financetrust.co.ug</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+              <!--<field name="email_cc">Allan.Musembya@financetrust.co.ug</field>-->
             <field name="subject">Asset {{object.tag.tag}} has been initiated for Diagnosis </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">

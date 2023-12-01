@@ -11,6 +11,12 @@
                        <h4 style="text-align: center;"><strong>Asset Transfer Form</strong></h4>
                        <t t-foreach="docs" t-as="x">
                           <p>Asset Code : <strong t-field="x.tag.tag"/></p>
+                          <ul>
+                                <t t-foreach="x.tag.asset_serial" t-as="obj">          
+                                    <li> Asset Serial : <strong><span t-esc="obj.serial"/></strong></li>          
+                                </t>
+                          </ul> 
+                        
                           <p>Asset Type : <strong t-field="x.tag.asset_type"/></p>
                           <p>Asset Location : <strong t-field="x.location_id.location_name"/></p>
                           <p>Asset Custodian : <strong t-field="x.dispatched_to.name"/></p>

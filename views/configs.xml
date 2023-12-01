@@ -183,12 +183,14 @@
             <field name="name">inventory_track_asset_tags.form</field>
             <field name="model">inventory_track.asset_tags</field>
             <field name="arch" type="xml">
-                <form string="Add Asset Tags" create="false" edit="true">
+                <form string="Add Asset Tags" create="false" edit="true" duplicate="true" >
                 <xpath expr="//sheet" position="before">
+                
                     <header> 
-                        <button name="%(wizard_approve_asset_track_asset_tag_approval)d" attrs="{'invisible':[('status', 'in', ['active','approved','rejected'])]}" type="action" string="Approve Tag" class="btn btn-success" groups="InventoryTracking.admin_supervisor"  />
-                        <button name="%(wizard_reject_asset_tag)d" attrs="{'invisible':[('status', 'in', ['active','approved','rejected'])]}" type="action" string="Reject Tag" class="btn btn-danger" groups="InventoryTracking.admin_supervisor"  />
-                  
+    
+                        <button name="%(wizard_approve_asset_track_asset_tag_approval)d" attrs="{'invisible':[('status', 'in', ['active','approved','rejected'])]}" type="action" string="Approve Asset" class="btn btn-primary" groups="InventoryTracking.admin_supervisor"  />
+                        <button name="%(wizard_reject_asset_tag)d" attrs="{'invisible':[('status', 'in', ['active','approved','rejected'])]}" type="action" string="Reject Asset" class="btn btn-outline-dark" groups="InventoryTracking.admin_supervisor"  />
+                    
                         <field name="status" widget="statusbar" statusbar_visible="innactive,active,approved,rejected" />
                     </header>
                 </xpath>
@@ -418,10 +420,17 @@
                 <p class="o_view_nocontent_smiling_face">Create new courier</p>
             </field>
         </record>
-        
 
-        
 
+        <record id="action_duplicate_tags" model="ir.actions.server">
+            <field name="name">Duplicate Tags</field>
+            <field name="model_id" ref="model_inventory_track_asset_tags"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = model.action_duplicate_tag()
+            </field>
+        </record>
+        
         <!-- top level menu: no parent -->
         <menuitem id="main_inventory_menu" name="Que" groups="InventoryTracking.infrastructure_manager,InventoryTracking.Inventory_admin,InventoryTracking.ftb_admin" />
         <menuitem id="config_mene_inv" name="Configurations" sequence="13"  parent="main_inventory_menu"  />

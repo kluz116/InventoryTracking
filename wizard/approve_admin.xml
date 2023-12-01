@@ -16,7 +16,7 @@
                         <field name="approval_by" readonly="1"/>
                     </group>
                     <footer>
-                        <button name="approve_tag_asset" string="Approve Tag" type="object" class="btn btn-outline-primary"/>
+                        <button name="approve_tag_asset" string="Approve Tag" type="object" class="btn btn-primary"/>
                         <button string="Cancel" class="btn-outline-dark" special="cancel"/>
                     </footer>
                 </form>

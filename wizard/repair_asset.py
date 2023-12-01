@@ -40,6 +40,7 @@ class RepairAsset(models.TransientModel):
             req.repaire_comment = self.repaire_comment
             req.repaire_date = self.repaire_date
             req.repaired_by = self.repaired_by
+            req.repair_courier =self.repair_courier
 
 
             if len(req.tag.asset_serial) > 1 :

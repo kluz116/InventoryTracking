@@ -1,4 +1,4 @@
-from odoo import models,api,fields,exceptions
+from odoo import models,api,fields,exceptions, _
 from dateutil.relativedelta import relativedelta
 from datetime import timedelta, date
 
@@ -22,8 +22,8 @@ class Inventory(models.Model):
     hdd = fields.Char(string="HDD OR SDD Size", required=True, default='500 GB')
     os =  fields.Selection([('windows_10','Windows 10'),('windows_11','Windows 11'),('windows_12','Windows 12')],string="OS", required=True, default="windows_10")
     comp_names=fields.Char(string="Computer Name")
-    Processor=fields.Char(string="Processor",required=True)
-    bios=fields.Char(string="BIOS Version/Date",required=True)
+    Processor=fields.Char(string="Processor")
+    bios=fields.Char(string="BIOS Version/Date")
     os_build=fields.Char(string="OS & Build")
     mac_address=fields.Char(string="MAC ADDRESS")
     mac_address_wifi=fields.Char(string="MAC ADDRESS WIFI")
@@ -126,13 +126,18 @@ class Inventory(models.Model):
 
     
     
-   
-   
+    @api.returns('self', lambda value: value.id)
+    def copy(self, default = None):
+        if default is None:
+            default = {}
+        if not default.get('comp_names'):
+            default['comp_names'] = _("%s (copy)") % (self.comp_names)
+            
+        return super(Inventory, self).copy(default)
     
-   
-    
-    
-    
+    def action_duplicate_inv(self):
+        for obj in self.browse(self.env.context['active_ids']):
+            obj.copy()
     
 
     @api.depends('created_on')

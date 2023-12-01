@@ -24,7 +24,7 @@
                         <field name="activated_by" invisible="1"/>
                     </group>
                     <footer>
-                        <button name="activate_asset" string="Activate Asset" type="object" class="btn btn-outline-primary"/>
+                        <button name="activate_asset" string="Activate Asset" type="object" class="btn btn-primary"/>
                         <button string="Cancel" class="btn-outline-dark" special="cancel"/>
                     </footer>
                 </form>

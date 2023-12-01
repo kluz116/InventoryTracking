@@ -1,4 +1,4 @@
-from odoo import models,api,fields,exceptions
+from odoo import models,api,fields,exceptions,_
 from odoo.exceptions import ValidationError
 from dateutil.relativedelta import relativedelta
 from datetime import timedelta, date
@@ -66,7 +66,21 @@ class Tag(models.Model):
     
     
     
+    @api.returns('self', lambda value: value.id)
+    def copy(self, default=None):
+        if default is None:
+            default = {}
+        if not default.get('tag'):
+            default['tag'] = _("%s (copy)") % (self.tag)
+        return super(Tag, self).copy(default)
+    
+    
 
+    def action_duplicate_tag(self):
+        for obj in self.browse(self.env.context['active_ids']):
+            obj.copy()
+    
+    
     @api.depends('tag_date')
     def _get_url_id(self):
         for rec in self:
@@ -108,3 +122,14 @@ class Tag(models.Model):
             value = 'BATCHID'
             date_time = rec.recievd_date.strftime("%m%d%Y")
             rec.batch_id = (value or '')+'-'+(date_time or '')
+            
+    
+    @api.returns('self', lambda value: value.id)
+    def copy(self, default=None):
+        default = dict(default or {},
+                       name=_("%s (copy)", self.tag))
+        return super().copy(default=default)
+    
+   
+ 
+        
